@@ -49,17 +49,13 @@ public class PlatformFrame : MonoBehaviour, IFrame {
 
 				if (deltaY + lastY > transform.position.y + frame.height) {		//	Check if we are above frame
 					deltaY = 0;
-				}					
+				}				
 
 				GameObject spawned = (GameObject)Instantiate (platform, new Vector2 (deltaX + curX + platformWidth, deltaY + lastY), Quaternion.identity);
 				spawned.transform.parent = gameObject.transform;	//	Make this platform child of frame
 				curX += platformWidth + deltaX;						//	Advance X counter
 				lastY = spawned.transform.position.y;				//	Keep track of this Y height
 			}
-
 		}
-
 	}
-	
-
 }
