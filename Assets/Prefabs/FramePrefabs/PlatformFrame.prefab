@@ -52,12 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbae91e6b51a4262be2fad41806d80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 10
-  width: 30
-  enter0: 0
-  enter1: 0
-  exit0: 0
-  exit1: 0
+  height: 20
+  width: 40
+  enterY: 0
+  exitY: 0
 --- !u!114 &114790667436811218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platform: {fileID: 1357399285790966, guid: ecd298c1479dd449ab67f0d4b5f0d98a, type: 2}
   minPlatforms: 10
-  maxPlatforms: 20
+  maxPlatforms: 16
   minXDistance: 3.6
   minYDistance: 1
   maxXDistance: 7

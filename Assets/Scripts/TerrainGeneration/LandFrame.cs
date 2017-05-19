@@ -95,7 +95,7 @@ public class LandFrame : MonoBehaviour, IFrame
 		float tileHeight = landTile.GetComponent<BoxCollider2D> ().size.y;
 
 		for (int i = stackHeight - landThickness > 0 ? stackHeight - landThickness : 0; i < stackHeight; i++) {
-			GameObject spawned = (GameObject)Instantiate (landTile, new Vector2 (x, i * tileHeight), Quaternion.identity);
+			GameObject spawned = (GameObject)Instantiate (landTile, new Vector2 (x, i * tileHeight + transform.position.y), Quaternion.identity);
 			spawned.transform.parent = transform;
 		}
 	}

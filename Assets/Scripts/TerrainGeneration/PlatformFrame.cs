@@ -27,16 +27,18 @@ public class PlatformFrame : MonoBehaviour, IFrame {
 		ArrayList platforms = new ArrayList();
 
 		if (spawnPattern == 0) { 			//		0 = complete random		//////
+			float yCur = 0;
 			for (int i = 0; i < numPlatforms; i++) {
-				GameObject spawned = (GameObject)Instantiate (platform, new Vector2 (Random.Range (0, frame.width) + transform.position.x, Random.Range (0, frame.height) + transform.position.y), Quaternion.identity);
+				GameObject spawned = (GameObject)Instantiate (platform, new Vector2 (Random.Range (0, frame.width) + transform.position.x, yCur + transform.position.y), Quaternion.identity);
 				spawned.transform.parent = gameObject.transform;
 				platforms.Add (spawned);
+				yCur += frame.height / numPlatforms;
 			}
 		} 
 		else if (spawnPattern == 1) {		//		1 = 1 per column	//////
 			float curX = transform.position.x;
 			float platformWidth = platform.GetComponent<BoxCollider2D> ().size.x;
-			float lastY = frame.enterY;												// TODO: Change to enter range
+			float lastY = frame.enterY;												
 
 			while (curX < transform.position.x + frame.width) {				//	Keep placing platforms until we reach end of frame
 				float deltaX = Random.Range (minXDistance, maxXDistance);	//	X Change
