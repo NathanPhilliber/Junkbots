@@ -11,8 +11,8 @@ using System;
 public class TerrainFrame : MonoBehaviour {
 
 	public float height, width;	//	Dimensions of this frame
-	public int enter0, enter1;	//	Enter range
-	public int exit0, exit1;	//	Exit range
+	public float enterY;			//	Enter spot
+	public float exitY;			//	Exit spot
 
 }
 

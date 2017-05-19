@@ -53,6 +53,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landTile: {fileID: 1622665481117048, guid: 097062aba39e241ce900a786f5c50417, type: 2}
+  minHeight: 1
+  maxHeight: 20
+  minSteepness: 1
+  maxSteepness: 3
+  slopeFactor: 50
+  steepFactor: 0
+  landThickness: 5
 --- !u!114 &114850475341136288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 10
-  width: 30
+  width: 60
   enter0: 0
   enter1: 0
   exit0: 0

@@ -24,17 +24,19 @@ public class PlatformFrame : MonoBehaviour, IFrame {
 
 		frame = GetComponent<TerrainFrame> ();						//	Initialize the frame object
 		numPlatforms = Random.Range (minPlatforms, maxPlatforms);	//	Determine the number of platforms to be spawned
+		ArrayList platforms = new ArrayList();
 
 		if (spawnPattern == 0) { 			//		0 = complete random		//////
 			for (int i = 0; i < numPlatforms; i++) {
 				GameObject spawned = (GameObject)Instantiate (platform, new Vector2 (Random.Range (0, frame.width) + transform.position.x, Random.Range (0, frame.height) + transform.position.y), Quaternion.identity);
 				spawned.transform.parent = gameObject.transform;
+				platforms.Add (spawned);
 			}
 		} 
 		else if (spawnPattern == 1) {		//		1 = 1 per column	//////
 			float curX = transform.position.x;
 			float platformWidth = platform.GetComponent<BoxCollider2D> ().size.x;
-			float lastY = transform.position.y;												// TODO: Change to enter range
+			float lastY = frame.enterY;												// TODO: Change to enter range
 
 			while (curX < transform.position.x + frame.width) {				//	Keep placing platforms until we reach end of frame
 				float deltaX = Random.Range (minXDistance, maxXDistance);	//	X Change
@@ -53,9 +55,24 @@ public class PlatformFrame : MonoBehaviour, IFrame {
 
 				GameObject spawned = (GameObject)Instantiate (platform, new Vector2 (deltaX + curX + platformWidth, deltaY + lastY), Quaternion.identity);
 				spawned.transform.parent = gameObject.transform;	//	Make this platform child of frame
+				platforms.Add (spawned);
 				curX += platformWidth + deltaX;						//	Advance X counter
 				lastY = spawned.transform.position.y;				//	Keep track of this Y height
+
 			}
 		}
+
+		//Get rightmost platform
+		float maxX = ((GameObject)platforms[0]).transform.position.x;
+		float y = 0;
+		for (int i = 0; i < platforms.Count; i++) {
+			float x = ((GameObject)platforms [i]).transform.position.x;
+			if (x > maxX) {
+				maxX = x;
+				y = ((GameObject)platforms [i]).transform.position.y;
+			}
+		}
+
+		frame.exitY = y;
 	}
 }

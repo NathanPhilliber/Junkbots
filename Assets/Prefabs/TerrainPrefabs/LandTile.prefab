@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 61507328534227494}
   - component: {fileID: 212107678839331090}
   - component: {fileID: 114335159866367554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LandTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

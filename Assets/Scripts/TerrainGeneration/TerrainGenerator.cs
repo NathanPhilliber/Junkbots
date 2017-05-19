@@ -26,14 +26,20 @@ public class TerrainGenerator : MonoBehaviour {
 	 */
 	public void GenerateLevel(){
 		float curWidth = 0;
+		TerrainFrame lastFrame = null;
 
 		while (curWidth < levelWidth) {		//	Spawn a new frame until we reach level width
 			GameObject spawned = (GameObject)Instantiate (GetRandomFrame (), new Vector3 (transform.position.x + curWidth, transform.position.y, transform.position.z), Quaternion.identity);
 			if (spawned.GetComponent<PlatformFrame> () != null) {
 				spawned.GetComponent<PlatformFrame> ().spawnPattern = Random.Range(0,2);
 			}
+			if (lastFrame != null) {
+				spawned.GetComponent<TerrainFrame> ().enterY = lastFrame.exitY;
+			}
+			lastFrame = spawned.GetComponent<TerrainFrame> ();
 			spawned.GetComponent<IFrame> ().FillFrame ();
 			curWidth += spawned.GetComponent<TerrainFrame> ().width;
+
 		}
 	}
 
