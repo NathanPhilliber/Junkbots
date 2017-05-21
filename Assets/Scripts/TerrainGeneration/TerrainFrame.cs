@@ -10,8 +10,8 @@ using System;
  */
 public class TerrainFrame : MonoBehaviour {
 
-	public float height, width;	//	Dimensions of this frame
-	public float enterY;			//	Enter spot
+	public float width;			//	Dimension of this frame
+	public float enterY;		//	Enter spot
 	public float exitY;			//	Exit spot
 
 }

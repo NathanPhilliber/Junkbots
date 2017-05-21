@@ -2,101 +2,119 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandFrame : MonoBehaviour, IFrame
-{
+public class LandFrame : MonoBehaviour, IFrame {
 
-	public GameObject landTile;
-	//	The basic platform object to be spawned
-	public int minHeight, maxHeight;
-	//	The min/max hill height
-	public int minSteepness, maxSteepness;
-	//	How much elevation can change by
-	public int slopeFactor;
-	//	The probability of elevation change (int 0-100)
-	public int steepFactor;
-	//	The probability of how much steepness change (int 0-100)
-	public int landThickness;
-	//	How thick the land should be
+	public float xDifference;		//Used for how far away the next vertex will be
+	public float maxYDifference;	//Used for how high/low the next vertex can be from this one
+	public float landDepth;
+	public Material material;
 
 	private TerrainFrame frame;
-	//	Contains basic information about this frame
+	private EdgeCollider2D collider;
+	private Mesh mesh;
+	private MeshFilter meshFilter;
+	private MeshRenderer meshRenderer;
 
-	/*
-	 * Generate the platforms in this frame
-	 */
-	public void FillFrame ()
-	{
-		frame = GetComponent<TerrainFrame> ();								//	Initialize the frame object
-		float curX = transform.position.x;									//	Initialize x counter, used to know when we're done with this frame
-		float tileWidth = landTile.GetComponent<BoxCollider2D> ().size.x;	//	The width of each tile
-		float tileHeight = landTile.GetComponent<BoxCollider2D> ().size.y;	//	The height of each tile
-		int targetHillHeight = (int)(frame.enterY * tileHeight);			//	The height of the current hill to be spawned	//	TODO: Change to enter range
-		int curStackHeight = targetHillHeight;								//	The height of the current column
-		bool goingUp = true;
-
-		while (curX < transform.position.x + frame.width) {			//	Repeat for every x in frame
-			SpawnColumn (curX, curStackHeight);						//	Spawn a column at x and of current height
-			frame.exitY = transform.position.y + curStackHeight * tileHeight;
-
-			curStackHeight = GetRandomColumnHeight (curStackHeight, (int)(targetHillHeight - curStackHeight));	//	Find next column height
-
-			if (goingUp && curStackHeight >= targetHillHeight) {						//	Check if we reached the target
-				targetHillHeight = Random.Range (minHeight, maxHeight);
-				if (curStackHeight < targetHillHeight) {
-					goingUp = false;
-				}
-			} else if (!goingUp && curStackHeight <= targetHillHeight) {
-				targetHillHeight = Random.Range (minHeight, maxHeight);
-				if (curStackHeight > targetHillHeight) {
-					goingUp = true;
-				}
-			}
-
-			curX += tileWidth;
-		}
-
+	// Use this for initialization
+	void Start () {
+		
 
 	}
-
-
-	/*
-	 * Get a new random column height.
-	 * 		int curHeight: The height of the last column
-	 * 		int direction: Positive/zero if up, negative if down
-	 * 
-	 */
-	private int GetRandomColumnHeight (int curHeight, int direction)
-	{
-		if (Random.Range (0, 100) <= slopeFactor) {		//	Do an elevation change
-
-			//Find out how much to change elevation by
-			int rangeDelta = maxSteepness - minSteepness;
-			float scaleFactor = 100f / rangeDelta;
-
-			int delta = Random.Range (0, 100);
-
-			if (direction >= 0) {
-				return curHeight + (int)(delta / scaleFactor + minSteepness);
-			} else {
-				return curHeight - (int)(delta / scaleFactor + minSteepness);
-			}
-
-		} else { //	No elevation change
-			return curHeight;
-		}
+	
+	// Update is called once per frame
+	void Update () {
+		
 	}
 
+	public void FillFrame(){
+		frame = GetComponent<TerrainFrame> ();
+		mesh = new Mesh ();
+		meshFilter = (MeshFilter)gameObject.AddComponent (typeof(MeshFilter));
+		meshRenderer = (MeshRenderer)gameObject.AddComponent (typeof(MeshRenderer));
+		collider = (EdgeCollider2D)gameObject.AddComponent (typeof(EdgeCollider2D));
+		meshFilter.mesh = mesh;
 
-	/*
-	 * Spawn a column of tiles at x position
-	 */
-	private void SpawnColumn (float x, int stackHeight)
-	{
-		float tileHeight = landTile.GetComponent<BoxCollider2D> ().size.y;
+		int impVertices = (int)((frame.width / xDifference) + 3);
+		int middleVertices = (int)((impVertices - 5) / 2);
+		Vector3[] vertices = new Vector3[impVertices + middleVertices];
+		Vector2[] uvs = new Vector2[vertices.Length];
+		Vector2[] points = new Vector2[vertices.Length];
+		int[] triangles = new int[(vertices.Length - 2) * 3];
 
-		for (int i = stackHeight - landThickness > 0 ? stackHeight - landThickness : 0; i < stackHeight; i++) {
-			GameObject spawned = (GameObject)Instantiate (landTile, new Vector2 (x, i * tileHeight + transform.position.y), Quaternion.identity);
-			spawned.transform.parent = transform;
+		mesh.Clear ();
+
+
+		vertices [0] = new Vector2(0, -landDepth);
+		vertices [1] = new Vector2(0, frame.enterY - transform.position.y);
+
+		points[0] = new Vector2(vertices[0].x, vertices[0].y);
+		points[1] = new Vector2(vertices[1].x, vertices[1].y);
+
+		float xCur = 0;
+		float yCur = vertices[1].y;
+
+		for (int i = 2; i < vertices.Length - 1 - middleVertices; i++) {
+			xCur += xDifference;
+			yCur += Random.Range (-maxYDifference, maxYDifference);
+			vertices [i] = new Vector3 (xCur, yCur, 0);
+			points [i] = new Vector2 (xCur, yCur);
+
 		}
+
+		xCur = frame.width;
+
+		vertices [vertices.Length - 1 - middleVertices] = new Vector3 (xCur, -landDepth, 0);
+		points [vertices.Length - 1 - middleVertices] = new Vector2 (xCur, -landDepth);
+
+
+		for (int i = vertices.Length - middleVertices; i < vertices.Length; i++) {
+			xCur -= xDifference*2;
+			vertices [i] = new Vector3 (xCur, -landDepth, 0);
+			points [i] = new Vector2 (xCur, -landDepth);
+		}
+
+		//Calculate Triangles
+
+		int size = vertices.Length;
+		int forwards = 1;
+		int anchor = 0;
+		int backwards = -1;
+
+		for (int i = 0; i < (int)(triangles.Length);) {
+			triangles [i] = anchor;
+			triangles [i + 1] = forwards;
+			triangles [i + 2] = ++forwards;
+			//print ("Triangle 1: (" + triangles [i] + ", " + triangles [i + 1] + ", " + triangles [i + 2] + ")");
+			i += 3;
+
+			triangles [i] = anchor;
+			triangles [i + 1] = forwards;
+			triangles [i + 2] = ++forwards;
+			//print ("Triangle 2: (" + triangles [i] + ", " + triangles [i + 1] + ", " + triangles [i + 2] + ")");
+			i += 3;
+
+			triangles [i] = anchor;
+			triangles [i + 1] = forwards;
+			triangles [i + 2] = size + backwards;
+			//print ("Triangle 3: (" + triangles [i] + ", " + triangles [i + 1] + ", " + triangles [i + 2] + ")");
+			i += 3;
+
+			anchor = size + backwards;
+			backwards--;
+
+		}
+
+		for (int i = 0; i < uvs.Length; i++) {
+			uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
+		}
+		//print ("Total Triangles: " + (triangles.Length / 3));
+		frame.exitY = yCur + transform.position.y;
+
+		collider.points = points;
+		mesh.vertices = vertices;
+		mesh.uv = uvs;
+		mesh.triangles = triangles;
+		mesh.RecalculateNormals ();
+		meshRenderer.sharedMaterial = material;
 	}
 }

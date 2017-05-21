@@ -2,58 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * Class responsible for generating terrain/levels.
- * 
- */
 public class TerrainGenerator : MonoBehaviour {
 
-	public float levelWidth; //How long the level should be
+	public float levelWidth;
 
 	public GameObject[] frames;
+	// Use this for initialization
+	void Start () {
+		float xCur = transform.position.x;
+		float lastY = 0;
 
-
-	/*
-	 * Call the generate function at start
-	 */
-	void Start(){
-		GenerateLevel ();
-	}
-
-
-	/*
-	 * Call once to generate an entire level
-	 */
-	public void GenerateLevel(){
-		float curWidth = 0;
-		TerrainFrame lastFrame = null;
-
-		while (curWidth < levelWidth) {		//	Spawn a new frame until we reach level width
-			GameObject spawned = (GameObject)Instantiate (GetRandomFrame (), new Vector3 (transform.position.x + curWidth, transform.position.y, transform.position.z), Quaternion.identity);
-			if (spawned.GetComponent<PlatformFrame> () != null) {
-				spawned.GetComponent<PlatformFrame> ().spawnPattern = 1;
-			}
-			else if (spawned.GetComponent<LandFrame> () != null) {
-				spawned.GetComponent<LandFrame> ().slopeFactor = Random.Range(0,75);
-				spawned.GetComponent<LandFrame> ().maxSteepness = Random.Range(1,5);
-
-				spawned.GetComponent<LandFrame> ().landThickness = Random.Range(12,20);
-			}
-			if (lastFrame != null) {
-				spawned.GetComponent<TerrainFrame> ().enterY = lastFrame.exitY;
-			}
-			lastFrame = spawned.GetComponent<TerrainFrame> ();
-			spawned.GetComponent<IFrame> ().FillFrame ();
-			curWidth += spawned.GetComponent<TerrainFrame> ().width;
-
+		while (xCur < levelWidth + transform.position.x) {
+			GameObject frame = (GameObject)Instantiate (frames [0], new Vector2 (xCur, 0), Quaternion.identity);
+			frame.GetComponent<TerrainFrame> ().enterY = lastY;
+			frame.GetComponent<IFrame> ().FillFrame ();
+			xCur += frame.GetComponent<TerrainFrame>().width;
+			lastY = frame.GetComponent<TerrainFrame> ().exitY;
 		}
 	}
-
-
-	/*
-	 * Get a random frame prefab
-	 */
-	public GameObject GetRandomFrame(){
-		return frames [Random.Range (0, frames.Length)];
+	
+	// Update is called once per frame
+	void Update () {
+		
 	}
 }
