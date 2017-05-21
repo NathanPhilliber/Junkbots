@@ -54,7 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xDifference: 2
   maxYDifference: 1
-  landDepth: 30
+  minYDifference: -1
+  landDepth: 200
   material: {fileID: 2100000, guid: 82fdd3424f18f4fc0aea7b910d22d9af, type: 2}
 --- !u!114 &114995364816503372
 MonoBehaviour:
