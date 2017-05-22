@@ -32,13 +32,13 @@ public class PlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(controller.collisions.above || controller.collisions.below) {
+		if((controller.collisions.above || controller.collisions.below) && !controller.collisions.slidingDownMaxSlope) {
 			velocity.y = 0;
 		}
 
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
-		if (Input.GetKeyDown(KeyCode.Space) && (controller.collisions.below)) {
+		if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below && !controller.collisions.slidingDownMaxSlope) {
 			velocity.y = jumpVelocity;
 		}
 
