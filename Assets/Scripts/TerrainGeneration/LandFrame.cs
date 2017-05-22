@@ -10,7 +10,7 @@ public class LandFrame : MonoBehaviour, IFrame {
 	public float landDepth;				//	How deep the land should be
 	public Material material;			//	The material for this piece of land
 
-	public LandFrame nextFrame = null;
+	public GameObject nextFrame = null;
 
 	private TerrainFrame frame;			//	The land frame
 	private EdgeCollider2D collider;	//	Collider

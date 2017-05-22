@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Structure : MonoBehaviour {
 
-
-
 	public GameObject staircase;			//	Staircase prefab
 	public GameObject staircaseDown;		//	Down Staircase prefab
 	public GameObject platform;				//	Platform prefab
@@ -38,6 +36,10 @@ public class Structure : MonoBehaviour {
 			numPieces++;
 			int id = Random.Range (0, 3);
 				
+			if (numPieces > 5 && Random.Range(0,2) == 0) {
+				id = 2;
+			}
+
 			if (id == 0) { //staircase up
 				point = SpawnStaircase(point);
 			} else if (id == 1) { //platform
@@ -48,7 +50,7 @@ public class Structure : MonoBehaviour {
 
 			vertex = GetNextVertex (frame, vertex, point.x);
 
-			if (frame.transform.TransformPoint (vertices [vertex]).y > point.y || numPieces > 2) {
+			if (frame.transform.TransformPoint (vertices [vertex]).y > point.y) {
 				keepSpawning = false;
 			}
 		}
@@ -62,8 +64,18 @@ public class Structure : MonoBehaviour {
 	public int GetNextVertex(LandFrame frame, int vertex, float x){
 		Mesh mesh = frame.GetComponent<MeshFilter> ().mesh;
 		Vector3[] vertices = mesh.vertices;
+
+		float lastX = frame.transform.TransformPoint(vertices [vertex]).x;
+
 		while (frame.transform.TransformPoint(vertices [vertex]).x < x) {
-			vertex++;
+
+			if (lastX > frame.transform.TransformPoint (vertices [vertex]).x) {
+				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
+				vertex = 1;
+			} else {
+				lastX = frame.transform.TransformPoint(vertices [vertex]).x;
+				vertex++;
+			}
 		}
 		return vertex;
 	}
