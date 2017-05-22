@@ -10,14 +10,22 @@ public class Controller2D : RaycastController {
 
 	public CollisionInfo collisions;
 
+    [HideInInspector]
+    public Vector2 playerInput;
+
     public override void Start() {
         base.Start();
     }
 
     public void Move(Vector3 velocity, bool standingOnPlatform = false) {
+        Move(velocity, Vector2.zero, standingOnPlatform);
+    }
+
+    public void Move(Vector3 velocity, Vector2 input, bool standingOnPlatform = false) {
 		UpdateRaycastOrigins ();
 		collisions.Reset ();
         collisions.velocityOld = velocity;
+        playerInput = input;
 
         if (velocity.y < 0) {
             DescendSlope(ref velocity);

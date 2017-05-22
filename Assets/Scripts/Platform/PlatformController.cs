@@ -10,8 +10,14 @@ public class PlatformController : RaycastController {
     Vector3[] wayPoints;
 
     public float speed;
+    public bool cyclic;
+    public float waitTime;
+    [Range(0,2)]
+    public float easeAmount;
+
     int fromWaypointIndex;
     float percentBetweenWaypoints;
+    float nextMoveTime;
 
     List<PassengerMovement> passengerMovements;
     Dictionary<Transform, Controller2D> passengerControllers = new Dictionary<Transform, Controller2D>();
@@ -41,23 +47,42 @@ public class PlatformController : RaycastController {
     }
 
     Vector3 CalculatePlatformMovement() {
-        int toWayPointIndex = fromWaypointIndex + 1;
+
+        if (Time.time < nextMoveTime) {
+            return Vector3.zero;
+        }
+
+        fromWaypointIndex %= wayPoints.Length;
+
+        int toWayPointIndex = (fromWaypointIndex + 1) % wayPoints.Length;
         float distanceBetweenWaypoints = Vector3.Distance(wayPoints[fromWaypointIndex], wayPoints[toWayPointIndex]);
         percentBetweenWaypoints += Time.deltaTime * speed / distanceBetweenWaypoints;
+        percentBetweenWaypoints = Mathf.Clamp01(percentBetweenWaypoints);
+        float easedPercentBetweenWaypoints = Ease(percentBetweenWaypoints);
 
-        Vector3 newPos = Vector3.Lerp(wayPoints[fromWaypointIndex], wayPoints[toWayPointIndex], percentBetweenWaypoints);
+        Vector3 newPos = Vector3.Lerp(wayPoints[fromWaypointIndex], wayPoints[toWayPointIndex], easedPercentBetweenWaypoints);
 
         if (percentBetweenWaypoints >= 1) {
             percentBetweenWaypoints = 0;
             fromWaypointIndex++;
 
-            if (fromWaypointIndex >= wayPoints.Length - 1) {
-                fromWaypointIndex = 0;
-                System.Array.Reverse(wayPoints);
+            if (!cyclic) {
+                if (fromWaypointIndex >= wayPoints.Length - 1) {
+                    fromWaypointIndex = 0;
+                    System.Array.Reverse(wayPoints);
+                }
             }
+
+            nextMoveTime = Time.time + waitTime;
         }
 
         return newPos - transform.position;
+    }
+
+    float Ease(float x)
+    {
+        float a = 1 + easeAmount;
+        return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1-x, a));
     }
 
     void MovePassengers(bool beforeMovePlatform) {

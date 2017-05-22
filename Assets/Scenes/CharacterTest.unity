@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 1369736377}
   - component: {fileID: 1369736376}
   - component: {fileID: 1369736375}
+  - component: {fileID: 1369736380}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -482,6 +483,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369736380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1369736374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f551274177ba3da4a824383703cee85c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1382865469}
+  focusAreaSize: {x: 10, y: 15}
+  verticalOffset: 1
+  lookAheadDstX: 4
+  horizontalSmoothTime: 0.5
+  verticalSmoothTime: 0.2
 --- !u!1 &1382865467
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +554,10 @@ MonoBehaviour:
   verticalRayCount: 4
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
+  collider: {fileID: 0}
   maxClimbAngle: 80
   maxDescendAngle: 75
+  playerInput: {x: 0, y: 0}
 --- !u!61 &1382865470
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -652,13 +672,18 @@ MonoBehaviour:
   verticalRayCount: 4
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
+  collider: {fileID: 0}
   passengerMask:
     serializedVersion: 2
     m_Bits: 256
   localWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 10, y: 20, z: 0}
+  - {x: 10, y: 15, z: 0}
+  - {x: -15, y: 10, z: 0}
   speed: 10
+  cyclic: 1
+  waitTime: 0.5
+  easeAmount: 1.085
 --- !u!61 &1492034537
 BoxCollider2D:
   m_ObjectHideFlags: 0
