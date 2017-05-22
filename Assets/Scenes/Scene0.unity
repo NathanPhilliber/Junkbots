@@ -138,6 +138,7 @@ MonoBehaviour:
   levelWidth: 2000
   frames:
   - {fileID: 1064784614868636, guid: 45c2558229c594cb19fd687ed9f2dee9, type: 2}
+  structure: {fileID: 1460383649380262, guid: a19c45216d39f46b184f10ee692ae1e7, type: 2}
 --- !u!4 &50729264
 Transform:
   m_ObjectHideFlags: 0
