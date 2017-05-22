@@ -45,3 +45,7 @@ public class TerrainGenerator : MonoBehaviour {
 	
 
 }
+
+
+
+// ToDo: generate all land first, link up frames. Then go and spawn structures in.
