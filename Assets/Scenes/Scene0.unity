@@ -307,7 +307,7 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
-  moveSpeed: 6
+  moveSpeed: 12
 --- !u!33 &1129944843
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -344,6 +344,8 @@ MonoBehaviour:
     m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
+  maxClimbAngle: 75
+  maxDescendAngle: 75
 --- !u!61 &1129944846
 BoxCollider2D:
   m_ObjectHideFlags: 0
