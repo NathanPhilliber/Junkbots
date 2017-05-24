@@ -13,7 +13,7 @@ public class Structure : MonoBehaviour {
 	private float stairOffsetX = 8.9f;		//	Distance from middle to edge on x
 	private float stairOffsetY = 5.4f;		//	Distance from middle to edge on y
 
-	private float platformOffsetX = 10.2f;	//Distance from middle to edge on x
+	private float platformOffsetX = 10f;	//Distance from middle to edge on x
 
 
 	/*
@@ -32,23 +32,34 @@ public class Structure : MonoBehaviour {
 		bool keepSpawning = true;
 		int numPieces = 0;
 
+		int lastVertex = 0;
+
 		while (keepSpawning) {
 			numPieces++;
-			int id = Random.Range (0, 3);
+			int id = Random.Range (0, 100);
 				
-			if (numPieces > 5 && Random.Range(0,2) == 0) {
-				id = 2;
+			if (numPieces > 5 && Random.Range(0,3) == 0) {
+				id = 99;
 			}
 
-			if (id == 0) { //staircase up
+			if ((id == 0 && id < 15) || numPieces == 1) { //staircase up
 				point = SpawnStaircase(point);
-			} else if (id == 1) { //platform
+			} else if (id >= 15 && id < 85) { //platform
 				point = SpawnPlatform(point);
-			} else if (id == 2) { //staircase down
+			} else if (id >= 85 &&id < 100) { //staircase down
 				point = SpawnStaircaseDown(point);
 			}
 
-			vertex = GetNextVertex (frame, vertex, point.x);
+			vertex = GetNextVertex (frame, vertex, point.x); //need to update frame and vertices if necessary
+
+			if (lastVertex > vertex) {
+				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
+				mesh = frame.GetComponent<MeshFilter> ().mesh;
+				vertices = mesh.vertices;
+			}
+			lastVertex = vertex;
+
+			//print (frame.transform.TransformPoint (vertices [vertex]).x + "   " +frame.transform.TransformPoint (vertices [vertex]).y + " > " + point.y);
 
 			if (frame.transform.TransformPoint (vertices [vertex]).y > point.y) {
 				keepSpawning = false;
@@ -68,15 +79,18 @@ public class Structure : MonoBehaviour {
 		float lastX = frame.transform.TransformPoint(vertices [vertex]).x;
 
 		while (frame.transform.TransformPoint(vertices [vertex]).x < x) {
-
+			//print (lastX);
 			if (lastX > frame.transform.TransformPoint (vertices [vertex]).x) {
 				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
-				vertex = 1;
+				mesh = frame.GetComponent<MeshFilter> ().mesh;
+				vertices = mesh.vertices;
+				vertex = 2;
 			} else {
 				lastX = frame.transform.TransformPoint(vertices [vertex]).x;
 				vertex++;
 			}
 		}
+		//print (frame.transform.TransformPoint (vertices [vertex]).y);
 		return vertex;
 	}
 

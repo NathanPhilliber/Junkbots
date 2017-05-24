@@ -37,8 +37,8 @@ public class TerrainGenerator : MonoBehaviour {
 					yMin = Random.Range (-.2f, 0f);	
 				}
 				else if (Random.Range (0, 10) == 0) {						//	50% chance of flat
-					yMax = Random.Range (-4f, -2f);	
-					yMin = Random.Range (-4f, -2f);	
+					yMax = Random.Range (-1f, -.5f);	
+					yMin = Random.Range (-3f, -1f);	
 				}else {											//	50% chance of getting a chance to be more extreme
 					yMax = Random.Range (0f, 4f);
 					yMin = Random.Range (-4f, 0f);
@@ -49,20 +49,20 @@ public class TerrainGenerator : MonoBehaviour {
 			frame.GetComponent<IFrame> ().FillFrame ();																//	Generate frame
 			frame.transform.parent = transform;																		//	Child the frame to this object
 
-			/*
-			if (Random.Range (0, 10) == 0) {
-				GameObject spawnedStructure = (GameObject)Instantiate (structure, Vector3.zero, Quaternion.identity);
-				spawnedStructure.GetComponent<Structure> ().GenerateStructure (frame.GetComponent<LandFrame>(), 5);
-			}*/
-
 			xCur += frame.GetComponent<TerrainFrame>().width;														//	Add frame width to x counter
 			lastY = frame.GetComponent<TerrainFrame> ().exitY;														//	Save the exit point from the new frame
 		}
 
 		int numStructures = Random.Range (1, 4);
 		for (int i = 0; i < numStructures; i++) {
-			GameObject spawnedStructure = (GameObject)Instantiate (structure, Vector3.zero, Quaternion.identity);
-			spawnedStructure.GetComponent<Structure> ().GenerateStructure (existingFrames[Random.Range(0,existingFrames.Count-2)].GetComponent<LandFrame>(), 3);
+			GameObject frame = existingFrames [Random.Range (0, existingFrames.Count - 2)];
+			if (frame.GetComponent<LandFrame> () != null) {
+				if (frame.GetComponent<LandFrame> ().maxYDifference < 1 && frame.GetComponent<LandFrame> ().minYDifference > -1) {
+					GameObject spawnedStructure = (GameObject)Instantiate (structure, Vector3.zero, Quaternion.identity);
+					spawnedStructure.GetComponent<Structure> ().GenerateStructure (frame.GetComponent<LandFrame>(), Random.Range(2,12));
+				}
+			}
+
 		}
 
 	}
