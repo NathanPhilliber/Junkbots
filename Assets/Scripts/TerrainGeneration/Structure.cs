@@ -80,9 +80,6 @@ public class Structure : MonoBehaviour {
 
 		}
 
-
-
-
 		float yB = backingVertices [backingVertices.Count - 1].y;
 
 		if (yB > backingVertices [0].y) {
@@ -109,8 +106,6 @@ public class Structure : MonoBehaviour {
 		}
 
 		int[] triangles = new int[(backVertices.Length - 2)* 3];
-
-
 
 		int refPoint = size - 1;
 		int back = refPoint + 1;
@@ -145,9 +140,6 @@ public class Structure : MonoBehaviour {
 
 
 		}
-
-
-
 
 		mesh = new Mesh ();																//	New mesh
 		meshFilter = (MeshFilter)gameObject.AddComponent (typeof(MeshFilter));			//	Add mesh filter
