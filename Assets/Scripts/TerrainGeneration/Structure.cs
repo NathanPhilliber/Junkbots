@@ -8,6 +8,8 @@ public class Structure : MonoBehaviour {
 	public GameObject staircaseDown;		//	Down Staircase prefab
 	public GameObject platform;				//	Platform prefab
 
+	public Material material;
+
 	private LandFrame frame;				//	The frame in which we are spawning structures on
 
 	private float stairOffsetX = 8.9f;		//	Distance from middle to edge on x
@@ -15,6 +17,9 @@ public class Structure : MonoBehaviour {
 
 	private float platformOffsetX = 10f;	//Distance from middle to edge on x
 
+	private Mesh mesh;					//	Land mesh
+	private MeshFilter meshFilter;		//	Mesh filter
+	private MeshRenderer meshRenderer;	//	Renderer
 
 	/*
 	 * Generate a structure starting at a provided point
@@ -34,6 +39,9 @@ public class Structure : MonoBehaviour {
 
 		int lastVertex = 0;
 
+		List<Vector3> backingVertices = new List<Vector3> ();
+		backingVertices.Add (anchor);
+
 		while (keepSpawning) {
 			numPieces++;
 			int id = Random.Range (0, 100);
@@ -50,21 +58,109 @@ public class Structure : MonoBehaviour {
 				point = SpawnStaircaseDown(point);
 			}
 
-			vertex = GetNextVertex (frame, vertex, point.x); //need to update frame and vertices if necessary
+			backingVertices.Add (new Vector3 (point.x, point.y, 0));
 
-			if (lastVertex > vertex) {
-				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
-				mesh = frame.GetComponent<MeshFilter> ().mesh;
-				vertices = mesh.vertices;
-			}
-			lastVertex = vertex;
+			vertex = GetNextVertex (frame, vertex, point.x);
 
-			//print (frame.transform.TransformPoint (vertices [vertex]).x + "   " +frame.transform.TransformPoint (vertices [vertex]).y + " > " + point.y);
-
-			if (frame.transform.TransformPoint (vertices [vertex]).y > point.y) {
+			if (vertex == -1) {
 				keepSpawning = false;
+			} else {
+				if (lastVertex > vertex) {
+					frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
+					mesh = frame.GetComponent<MeshFilter> ().mesh;
+					vertices = mesh.vertices;
+				}
+				lastVertex = vertex;
+
+				if (frame.transform.TransformPoint (vertices [vertex]).y > point.y) {
+					keepSpawning = false;
+				}
 			}
+
+
 		}
+
+
+
+
+		float yB = backingVertices [backingVertices.Count - 1].y;
+
+		if (yB > backingVertices [0].y) {
+			yB = backingVertices [0].y;
+		}
+
+		backingVertices.Add (new Vector3 (backingVertices [backingVertices.Count - 1].x, yB - 30, 0));
+		backingVertices.Insert (0, new Vector3 (backingVertices[0].x, yB - 30, 0));
+
+		int size = backingVertices.Count;
+		int backPoint = size - 2;
+
+		for (int i = 3; i < size; i += 2) {
+			backPoint -= 2;
+			backingVertices.Add (new Vector3(backingVertices [backPoint].x, yB - 30, 0));
+		}
+
+		Vector3[] backVertices = backingVertices.ToArray ();
+
+		Vector2[] uvs = new Vector2[backVertices.Length];
+
+		for (int i = 0; i < uvs.Length; i++) {						//	Assign all uvs, just copy vertices
+			uvs[i] = new Vector2(backVertices[i].x, backVertices[i].y);
+		}
+
+		int[] triangles = new int[(backVertices.Length - 2)* 3];
+
+
+
+		int refPoint = size - 1;
+		int back = refPoint + 1;
+		int forward = refPoint - 1;
+
+		for (int i = 0; i < triangles.Length;) {
+			triangles [i] = forward - 1;
+			triangles [i + 1] = forward--;
+			triangles [i + 2] = refPoint;
+
+			i += 3;
+
+			if (i >= triangles.Length) {
+				break;
+			}
+
+			triangles [i] = forward - 1;
+			triangles [i + 1] = forward--;
+			triangles [i + 2] = refPoint;
+
+			i += 3;
+
+			if (i >= triangles.Length) {
+				break;
+			}
+
+			triangles [i] = forward;
+			triangles [i + 1] = refPoint++;
+			triangles [i + 2] = back++;
+
+			i += 3;
+
+
+		}
+
+
+
+
+		mesh = new Mesh ();																//	New mesh
+		meshFilter = (MeshFilter)gameObject.AddComponent (typeof(MeshFilter));			//	Add mesh filter
+		meshRenderer = (MeshRenderer)gameObject.AddComponent (typeof(MeshRenderer));	//	Add mesh renderer
+
+		meshFilter.mesh = mesh;		
+
+		mesh.vertices = backVertices;
+		mesh.uv = uvs;
+		mesh.triangles = triangles;
+		mesh.RecalculateNormals ();		
+
+		meshRenderer.sharedMaterial = material;	
 
 	}
 
@@ -79,9 +175,14 @@ public class Structure : MonoBehaviour {
 		float lastX = frame.transform.TransformPoint(vertices [vertex]).x;
 
 		while (frame.transform.TransformPoint(vertices [vertex]).x < x) {
-			//print (lastX);
+
 			if (lastX > frame.transform.TransformPoint (vertices [vertex]).x) {
 				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
+
+				if (frame == null) {
+					return -1;
+				}
+
 				mesh = frame.GetComponent<MeshFilter> ().mesh;
 				vertices = mesh.vertices;
 				vertex = 2;
@@ -90,7 +191,7 @@ public class Structure : MonoBehaviour {
 				vertex++;
 			}
 		}
-		//print (frame.transform.TransformPoint (vertices [vertex]).y);
+
 		return vertex;
 	}
 
