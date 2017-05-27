@@ -40,6 +40,7 @@ public class TerrainGenerator : MonoBehaviour {
 
 					if(Random.Range(0,100) < ravineChancePercent){
 						frame.GetComponent<LandFrame> ().generateRavine = true;
+						frame.GetComponent<LandFrame> ().spawnBridge = true;
 					}
 				}
 				else if (Random.Range (0, 10) == 0) {						//	50% chance of flat

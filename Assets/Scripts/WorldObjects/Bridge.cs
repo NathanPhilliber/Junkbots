@@ -14,9 +14,11 @@ public class Bridge : MonoBehaviour, IInteractable {
 	void Start () {
 		bridge.GetComponent<BoxCollider2D>().size = new Vector2(length, bridge.GetComponent<BoxCollider2D>().size.y);
 		bridge.GetComponent<SpriteRenderer>().size = new Vector2(length, bridge.GetComponent<SpriteRenderer>().size.y);
+	}
 
-
-
+	public void Reload(){
+		bridge.GetComponent<BoxCollider2D>().size = new Vector2(length, bridge.GetComponent<BoxCollider2D>().size.y);
+		bridge.GetComponent<SpriteRenderer>().size = new Vector2(length, bridge.GetComponent<SpriteRenderer>().size.y);
 	}
 	
 

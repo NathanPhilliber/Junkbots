@@ -10,6 +10,9 @@ public class LandFrame : MonoBehaviour, IFrame {
 	public float landDepth;				//	How deep the land should be
 	public Material material;			//	The material for this piece of land
 	public bool generateRavine;
+	public GameObject bridge;
+	public GameObject button;
+	public bool spawnBridge;
 
 
 	public GameObject nextFrame = null;
@@ -103,10 +106,21 @@ public class LandFrame : MonoBehaviour, IFrame {
 		if (generateRavine) {
 			int vert = (int)(frame.width / xDifference / 3);
 
+			if (spawnBridge) {
+				Vector3 pos = transform.TransformPoint (vertices [vert]);
+				GameObject bridgeIn = (GameObject)Instantiate (bridge, new Vector2 (pos.x + xDifference*.25f, pos.y - 1.4f), Quaternion.identity);
+				bridgeIn.GetComponent<Bridge> ().length = 25;
+				bridgeIn.GetComponent<Bridge> ().Reload ();
+
+				GameObject buttonIn = (GameObject)Instantiate (button, new Vector2 (pos.x - xDifference*5, pos.y + 1.2f), Quaternion.identity);
+				buttonIn.GetComponent<PressureButton>().objectsToTrigger = new GameObject[1];
+				buttonIn.GetComponent<PressureButton> ().objectsToTrigger [0] = bridgeIn;
+			}
+
 			int holeRadius = 5;
 
 			for (int i = vert; i < vert + holeRadius; i++) {
-				vertices [i] = new Vector3 (vertices[vert].x + Random.Range(-2.5f, 2.5f), vertices[vert].y - (i-vert)*Random.Range(20,30), 0);
+				vertices [i] = new Vector3 (vertices[vert].x, vertices[vert].y - (i-vert)*Random.Range(20,30), 0);
 			}
 
 			vert += (holeRadius*2);
