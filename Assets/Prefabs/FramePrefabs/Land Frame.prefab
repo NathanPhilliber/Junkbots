@@ -56,7 +56,7 @@ MonoBehaviour:
   maxYDifference: 1
   minYDifference: -1
   landDepth: 200
-  material: {fileID: 2100000, guid: 427b8a05bdf0f47be8f6a68a799c3914, type: 2}
+  material: {fileID: 2100000, guid: e250b1049472b4a9c96fd55a8eb2555e, type: 2}
   generateRavine: 0
   bridge: {fileID: 1898181987073944, guid: 5409f96dfafbf467594ca8d092bab8fc, type: 2}
   button: {fileID: 1943535156655898, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}

@@ -55,4 +55,4 @@ MonoBehaviour:
   staircaseDown: {fileID: 1688381127043702, guid: 3bd4ece722d8d484abaa7699b7f5426c,
     type: 2}
   platform: {fileID: 1346932249486842, guid: 0d28522d4dd2e42f0b084dfa19413a8f, type: 2}
-  material: {fileID: 2100000, guid: 718fc66aaa1c4400ab70004238feb060, type: 2}
+  material: {fileID: 2100000, guid: 9a56466ff4676431aafb85b31050781f, type: 2}
