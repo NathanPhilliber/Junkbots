@@ -12,6 +12,8 @@ public class TerrainGenerator : MonoBehaviour {
 
 	private List<GameObject> existingFrames = new List<GameObject>();	//	Store all of the spawned frames
 
+	private int ravineChancePercent = 30;
+
 	void Start () {
 		
 		float xCur = transform.position.x;		//	Start x counter at the beginning of this frame
@@ -35,6 +37,10 @@ public class TerrainGenerator : MonoBehaviour {
 				if (Random.Range (0, 2) == 0) {						//	50% chance of flat
 					yMax = Random.Range (0f, .2f);	
 					yMin = Random.Range (-.2f, 0f);	
+
+					if(Random.Range(0,100) < ravineChancePercent){
+						frame.GetComponent<LandFrame> ().generateRavine = true;
+					}
 				}
 				else if (Random.Range (0, 10) == 0) {						//	50% chance of flat
 					yMax = Random.Range (-1f, -.5f);	

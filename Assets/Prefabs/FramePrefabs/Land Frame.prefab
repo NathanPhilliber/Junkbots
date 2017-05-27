@@ -57,6 +57,7 @@ MonoBehaviour:
   minYDifference: -1
   landDepth: 200
   material: {fileID: 2100000, guid: 427b8a05bdf0f47be8f6a68a799c3914, type: 2}
+  generateRavine: 0
   nextFrame: {fileID: 0}
 --- !u!114 &114995364816503372
 MonoBehaviour:

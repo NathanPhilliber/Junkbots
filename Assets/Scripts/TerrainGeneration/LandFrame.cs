@@ -9,6 +9,8 @@ public class LandFrame : MonoBehaviour, IFrame {
 	public float minYDifference;		//	Used for how low the next vertex can be from this one
 	public float landDepth;				//	How deep the land should be
 	public Material material;			//	The material for this piece of land
+	public bool generateRavine;
+
 
 	public GameObject nextFrame = null;
 
@@ -37,9 +39,7 @@ public class LandFrame : MonoBehaviour, IFrame {
 
 		vertices [0] = new Vector2(0, frame.enterY -landDepth);										//	Start in bottom left corner
 		vertices [1] = new Vector2(0, frame.enterY - transform.position.y);				//	Upper left corner
-
-		points[0] = new Vector2(vertices[0].x, vertices[0].y);							//	Bottom left corner for collider point
-		points[1] = new Vector2(vertices[1].x, vertices[1].y);							//	Upper left corner for collider points
+							
 
 		float xCur = 0;																	//	The current x position to place a vertex at
 		float yCur = vertices[1].y;														//	The current y position to place a vertex at
@@ -56,20 +56,20 @@ public class LandFrame : MonoBehaviour, IFrame {
 			lastRandom = curRandom;														//	Save the y change for next iteration
 
 			vertices [i] = new Vector3 (xCur, yCur, 0);									//	Save the vertice
-			points [i] = new Vector2 (xCur, yCur);										//	Save the collider point
+									//	Save the collider point
 
 		}
 
 		xCur = frame.width;																		//	Start xCur at the end of the frame
 
 		vertices [vertices.Length - 1 - middleVertices] = new Vector3 (xCur, frame.enterY -landDepth, 0);	//	Place the bottom right vertex
-		points [vertices.Length - 1 - middleVertices] = new Vector2 (xCur,frame.enterY  -landDepth);			//	Place the bottom right collider point
+
 
 
 		for (int i = vertices.Length - middleVertices; i < vertices.Length; i++) {		//	Place all the middle vertices, these are used to create nice triangles
 			xCur -= xDifference*2;														//	Move xCur 2 x displacements to the left
 			vertices [i] = new Vector3 (xCur, frame.enterY -landDepth, 0);							//	Place a vertex along the bottom
-			points [i] = new Vector2 (xCur, frame.enterY -landDepth);								//	Place a collider point along the bottom, this is unnecessary, remove this to optimize
+							//	Place a collider point along the bottom, this is unnecessary, remove this to optimize
 		}
 
 		int size = vertices.Length;								//	The number of vertices
@@ -98,9 +98,34 @@ public class LandFrame : MonoBehaviour, IFrame {
 
 		}
 
+		//Generate ravine
+
+		if (generateRavine) {
+			int vert = (int)(frame.width / xDifference / 3);
+
+			int holeRadius = 5;
+
+			for (int i = vert; i < vert + holeRadius; i++) {
+				vertices [i] = new Vector3 (vertices[vert].x + Random.Range(-2.5f, 2.5f), vertices[vert].y - (i-vert)*Random.Range(20,30), 0);
+			}
+
+			vert += (holeRadius*2);
+
+			for (int i = vert; i >= vert - holeRadius; i--) {
+				vertices [i] = new Vector3 (vertices[vert].x + Random.Range(-2.5f, 2.5f), vertices[vert].y - (vert-i)*Random.Range(20,30), 0);
+			}
+		}
+
+
 		for (int i = 0; i < uvs.Length; i++) {						//	Assign all uvs, just copy vertices
 			uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
 		}
+
+		for (int i = 0; i < points.Length; i++) {
+			points[i] = new Vector2(vertices[i].x, vertices[i].y);
+		}
+
+
 
 		frame.exitY = yCur + transform.position.y;					//	Save exit position
 
