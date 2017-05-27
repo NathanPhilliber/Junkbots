@@ -115,6 +115,9 @@ public class LandFrame : MonoBehaviour, IFrame {
 				GameObject buttonIn = (GameObject)Instantiate (button, new Vector2 (pos.x - xDifference*5, pos.y + 1.2f), Quaternion.identity);
 				buttonIn.GetComponent<PressureButton>().objectsToTrigger = new GameObject[1];
 				buttonIn.GetComponent<PressureButton> ().objectsToTrigger [0] = bridgeIn;
+
+				bridgeIn.transform.parent = transform;
+				buttonIn.transform.parent = transform;
 			}
 
 			int holeRadius = 5;

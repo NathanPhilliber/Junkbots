@@ -64,9 +64,11 @@ public class TerrainGenerator : MonoBehaviour {
 		for (int i = 0; i < numStructures; i++) {
 			GameObject frame = existingFrames [Random.Range (0, existingFrames.Count - 2)];
 			if (frame.GetComponent<LandFrame> () != null) {
-				if (frame.GetComponent<LandFrame> ().maxYDifference < 1 && frame.GetComponent<LandFrame> ().minYDifference > -1) {
-					GameObject spawnedStructure = (GameObject)Instantiate (structure, Vector3.zero, Quaternion.identity);
-					spawnedStructure.GetComponent<Structure> ().GenerateStructure (frame.GetComponent<LandFrame>(), Random.Range(2,12));
+				if (frame.GetComponent<LandFrame> ().maxYDifference < 2 && frame.GetComponent<LandFrame> ().minYDifference > -2) {
+					if (frame.GetComponent<LandFrame> ().generateRavine == false) {
+						GameObject spawnedStructure = (GameObject)Instantiate (structure, Vector3.zero, Quaternion.identity);
+						spawnedStructure.GetComponent<Structure> ().GenerateStructure (frame.GetComponent<LandFrame> (), Random.Range (2, 12));
+					}
 				}
 			}
 
