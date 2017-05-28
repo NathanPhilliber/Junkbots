@@ -54,7 +54,7 @@ public class Structure : MonoBehaviour {
 				point = SpawnStaircase(point);
 			} else if (id >= 15 && id < 85) { //platform
 				point = SpawnPlatform(point);
-			} else if (id >= 85 &&id < 100) { //staircase down
+			} else if (id >= 85 && id < 100) { //staircase down
 				point = SpawnStaircaseDown(point);
 			}
 
@@ -169,11 +169,12 @@ public class Structure : MonoBehaviour {
 		while (frame.transform.TransformPoint(vertices [vertex]).x < x) {
 
 			if (lastX > frame.transform.TransformPoint (vertices [vertex]).x) {
-				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
 
-				if (frame == null) {
+				if (frame.GetComponent<LandFrame> ().nextFrame == null) {
 					return -1;
 				}
+
+				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
 
 				mesh = frame.GetComponent<MeshFilter> ().mesh;
 				vertices = mesh.vertices;

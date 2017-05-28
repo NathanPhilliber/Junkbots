@@ -60,7 +60,7 @@ public class TerrainGenerator : MonoBehaviour {
 			lastY = frame.GetComponent<TerrainFrame> ().exitY;														//	Save the exit point from the new frame
 		}
 
-		int numStructures = Random.Range (1, 4);
+		int numStructures = Random.Range (1, 5);
 		for (int i = 0; i < numStructures; i++) {
 			GameObject frame = existingFrames [Random.Range (0, existingFrames.Count - 2)];
 			if (frame.GetComponent<LandFrame> () != null) {
