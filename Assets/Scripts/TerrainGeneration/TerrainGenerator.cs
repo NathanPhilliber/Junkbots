@@ -5,14 +5,11 @@ using UnityEngine;
 public class TerrainGenerator : MonoBehaviour {
 	
 	public float levelWidth;					//	How long a level should be (not exact, level will be slightly longer)	
-
 	public GameObject[] frames;					//	Prefabs for different frame types
-
-	public GameObject structure;	
+	public GameObject structure;				//	Structure prefab
 
 	private List<GameObject> existingFrames = new List<GameObject>();	//	Store all of the spawned frames
-
-	private int ravineChancePercent = 30;
+	private int ravineChancePercent = 30;								//	Chance of a ravine spawning
 
 	void Start () {
 		
@@ -43,31 +40,31 @@ public class TerrainGenerator : MonoBehaviour {
 						frame.GetComponent<LandFrame> ().spawnBridge = true;
 					}
 				}
-				else if (Random.Range (0, 10) == 0) {						//	50% chance of flat
+				else if (Random.Range (0, 10) == 0) {			//	5% chance of extreme down
 					yMax = Random.Range (-1f, -.5f);	
 					yMin = Random.Range (-3f, -1f);	
-				}else {											//	50% chance of getting a chance to be more extreme
+				}else {											//	45% chance of getting a chance to be more extreme
 					yMax = Random.Range (0f, 4f);
 					yMin = Random.Range (-4f, 0f);
 				}
 				frame.GetComponent<LandFrame> ().maxYDifference = yMax;
 				frame.GetComponent<LandFrame> ().minYDifference = yMin;
 			}
-			frame.GetComponent<IFrame> ().FillFrame ();																//	Generate frame
-			frame.transform.parent = transform;																		//	Child the frame to this object
+			frame.GetComponent<IFrame> ().FillFrame ();										//	Generate frame
+			frame.transform.parent = transform;												//	Child the frame to this object
 
-			xCur += frame.GetComponent<TerrainFrame>().width;														//	Add frame width to x counter
-			lastY = frame.GetComponent<TerrainFrame> ().exitY;														//	Save the exit point from the new frame
+			xCur += frame.GetComponent<TerrainFrame>().width;								//	Add frame width to x counter
+			lastY = frame.GetComponent<TerrainFrame> ().exitY;								//	Save the exit point from the new frame
 		}
 
-		int numStructures = Random.Range (1, 5);
+		int numStructures = Random.Range (1, 5);				//	Spawn structures
 		for (int i = 0; i < numStructures; i++) {
 			GameObject frame = existingFrames [Random.Range (0, existingFrames.Count - 2)];
 			if (frame.GetComponent<LandFrame> () != null) {
-				if (frame.GetComponent<LandFrame> ().maxYDifference < 2 && frame.GetComponent<LandFrame> ().minYDifference > -2) {
-					if (frame.GetComponent<LandFrame> ().generateRavine == false) {
+				if (frame.GetComponent<LandFrame> ().maxYDifference < 2 && frame.GetComponent<LandFrame> ().minYDifference > -2) {	//	Only on flat-ish land
+					if (frame.GetComponent<LandFrame> ().generateRavine == false) {		//	Do not spawn structures on land containing ravines. (This doesn't mean that structures won't spawn over ravines, just not in the first frame)
 						GameObject spawnedStructure = (GameObject)Instantiate (structure, Vector3.zero, Quaternion.identity);
-						spawnedStructure.GetComponent<Structure> ().GenerateStructure (frame.GetComponent<LandFrame> (), Random.Range (2, 12));
+						spawnedStructure.GetComponent<Structure> ().GenerateStructure (frame.GetComponent<LandFrame> (), Random.Range (2, 12));	//	Start the structure somewhere in the first dozen vertices
 					}
 				}
 			}
@@ -76,7 +73,3 @@ public class TerrainGenerator : MonoBehaviour {
 
 	}
 }
-
-
-
-// ToDo: generate all land first, link up frames. Then go and spawn structures in.

@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour, IInteractable {
 
-	public float length;
-	public GameObject bridge;
+	public float length;		//	How long the bridge is
+	public GameObject bridge;	//	The actual bridge sub-piece
+	public float speed;			//	How fast the bridge moves
 
-	public float speed;
-
-	private bool goRight;
+	private bool goRight;		//	Which direction the bridge moves in
 
 	void Start () {
-		bridge.GetComponent<BoxCollider2D>().size = new Vector2(length, bridge.GetComponent<BoxCollider2D>().size.y);
-		bridge.GetComponent<SpriteRenderer>().size = new Vector2(length, bridge.GetComponent<SpriteRenderer>().size.y);
+		Reload ();
 	}
 
+	/*
+	 * Resizes the sprite size and the collider size according to the bridge's length
+	 */
 	public void Reload(){
 		bridge.GetComponent<BoxCollider2D>().size = new Vector2(length, bridge.GetComponent<BoxCollider2D>().size.y);
 		bridge.GetComponent<SpriteRenderer>().size = new Vector2(length, bridge.GetComponent<SpriteRenderer>().size.y);
@@ -23,14 +24,17 @@ public class Bridge : MonoBehaviour, IInteractable {
 	
 
 	void FixedUpdate () {
-		if (goRight && bridge.transform.localPosition.x < length/2) {
+		if (goRight && bridge.transform.localPosition.x < length/2) {				//	If we need to go right, then move the bridge right
 			bridge.transform.Translate(new Vector3(speed*Time.deltaTime, 0, 0));
 		}
-		else if (!goRight && bridge.transform.localPosition.x > -length/2) {
+		else if (!goRight && bridge.transform.localPosition.x > -length/2) {		//	If we need to go left, then move the bridge left
 			bridge.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
 		}
 	}
 
+	/*
+	 * This bridge's action is to flip the move state
+	 */
 	public void TriggerAction(){
 		goRight = !goRight;
 	}

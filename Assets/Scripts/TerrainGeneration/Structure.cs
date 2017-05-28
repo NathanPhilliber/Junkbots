@@ -8,24 +8,24 @@ public class Structure : MonoBehaviour {
 	public GameObject staircaseDown;		//	Down Staircase prefab
 	public GameObject platform;				//	Platform prefab
 
-	public Material material;
+	public Material material;				//	Material for mesh under the platforms and staircases
 
-	private LandFrame frame;				//	The frame in which we are spawning structures on
+	//private LandFrame frame;				//	The frame in which we are spawning structures on	//	Not currently being used
 
 	private float stairOffsetX = 8.9f;		//	Distance from middle to edge on x
 	private float stairOffsetY = 5.4f;		//	Distance from middle to edge on y
 
-	private float platformOffsetX = 10f;	//Distance from middle to edge on x
+	private float platformOffsetX = 10f;	//	Distance from middle to edge on x
 
-	private Mesh mesh;					//	Land mesh
-	private MeshFilter meshFilter;		//	Mesh filter
-	private MeshRenderer meshRenderer;	//	Renderer
+	private Mesh mesh;						//	Land mesh
+	private MeshFilter meshFilter;			//	Mesh filter
+	private MeshRenderer meshRenderer;		//	Renderer
 
 	/*
 	 * Generate a structure starting at a provided point
 	 */
 	public void GenerateStructure(LandFrame frame, int vertex){
-		this.frame = frame;
+		//this.frame = frame;	//	Not currently being used
 		Mesh mesh = frame.GetComponent<MeshFilter> ().mesh;
 		Vector3[] vertices = mesh.vertices;
 
@@ -46,15 +46,15 @@ public class Structure : MonoBehaviour {
 			numPieces++;
 			int id = Random.Range (0, 100);
 				
-			if (numPieces > 5 && Random.Range(0,3) == 0) {
+			if (numPieces > 5 && Random.Range(0,3) == 0) {	//	Encourage more down-staircases if the structure is big
 				id = 99;
 			}
 
-			if ((id == 0 && id < 15) || numPieces == 1) { //staircase up
+			if ((id == 0 && id < 15) || numPieces == 1) { 	//	staircase up
 				point = SpawnStaircase(point);
-			} else if (id >= 15 && id < 85) { //platform
+			} else if (id >= 15 && id < 85) { 				//	platform
 				point = SpawnPlatform(point);
-			} else if (id >= 85 && id < 100) { //staircase down
+			} else if (id >= 85 && id < 100) { 				//	staircase down
 				point = SpawnStaircaseDown(point);
 			}
 
@@ -101,11 +101,11 @@ public class Structure : MonoBehaviour {
 
 		Vector2[] uvs = new Vector2[backVertices.Length];
 
-		for (int i = 0; i < uvs.Length; i++) {						//	Assign all uvs, just copy vertices
+		for (int i = 0; i < uvs.Length; i++) {								//	Assign all uvs, just copy vertices
 			uvs[i] = new Vector2(backVertices[i].x, backVertices[i].y);
 		}
 
-		int[] triangles = new int[(backVertices.Length - 2)* 3];
+		int[] triangles = new int[(backVertices.Length - 2)* 3];			//	Create triangles
 
 		int refPoint = size - 1;
 		int back = refPoint + 1;
@@ -147,7 +147,7 @@ public class Structure : MonoBehaviour {
 
 		meshFilter.mesh = mesh;		
 
-		mesh.vertices = backVertices;
+		mesh.vertices = backVertices;													//	Assign data to mesh
 		mesh.uv = uvs;
 		mesh.triangles = triangles;
 		mesh.RecalculateNormals ();		
@@ -158,28 +158,28 @@ public class Structure : MonoBehaviour {
 
 	/*
 	 * Get the next vertex that is past provided x.
-	 * ToDo: Support cross-frame travel
+	 * Returns -1 if at end of all land
 	 */
 	public int GetNextVertex(LandFrame frame, int vertex, float x){
 		Mesh mesh = frame.GetComponent<MeshFilter> ().mesh;
 		Vector3[] vertices = mesh.vertices;
 
-		float lastX = frame.transform.TransformPoint(vertices [vertex]).x;
+		float lastX = frame.transform.TransformPoint(vertices [vertex]).x;							//	Used to detect if we need to go into next frame
 
 		while (frame.transform.TransformPoint(vertices [vertex]).x < x) {
 
-			if (lastX > frame.transform.TransformPoint (vertices [vertex]).x) {
+			if (lastX > frame.transform.TransformPoint (vertices [vertex]).x) {						//	Check if we need to go into the next frame
 
-				if (frame.GetComponent<LandFrame> ().nextFrame == null) {
+				if (frame.GetComponent<LandFrame> ().nextFrame == null) {							//	If we are at the end return -1
 					return -1;
 				}
 
-				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();
+				frame = frame.GetComponent<LandFrame> ().nextFrame.GetComponent<LandFrame> ();		//	Get the next frame
 
 				mesh = frame.GetComponent<MeshFilter> ().mesh;
 				vertices = mesh.vertices;
 				vertex = 2;
-			} else {
+			} else {																				//	If we are in the same frame, then return next vertex
 				lastX = frame.transform.TransformPoint(vertices [vertex]).x;
 				vertex++;
 			}
