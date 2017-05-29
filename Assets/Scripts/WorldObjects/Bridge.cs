@@ -8,7 +8,7 @@ public class Bridge : MonoBehaviour, IInteractable {
 	public GameObject bridge;	//	The actual bridge sub-piece
 	public float speed;			//	How fast the bridge moves
 
-	private bool goRight;		//	Which direction the bridge moves in
+	public bool goRight;		//	Which direction the bridge moves in
 
 	void Start () {
 		Reload ();

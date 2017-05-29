@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainGenerator : MonoBehaviour {
+public class TerrainGenerator : MonoBehaviour
+{
 	
-	public float levelWidth;					//	How long a level should be (not exact, level will be slightly longer)	
-	public GameObject[] frames;					//	Prefabs for different frame types
-	public GameObject structure;				//	Structure prefab
+	public float levelWidth;
+	//	How long a level should be (not exact, level will be slightly longer)
+	public GameObject[] frames;
+	//	Prefabs for different frame types
+	public GameObject structure;
+	//	Structure prefab
+	public GameObject gate;
+	//	Gate prefab
 
-	private List<GameObject> existingFrames = new List<GameObject>();	//	Store all of the spawned frames
-	private int ravineChancePercent = 30;								//	Chance of a ravine spawning
+	public GameObject fence;
 
-	void Start () {
+	public GameObject button;
+
+	private List<GameObject> existingFrames = new List<GameObject> ();
+	//	Store all of the spawned frames
+	private int ravineChancePercent = 30;
+	//	Chance of a ravine spawning
+
+	void Start ()
+	{
 		
 		float xCur = transform.position.x;		//	Start x counter at the beginning of this frame
 		float lastY = 0;						//	Declare a y tracker, this will set exit points to enter points
@@ -35,15 +48,14 @@ public class TerrainGenerator : MonoBehaviour {
 					yMax = Random.Range (0f, .2f);	
 					yMin = Random.Range (-.2f, 0f);	
 
-					if(Random.Range(0,100) < ravineChancePercent){
+					if (Random.Range (0, 100) < ravineChancePercent) {
 						frame.GetComponent<LandFrame> ().generateRavine = true;
 						frame.GetComponent<LandFrame> ().spawnBridge = true;
 					}
-				}
-				else if (Random.Range (0, 10) == 0) {			//	5% chance of extreme down
+				} else if (Random.Range (0, 10) == 0) {			//	5% chance of extreme down
 					yMax = Random.Range (-1f, -.5f);	
 					yMin = Random.Range (-3f, -1f);	
-				}else {											//	45% chance of getting a chance to be more extreme
+				} else {											//	45% chance of getting a chance to be more extreme
 					yMax = Random.Range (0f, 4f);
 					yMin = Random.Range (-4f, 0f);
 				}
@@ -53,7 +65,7 @@ public class TerrainGenerator : MonoBehaviour {
 			frame.GetComponent<IFrame> ().FillFrame ();										//	Generate frame
 			frame.transform.parent = transform;												//	Child the frame to this object
 
-			xCur += frame.GetComponent<TerrainFrame>().width;								//	Add frame width to x counter
+			xCur += frame.GetComponent<TerrainFrame> ().width;								//	Add frame width to x counter
 			lastY = frame.GetComponent<TerrainFrame> ().exitY;								//	Save the exit point from the new frame
 		}
 
@@ -69,6 +81,51 @@ public class TerrainGenerator : MonoBehaviour {
 				}
 			}
 
+		}
+
+		bool tryAgain = true;
+		int tries = 0;
+		while (tryAgain && tries < 20) {
+			tries++;
+			GameObject baseFrame = existingFrames [Random.Range (1, existingFrames.Count - 1)];
+
+			if (baseFrame.GetComponent<LandFrame> ().maxYDifference < 1 && baseFrame.GetComponent<LandFrame> ().minYDifference > -1) {	//	Only on flat-ish land
+
+				int baseVertex = 1;
+
+				int[] activityStrip = baseFrame.GetComponent<LandFrame> ().activityStrip;
+
+				int row = 0;
+
+				for (int i = 4; i < activityStrip.Length - 4; i++) {
+					if (activityStrip [i] == 0) {
+						baseVertex = i;
+						row++;
+
+						if (row >= 16) {
+							break;
+						}
+
+					} else {
+						row = 0;
+					}
+				}
+
+				if (row >= 16) {
+					baseVertex -= 8;
+
+					GameObject spawnedGate = (GameObject)Instantiate (gate, baseFrame.transform.TransformPoint (baseFrame.GetComponent<LandFrame> ().vertices [baseVertex]), Quaternion.Euler (new Vector3 (0, 0, 90)));
+					Instantiate (fence, baseFrame.transform.TransformPoint (baseFrame.GetComponent<LandFrame> ().vertices [baseVertex-7]) + Vector3.up*2, Quaternion.identity);
+					Instantiate (fence, baseFrame.transform.TransformPoint (baseFrame.GetComponent<LandFrame> ().vertices [baseVertex+5]) + Vector3.up*2, Quaternion.identity);
+
+					GameObject spawnedButton = (GameObject)Instantiate (button, baseFrame.transform.TransformPoint (baseFrame.GetComponent<LandFrame> ().vertices [baseVertex-3]), Quaternion.identity);
+					spawnedButton.GetComponent<PressureButton> ().objectsToTrigger = new GameObject[1];
+					spawnedButton.GetComponent<PressureButton> ().objectsToTrigger [0] = spawnedGate;
+					tryAgain = false;
+
+				}
+			}
+				
 		}
 
 	}

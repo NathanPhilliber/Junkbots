@@ -76,8 +76,6 @@ public class Structure : MonoBehaviour {
 					keepSpawning = false;
 				}
 			}
-
-
 		}
 
 		float yB = backingVertices [backingVertices.Count - 1].y;
@@ -137,8 +135,6 @@ public class Structure : MonoBehaviour {
 			triangles [i + 2] = back++;
 
 			i += 3;
-
-
 		}
 
 		mesh = new Mesh ();																//	New mesh
@@ -178,9 +174,10 @@ public class Structure : MonoBehaviour {
 
 				mesh = frame.GetComponent<MeshFilter> ().mesh;
 				vertices = mesh.vertices;
-				vertex = 2;
+				vertex = 1;
 			} else {																				//	If we are in the same frame, then return next vertex
 				lastX = frame.transform.TransformPoint(vertices [vertex]).x;
+				frame.GetComponent<LandFrame> ().activityStrip [vertex] = 1;
 				vertex++;
 			}
 		}
@@ -217,5 +214,4 @@ public class Structure : MonoBehaviour {
 
 		return new Vector2 (spawned.transform.position.x + stairOffsetX, spawned.transform.position.y - stairOffsetY);
 	}
-
 }

@@ -17,6 +17,11 @@ public class LandFrame : MonoBehaviour, IFrame {
 	[HideInInspector]
 	public GameObject nextFrame = null;	//	The next landframe after this one
 
+	//[HideInInspector]
+	public int[] activityStrip;			//	Used to keep track of objects on the surface
+
+	public Vector3[] vertices;
+
 	private TerrainFrame frame;			//	The land frame
 	private EdgeCollider2D myCollider;	//	Collider
 	private Mesh mesh;					//	Land mesh
@@ -38,11 +43,20 @@ public class LandFrame : MonoBehaviour, IFrame {
 		Vector2[] points = new Vector2[vertices.Length];								//	Collider points array
 		int[] triangles = new int[(vertices.Length - 2) * 3];							//	Triangles array
 
+
+
 		mesh.Clear ();																	//	Reset mesh
 
 		vertices [0] = new Vector2(0, frame.enterY -landDepth);							//	Start in bottom left corner
 		vertices [1] = new Vector2(0, frame.enterY - transform.position.y);				//	Upper left corner
 							
+		activityStrip = new int[impVertices];
+
+		for (int i = 0; i < activityStrip.Length; i++) {
+			activityStrip [i] = 0;
+		}
+
+		activityStrip [0] = -1;
 
 		float xCur = 0;																	//	The current x position to place a vertex at
 		float yCur = vertices[1].y;														//	The current y position to place a vertex at
@@ -121,12 +135,14 @@ public class LandFrame : MonoBehaviour, IFrame {
 
 			for (int i = vert; i < vert + holeRadius; i++) {		//	Move vertices of left side
 				vertices [i] = new Vector3 (vertices[vert].x, vertices[vert].y - (i-vert)*Random.Range(20,30), 0);
+				activityStrip [i] = 2;
 			}
 
 			vert += (holeRadius*2);
 
 			for (int i = vert; i >= vert - holeRadius; i--) {		//	Move vertices of right side
 				vertices [i] = new Vector3 (vertices[vert].x + Random.Range(-2.5f, 2.5f), vertices[vert].y - (vert-i)*Random.Range(20,30), 0);
+				activityStrip [i] = 2;
 			}
 		}
 
@@ -149,5 +165,7 @@ public class LandFrame : MonoBehaviour, IFrame {
 		mesh.triangles = triangles;									//	Assign triangles
 		mesh.RecalculateNormals ();									//	Calculate the normals with the new vertices
 		meshRenderer.sharedMaterial = material;						//	Set the material
+
+		this.vertices = vertices;
 	}
 }
