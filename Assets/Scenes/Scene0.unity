@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f551274177ba3da4a824383703cee85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 1129944845}
   focusAreaSize: {x: 15, y: 20}
   verticalOffset: 1
   lookAheadDstX: 8
@@ -382,6 +382,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
+  skinWidth: 0.03
   horizontalRayCount: 8
   verticalRayCount: 8
   horizontalRaySpacing: 0
