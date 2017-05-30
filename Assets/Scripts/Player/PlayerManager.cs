@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
 public class PlayerManager : MonoBehaviour {
@@ -10,6 +11,8 @@ public class PlayerManager : MonoBehaviour {
 	public float accelerationTimeAirborne = .2f;
 	public float accelerationTimeGrounded = .1f;
  	public float moveSpeed = 6;
+
+    public LayerMask oobMask;
 
     public GunController weapon;
 
@@ -65,5 +68,8 @@ public class PlayerManager : MonoBehaviour {
 		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
 	}
 
-	
+    void OnDestroy()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

@@ -36,7 +36,7 @@ public class GunController : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         float size = .3f;
 
         Gizmos.DrawLine(barrelEnd.position - Vector3.up * size, barrelEnd.position + Vector3.up * size);

@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 15.98
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 5632
 --- !u!114 &114923022378870048
 MonoBehaviour:
   m_ObjectHideFlags: 1
