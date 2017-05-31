@@ -784,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 50
   range: 50
-  target: {fileID: 184092487}
+  target: {fileID: 1047023573}
   gun: {fileID: 139452300}
 --- !u!114 &275314393
 MonoBehaviour:
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 50
   range: 50
-  target: {fileID: 184092487}
+  target: {fileID: 1047023573}
   gun: {fileID: 926757101}
 --- !u!114 &1022516764
 MonoBehaviour:
@@ -3022,7 +3022,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1727151896}
   - component: {fileID: 1727151895}
-  - component: {fileID: 1727151894}
   - component: {fileID: 1727151897}
   m_Layer: 30
   m_Name: FinishZone
@@ -3031,17 +3030,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1727151894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1727151893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f2f4436b7181546ae07833933311cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1727151895
 BoxCollider2D:
   m_ObjectHideFlags: 0
