@@ -5,11 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Health : MonoBehaviour {
 
-    public float health;
+    public int maxHealth;
+    public int health;
 
 	// Use this for initialization
 	void Start () {
-		
+        health = maxHealth;
 	}
 	
 	// Update is called once per frame
