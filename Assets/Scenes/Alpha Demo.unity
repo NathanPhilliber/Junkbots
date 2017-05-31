@@ -299,7 +299,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1334029360828838, guid: 928467b5704665e409ff248b9afee8cf,
     type: 2}
   m_PrefabInternal: {fileID: 1353719629}
---- !u!114 &182714632
+--- !u!114 &182714628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -307,11 +307,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 182714627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea40e9eceae8b8d479c503ce2f78141d, type: 3}
+  m_Script: {fileID: 11500000, guid: f79c8fd62f8cbd54bae1ddd296e3238b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
+  maxHealth: 20
+  health: 20
+  defense: 0
 --- !u!4 &184092487 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4989630945539724, guid: 928467b5704665e409ff248b9afee8cf,
@@ -418,7 +419,17 @@ Prefab:
         type: 2}
       propertyPath: health
       value: 
-      objectReference: {fileID: 182714632}
+      objectReference: {fileID: 0}
+    - target: {fileID: 114604281322955396, guid: ea3dcff57be084227925012324c72d63,
+        type: 2}
+      propertyPath: damageable
+      value: 
+      objectReference: {fileID: 1734790365}
+    - target: {fileID: 114533816117355152, guid: ea3dcff57be084227925012324c72d63,
+        type: 2}
+      propertyPath: damageable
+      value: 
+      objectReference: {fileID: 182714628}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea3dcff57be084227925012324c72d63, type: 2}
   m_IsPrefabParent: 0
@@ -431,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 252460019}
   - component: {fileID: 252460018}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrelEnd: {fileID: 252460019}
-  projectile: {fileID: 114559023984406130, guid: eb5090ce8cfae1a41bb718b225d790bd,
+  projectile: {fileID: 114501084491681244, guid: 6a67d9c782dc2fb4a97ee8101a6ee1a3,
     type: 2}
 --- !u!4 &252460019
 Transform:
@@ -474,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438771533}
   - component: {fileID: 438771534}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WeaponAxis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddd56a2d913f0240b9152a626abf91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 184092487}
+  target: {fileID: 1047023573}
   controller: {fileID: 0}
 --- !u!1 &699871765
 GameObject:
@@ -517,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 699871766}
   - component: {fileID: 699871768}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrelEnd: {fileID: 699871766}
-  projectile: {fileID: 114559023984406130, guid: eb5090ce8cfae1a41bb718b225d790bd,
+  projectile: {fileID: 114501084491681244, guid: 6a67d9c782dc2fb4a97ee8101a6ee1a3,
     type: 2}
 --- !u!1 &730544735
 GameObject:
@@ -564,7 +575,7 @@ GameObject:
   - component: {fileID: 730544736}
   - component: {fileID: 730544737}
   - component: {fileID: 730544738}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Waypoint_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,11 +635,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 730544735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea40e9eceae8b8d479c503ce2f78141d, type: 3}
+  m_Script: {fileID: 11500000, guid: f79c8fd62f8cbd54bae1ddd296e3238b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  health: 0
+  maxHealth: 10
+  health: 10
+  defense: 0
 --- !u!61 &730544739
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -944,7 +956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164659032}
   - component: {fileID: 1164659033}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WeaponAxis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1084,7 @@ GameObject:
   - component: {fileID: 1323860931}
   - component: {fileID: 1323860930}
   - component: {fileID: 1323860929}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Waypoint_Enemy (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1087,11 +1099,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1323860928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea40e9eceae8b8d479c503ce2f78141d, type: 3}
+  m_Script: {fileID: 11500000, guid: f79c8fd62f8cbd54bae1ddd296e3238b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  health: 0
+  maxHealth: 10
+  health: 10
+  defense: 0
 --- !u!114 &1323860930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,16 +1270,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1334029360828838, guid: 928467b5704665e409ff248b9afee8cf, type: 2}
-      propertyPath: m_Name
-      value: Isa
-      objectReference: {fileID: 0}
     - target: {fileID: 114004271913786140, guid: 928467b5704665e409ff248b9afee8cf,
         type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 1047023573}
-    m_RemovedComponents: []
+    - target: {fileID: 1334029360828838, guid: 928467b5704665e409ff248b9afee8cf, type: 2}
+      propertyPath: m_Name
+      value: Isa
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114405239203382000, guid: 928467b5704665e409ff248b9afee8cf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 928467b5704665e409ff248b9afee8cf, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1487427131
@@ -1430,6 +1444,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d28522d4dd2e42f0b084dfa19413a8f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1734790364 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1650659510775150, guid: 6778c749eee9e4f479e23f1097830852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1737783277}
+--- !u!114 &1734790365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734790364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705ad8404f3d0f94e9895cc2237f63c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  health: 20
+  defense: 0
 --- !u!1001 &1737783277
 Prefab:
   m_ObjectHideFlags: 0
@@ -1474,18 +1507,6 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 184092487}
-    - target: {fileID: 4316232025425396, guid: 6778c749eee9e4f479e23f1097830852, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.7090634
-      objectReference: {fileID: 0}
-    - target: {fileID: 4316232025425396, guid: 6778c749eee9e4f479e23f1097830852, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7051448
-      objectReference: {fileID: 0}
-    - target: {fileID: 4316232025425396, guid: 6778c749eee9e4f479e23f1097830852, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90.318
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6778c749eee9e4f479e23f1097830852, type: 2}
   m_IsPrefabParent: 0
@@ -1499,7 +1520,7 @@ GameObject:
   - component: {fileID: 2059128401}
   - component: {fileID: 2059128400}
   - component: {fileID: 2059128402}
-  m_Layer: 11
+  m_Layer: 30
   m_Name: OOB_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ public class OutOfBounds : MonoBehaviour {
     {
         if (other.name == "Erl")
         {
-            Destroy(other.gameObject);
+            other.GetComponent<Damageable>().OnHealthZero();
         }
     }
 }
