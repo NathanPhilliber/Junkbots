@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 81989db75913892469e411185ef5709d
-timeCreated: 1496135946
+timeCreated: 1496213446
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,6 +20,7 @@ TextureImporter:
     21300026: erl_base_default
     21300028: erl_piston_default
     21300030: projectile_laser_short
+    21300032: crosshair_01
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -35,7 +36,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -284,7 +285,7 @@ TextureImporter:
       name: projectile_laser_short
       rect:
         serializedVersion: 2
-        x: 122
+        x: 119
         y: 387
         width: 5
         height: 16

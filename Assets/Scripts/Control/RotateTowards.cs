@@ -14,14 +14,18 @@ public class RotateTowards : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (controller != null && !controller.facingRight)
+        if (target != null)
         {
-            transform.right = transform.position - target.position;
+            if (controller != null && !controller.facingRight)
+            {
+                transform.right = transform.position - target.position;
+            }
+            else
+            {
+                transform.right = target.position - transform.position;
+            }
         }
-        else
-        {
-            transform.right = target.position - transform.position;
-        }
+        
     }
 
     void OnDrawGizmos()

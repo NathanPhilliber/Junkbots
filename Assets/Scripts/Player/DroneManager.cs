@@ -8,9 +8,11 @@ public class DroneManager : MonoBehaviour {
 	public float accelerationTime = .1f;
  	public float moveSpeed = 10;
 
-	Vector3 velocity;
+    Vector3 velocity;
 	float velocitySmoothing;
 	bool facingRight = true;
+
+    private Vector2 mouse;
 
 	FlyingController2D controller;
 	Animator anim;
@@ -18,6 +20,8 @@ public class DroneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<FlyingController2D> ();
+            
+        
 		//anim = GetComponent<Animator> ();
 	}
 	
@@ -28,7 +32,7 @@ public class DroneManager : MonoBehaviour {
 			velocity.y = 0;
 		}
 
-        Vector2 mouse = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        mouse = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         Vector2 input = Camera.main.ScreenToWorldPoint(mouse);
         Vector2 targetV = (input - (Vector2)transform.position) * moveSpeed;
 
@@ -44,6 +48,4 @@ public class DroneManager : MonoBehaviour {
 
 		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
 	}
-
-
 }
