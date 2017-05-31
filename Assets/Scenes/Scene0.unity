@@ -139,6 +139,9 @@ MonoBehaviour:
   frames:
   - {fileID: 1064784614868636, guid: 45c2558229c594cb19fd687ed9f2dee9, type: 2}
   structure: {fileID: 1460383649380262, guid: a19c45216d39f46b184f10ee692ae1e7, type: 2}
+  gate: {fileID: 1068213248999904, guid: 541caf49781c042dc95d978b892e7dd8, type: 2}
+  fence: {fileID: 1008440297148936, guid: 68f1c604522434facb27a1c1e68088e2, type: 2}
+  button: {fileID: 1943535156655898, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
 --- !u!4 &50729264
 Transform:
   m_ObjectHideFlags: 0
@@ -310,7 +313,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3ef17e00f7b762d41b46912f579182a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
