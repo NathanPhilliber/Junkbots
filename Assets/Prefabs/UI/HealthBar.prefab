@@ -274,6 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ba8816ad6c8496ca7ac243fd3da579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleY: 0
+  scaleZ: 0
+  damageable: {fileID: 0}
 --- !u!114 &114604281322955396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,6 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ba8816ad6c8496ca7ac243fd3da579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleY: 0
+  scaleZ: 0
+  damageable: {fileID: 0}
 --- !u!114 &114768353585748674
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bomb
+  - Erl
   layers:
   - Default
   - TransparentFX
@@ -39,6 +40,12 @@ TagManager:
   - OOB
   - 
   m_SortingLayers:
+  - name: Cursor
+    uniqueID: 3408207519
+    locked: 0
+  - name: Isa
+    uniqueID: 1653917765
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

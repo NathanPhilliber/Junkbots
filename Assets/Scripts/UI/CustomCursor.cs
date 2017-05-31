@@ -15,4 +15,9 @@ public class CustomCursor : MonoBehaviour {
         mouse = Camera.main.ScreenToWorldPoint(mouse);
         transform.position = mouse;
     }
+
+    void OnDestroy()
+    {
+        Cursor.visible = true;
+    }
 }
