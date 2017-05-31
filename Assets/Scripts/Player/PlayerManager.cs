@@ -65,6 +65,11 @@ public class PlayerManager : MonoBehaviour {
             weapon.Fire();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadSceneAsync("Menu");
+        }
+
 		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
 	}
 }
