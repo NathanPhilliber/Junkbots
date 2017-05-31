@@ -42,21 +42,8 @@ public class DroneManager : MonoBehaviour {
 
         controller.Move (velocity * Time.deltaTime, input);
 
-		if (targetV.x > 0 && !facingRight) {
-			Flip ();
-		}
-		else if (targetV.x < 0 && facingRight) {
-			Flip ();
-		}
-
 		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
 	}
 
-	void Flip() {
-		facingRight = !facingRight;
 
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
 }

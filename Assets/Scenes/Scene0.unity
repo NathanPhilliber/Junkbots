@@ -382,12 +382,14 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
+  skinWidth: 0.03
   horizontalRayCount: 8
   verticalRayCount: 8
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
   maxSlopeAngle: 60
+  bodySprite: {fileID: 0}
   playerInput: {x: 0, y: 0}
 --- !u!61 &1129944846
 BoxCollider2D:
