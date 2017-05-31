@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - Player
+  - Drone
   - Obstacles
-  - 
-  - 
-  - 
+  - OOB
+  - Enemies
   - 
   - 
   - 

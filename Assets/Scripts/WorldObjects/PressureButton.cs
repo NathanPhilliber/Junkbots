@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PressureButton : MonoBehaviour {
 
-	public GameObject[] objectsToTrigger;
+	public GameObject[] objectsToTrigger;	//	The things that are affected by this button
+	public string tagTrigger;				//	Objects with this tag can interact with this button
 
-	public string tagTrigger;
-
+	/*
+	 * Called when this button is pressed
+	 */
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag (tagTrigger)) {
 			for (int i = 0; i < objectsToTrigger.Length; i++) {
@@ -18,6 +20,9 @@ public class PressureButton : MonoBehaviour {
 	}
 }
 
+/*
+ * Anything that works with buttons should have this interface
+ */
 public interface IInteractable{
-	void TriggerAction();
+	void TriggerAction();	//	Called on button press
 }
