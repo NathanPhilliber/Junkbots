@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour {
 	public float scaleY, scaleZ;
-	public Health health;
+	public Damageable damageable;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float scaleX = (float) health.health / (float) health.maxHealth;
+		float scaleX = (float) damageable.health / (float) damageable.maxHealth;
 		transform.localScale = new Vector3 (scaleX, scaleY, scaleZ);
 	}
 }

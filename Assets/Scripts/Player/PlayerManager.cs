@@ -67,9 +67,4 @@ public class PlayerManager : MonoBehaviour {
 
 		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
 	}
-
-    void OnDestroy()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 }

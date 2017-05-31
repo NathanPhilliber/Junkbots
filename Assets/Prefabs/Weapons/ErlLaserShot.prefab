@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 114559023984406130}
   - component: {fileID: 114923022378870048}
   - component: {fileID: 61617121613006394}
-  m_Layer: 0
-  m_Name: LaserShot
+  - component: {fileID: 114363771807970848}
+  m_Layer: 12
+  m_Name: ErlLaserShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +90,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &114363771807970848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174082152859764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37a3d1d180881f4bb51916514a28586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  victimMask:
+    serializedVersion: 2
+    m_Bits: 2560
 --- !u!114 &114559023984406130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,7 +119,7 @@ MonoBehaviour:
   speed: 15.98
   collisionMask:
     serializedVersion: 2
-    m_Bits: 5632
+    m_Bits: 3584
 --- !u!114 &114923022378870048
 MonoBehaviour:
   m_ObjectHideFlags: 1

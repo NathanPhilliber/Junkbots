@@ -15,18 +15,20 @@ public class ConstantFire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (currentDelay <= 0)
+        if (target != null)
         {
-            if (Vector3.Distance(target.position, transform.position) < range)
+            if (currentDelay <= 0)
             {
-                gun.Fire();
+                if (Vector3.Distance(target.position, transform.position) < range)
+                {
+                    gun.Fire();
+                }
+                currentDelay = delay;
             }
-            currentDelay = delay;
+            else
+            {
+                currentDelay--;
+            }
         }
-        else
-        {
-            currentDelay--;
-        }
-        
 	}
 }

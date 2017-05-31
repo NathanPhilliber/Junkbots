@@ -14,9 +14,11 @@ TagManager:
   - UI
   - 
   - 
-  - Bomb
-  - AI
+  - Erl
+  - Isa
   - Obstacles
+  - Enemies
+  - Projectiles
   - 
   - 
   - 
@@ -34,9 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - OOB
   - 
   m_SortingLayers:
   - name: Default
