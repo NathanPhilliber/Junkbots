@@ -8,6 +8,9 @@ public class Controller2D : RaycastController {
     public float maxSlopeAngle = 75;
 
 	public CollisionInfo collisions;
+    public Transform bodySprite;
+
+    public bool facingRight = true;
 
     [HideInInspector]
     public Vector2 playerInput;
@@ -38,6 +41,19 @@ public class Controller2D : RaycastController {
 		}
 
 		transform.Translate (velocity);
+
+        if (bodySprite != null)
+        {
+            if (collisions.left)
+            {
+                //bodySprite.transform.eulerAngles = -(Vector3.back * collisions.slopeAngle);
+            }
+            else
+            {
+                //bodySprite.transform.eulerAngles = Vector3.forward * collisions.slopeAngle;
+            }
+            
+        }
 
         if (standingOnPlatform)
             collisions.below = true;
@@ -197,7 +213,16 @@ public class Controller2D : RaycastController {
         }
     }
 
-	public struct CollisionInfo {
+    public void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
+    public struct CollisionInfo {
 		public bool above, below;
 		public bool left, right;
 

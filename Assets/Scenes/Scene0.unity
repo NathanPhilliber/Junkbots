@@ -139,6 +139,9 @@ MonoBehaviour:
   frames:
   - {fileID: 1064784614868636, guid: 45c2558229c594cb19fd687ed9f2dee9, type: 2}
   structure: {fileID: 1460383649380262, guid: a19c45216d39f46b184f10ee692ae1e7, type: 2}
+  gate: {fileID: 1068213248999904, guid: 541caf49781c042dc95d978b892e7dd8, type: 2}
+  fence: {fileID: 1008440297148936, guid: 68f1c604522434facb27a1c1e68088e2, type: 2}
+  button: {fileID: 1943535156655898, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
 --- !u!4 &50729264
 Transform:
   m_ObjectHideFlags: 0
@@ -236,7 +239,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983983880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 14.8, z: -10}
+  m_LocalPosition: {x: 1.5, y: 159, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -256,7 +259,7 @@ MonoBehaviour:
   target: {fileID: 1129944845}
   focusAreaSize: {x: 15, y: 20}
   verticalOffset: 1
-  lookAheadDstX: 4
+  lookAheadDstX: 8
   horizontalSmoothTime: 0.5
   verticalSmoothTime: 0.2
 --- !u!1 &1129944840
@@ -271,9 +274,10 @@ GameObject:
   - component: {fileID: 1129944845}
   - component: {fileID: 1129944842}
   - component: {fileID: 1129944841}
+  - component: {fileID: 1129944843}
   m_Layer: 8
   m_Name: GroundBot
-  m_TagString: Untagged
+  m_TagString: Erl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,7 +313,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3ef17e00f7b762d41b46912f579182a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -334,6 +338,26 @@ MonoBehaviour:
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
   moveSpeed: 12
+--- !u!50 &1129944843
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129944840}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &1129944844
 Transform:
   m_ObjectHideFlags: 0
@@ -341,7 +365,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1129944840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: 13.21, z: 0}
+  m_LocalPosition: {x: 0.88, y: 123, z: 0}
   m_LocalScale: {x: 4.8080897, y: 4.8080897, z: 1.6026965}
   m_Children: []
   m_Father: {fileID: 0}
@@ -361,12 +385,14 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
-  horizontalRayCount: 4
-  verticalRayCount: 4
+  skinWidth: 0.03
+  horizontalRayCount: 8
+  verticalRayCount: 8
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
   maxSlopeAngle: 60
+  bodySprite: {fileID: 0}
   playerInput: {x: 0, y: 0}
 --- !u!61 &1129944846
 BoxCollider2D:

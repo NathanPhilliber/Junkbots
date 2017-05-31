@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Bomb
+=======
+  - Erl
+>>>>>>> 1739188e99957e5c6616e71ad22cd759ea327fc8
   layers:
   - Default
   - TransparentFX
@@ -15,10 +19,16 @@ TagManager:
   - 
   - 
   - Player
+  - Drone
   - Obstacles
+<<<<<<< HEAD
   - AI
   - Bomb
   - 
+=======
+  - OOB
+  - Enemies
+>>>>>>> 1739188e99957e5c6616e71ad22cd759ea327fc8
   - 
   - 
   - 

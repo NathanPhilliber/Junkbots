@@ -9,9 +9,21 @@ public class LandFrame : MonoBehaviour, IFrame {
 	public float minYDifference;		//	Used for how low the next vertex can be from this one
 	public float landDepth;				//	How deep the land should be
 	public Material material;			//	The material for this piece of land
+	public bool generateRavine;			//	Should we generate ravines in this landframe?
+	public GameObject bridge;			//	Bridge prefab if we want to spawn them
+	public GameObject button;			//	Button prefab if we want to spawn them
+	public bool spawnBridge;			//	Should we spawn bridges over ravines?
+
+	[HideInInspector]
+	public GameObject nextFrame = null;	//	The next landframe after this one
+
+	//[HideInInspector]
+	public int[] activityStrip;			//	Used to keep track of objects on the surface
+
+	public Vector3[] vertices;
 
 	private TerrainFrame frame;			//	The land frame
-	private EdgeCollider2D collider;	//	Collider
+	private EdgeCollider2D myCollider;	//	Collider
 	private Mesh mesh;					//	Land mesh
 	private MeshFilter meshFilter;		//	Mesh filter
 	private MeshRenderer meshRenderer;	//	Renderer
@@ -21,7 +33,7 @@ public class LandFrame : MonoBehaviour, IFrame {
 		mesh = new Mesh ();																//	New mesh
 		meshFilter = (MeshFilter)gameObject.AddComponent (typeof(MeshFilter));			//	Add mesh filter
 		meshRenderer = (MeshRenderer)gameObject.AddComponent (typeof(MeshRenderer));	//	Add mesh renderer
-		collider = (EdgeCollider2D)gameObject.AddComponent (typeof(EdgeCollider2D));	//	Add edge collider
+		myCollider = (EdgeCollider2D)gameObject.AddComponent (typeof(EdgeCollider2D));	//	Add edge collider
 		meshFilter.mesh = mesh;															//	Assign mesh to filter
 
 		int impVertices = (int)((frame.width / xDifference) + 3);						//	The number of important vertices
@@ -31,13 +43,20 @@ public class LandFrame : MonoBehaviour, IFrame {
 		Vector2[] points = new Vector2[vertices.Length];								//	Collider points array
 		int[] triangles = new int[(vertices.Length - 2) * 3];							//	Triangles array
 
+
+
 		mesh.Clear ();																	//	Reset mesh
 
-		vertices [0] = new Vector2(0, frame.enterY -landDepth);										//	Start in bottom left corner
+		vertices [0] = new Vector2(0, frame.enterY -landDepth);							//	Start in bottom left corner
 		vertices [1] = new Vector2(0, frame.enterY - transform.position.y);				//	Upper left corner
+							
+		activityStrip = new int[impVertices];
 
-		points[0] = new Vector2(vertices[0].x, vertices[0].y);							//	Bottom left corner for collider point
-		points[1] = new Vector2(vertices[1].x, vertices[1].y);							//	Upper left corner for collider points
+		for (int i = 0; i < activityStrip.Length; i++) {
+			activityStrip [i] = 0;
+		}
+
+		activityStrip [0] = -1;
 
 		float xCur = 0;																	//	The current x position to place a vertex at
 		float yCur = vertices[1].y;														//	The current y position to place a vertex at
@@ -54,20 +73,19 @@ public class LandFrame : MonoBehaviour, IFrame {
 			lastRandom = curRandom;														//	Save the y change for next iteration
 
 			vertices [i] = new Vector3 (xCur, yCur, 0);									//	Save the vertice
-			points [i] = new Vector2 (xCur, yCur);										//	Save the collider point
+									//	Save the collider point
 
 		}
 
-		xCur = frame.width;																		//	Start xCur at the end of the frame
+		xCur = frame.width;																					//	Start xCur at the end of the frame
 
 		vertices [vertices.Length - 1 - middleVertices] = new Vector3 (xCur, frame.enterY -landDepth, 0);	//	Place the bottom right vertex
-		points [vertices.Length - 1 - middleVertices] = new Vector2 (xCur,frame.enterY  -landDepth);			//	Place the bottom right collider point
+
 
 
 		for (int i = vertices.Length - middleVertices; i < vertices.Length; i++) {		//	Place all the middle vertices, these are used to create nice triangles
 			xCur -= xDifference*2;														//	Move xCur 2 x displacements to the left
-			vertices [i] = new Vector3 (xCur, frame.enterY -landDepth, 0);							//	Place a vertex along the bottom
-			points [i] = new Vector2 (xCur, frame.enterY -landDepth);								//	Place a collider point along the bottom, this is unnecessary, remove this to optimize
+			vertices [i] = new Vector3 (xCur, frame.enterY -landDepth, 0);				//	Place a vertex along the bottom
 		}
 
 		int size = vertices.Length;								//	The number of vertices
@@ -94,19 +112,60 @@ public class LandFrame : MonoBehaviour, IFrame {
 			anchor = size + backwards;							//	Move the anchor to the right
 			backwards--;										//	Move the bottom tracker to the right
 
+		}			
+
+		if (generateRavine) {									//	Generate ravine
+			int vert = (int)(frame.width / xDifference / 3);
+
+			if (spawnBridge) {									//	Generate retracting bridge
+				Vector3 pos = transform.TransformPoint (vertices [vert]);
+				GameObject bridgeIn = (GameObject)Instantiate (bridge, new Vector2 (pos.x + xDifference*.25f, pos.y - 1.4f), Quaternion.identity);
+				bridgeIn.GetComponent<Bridge> ().length = 25;
+				bridgeIn.GetComponent<Bridge> ().Reload ();
+
+				GameObject buttonIn = (GameObject)Instantiate (button, new Vector2 (pos.x - xDifference*5, pos.y + 1.2f), Quaternion.identity);
+				buttonIn.GetComponent<PressureButton>().objectsToTrigger = new GameObject[1];
+				buttonIn.GetComponent<PressureButton> ().objectsToTrigger [0] = bridgeIn;
+
+				bridgeIn.transform.parent = transform;
+				buttonIn.transform.parent = transform;
+			}
+
+			int holeRadius = 5;										//	How wide the ravine should be
+
+			for (int i = vert; i < vert + holeRadius; i++) {		//	Move vertices of left side
+				vertices [i] = new Vector3 (vertices[vert].x, vertices[vert].y - (i-vert)*Random.Range(20,30), 0);
+				activityStrip [i] = 2;
+			}
+
+			vert += (holeRadius*2);
+
+			for (int i = vert; i >= vert - holeRadius; i--) {		//	Move vertices of right side
+				vertices [i] = new Vector3 (vertices[vert].x + Random.Range(-2.5f, 2.5f), vertices[vert].y - (vert-i)*Random.Range(20,30), 0);
+				activityStrip [i] = 2;
+			}
 		}
+
 
 		for (int i = 0; i < uvs.Length; i++) {						//	Assign all uvs, just copy vertices
 			uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
 		}
 
+		for (int i = 0; i < points.Length; i++) {					//	Assign all collider points, copying vertices. Could make this more efficient by skipping bottom ones.
+			points[i] = new Vector2(vertices[i].x, vertices[i].y);
+		}
+
+
+
 		frame.exitY = yCur + transform.position.y;					//	Save exit position
 
-		collider.points = points;									//	Assign collier points
+		myCollider.points = points;									//	Assign collier points
 		mesh.vertices = vertices;									//	Assign vertices
 		mesh.uv = uvs;												//	Assign uvs
 		mesh.triangles = triangles;									//	Assign triangles
 		mesh.RecalculateNormals ();									//	Calculate the normals with the new vertices
 		meshRenderer.sharedMaterial = material;						//	Set the material
+
+		this.vertices = vertices;
 	}
 }

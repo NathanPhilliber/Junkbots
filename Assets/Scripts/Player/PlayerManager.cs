@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
 public class PlayerManager : MonoBehaviour {
@@ -11,11 +12,15 @@ public class PlayerManager : MonoBehaviour {
 	public float accelerationTimeGrounded = .1f;
  	public float moveSpeed = 6;
 
+    public LayerMask oobMask;
+
+    public GunController weapon;
+
 	float gravity;
 	float jumpVelocity;
 	Vector3 velocity;
 	float velocityXSmoothing;
-	bool facingRight = true;
+
 
 	Controller2D controller;
 	Animator anim;
@@ -48,21 +53,23 @@ public class PlayerManager : MonoBehaviour {
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime, input);
 
-		if (input.x > 0 && !facingRight) {
-			Flip ();
+		if (input.x > 0 && !controller.facingRight) {
+			controller.Flip ();
 		}
-		else if (input.x < 0 && facingRight) {
-			Flip ();
+		else if (input.x < 0 && controller.facingRight) {
+			controller.Flip ();
 		}
+
+        if (Input.GetMouseButtonDown(0) && weapon != null)
+        {
+            weapon.Fire();
+        }
 
 		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
 	}
 
-	void Flip() {
-		facingRight = !facingRight;
-
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+    void OnDestroy()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
