@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Erl
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -14,11 +14,11 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Drone
-  - Obstacles
-  - OOB
-  - Enemies
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
