@@ -2860,6 +2860,11 @@ Prefab:
       propertyPath: toggle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114005148500866726, guid: 685fee601c0d04f3e80d152d3bd8d631,
+        type: 2}
+      propertyPath: mask.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
   m_IsPrefabParent: 0
@@ -3449,6 +3454,11 @@ Prefab:
         type: 2}
       propertyPath: toggle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114005148500866726, guid: 685fee601c0d04f3e80d152d3bd8d631,
+        type: 2}
+      propertyPath: mask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
