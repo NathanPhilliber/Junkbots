@@ -66,7 +66,7 @@ public class DropBox : MonoBehaviour, IInteractable {
 
 
 
-	public void TriggerAction(){
+	public void TriggerAction(bool toggle){
 		
 		isOpening = true;
 	}

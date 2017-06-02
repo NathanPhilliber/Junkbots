@@ -114,7 +114,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		}
 	}
 
-	public void TriggerAction(){
+	public void TriggerAction(bool toggle){
 		if (toggleNorthOnTrigger) {
 			north = !north;
 		}
