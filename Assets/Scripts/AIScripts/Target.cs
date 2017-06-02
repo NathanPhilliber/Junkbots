@@ -7,10 +7,13 @@ public class Target : MonoBehaviour {
 	public GameObject target;
 	public float tooFar = 5;
 	public float moveSpeed = 3;
+	public string targetTag = "Player";
+
+	public LayerMask collisionMask;
 
 	// Use this for initialization
 	void Start () {
-		//target = GameObject.FindWithTag("Player").transform; //target the player
+		target = GameObject.FindWithTag(targetTag); //target the player
 	}
 	
 	// Update is called once per frame
@@ -22,5 +25,11 @@ public class Target : MonoBehaviour {
 		}*/
 
 		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if ((collisionMask & (1 << other.gameObject.layer)) > 0)
+			Destroy(gameObject);
 	}
 }
