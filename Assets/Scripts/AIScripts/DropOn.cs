@@ -11,11 +11,7 @@ public class DropOn : RaycastController {
 	float FireRate = 1.0f;
 
 	// Use this for initialization
-	new void Start () {
-		// Assumes Layer names are "Bomb" and "AI"
-		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Bomb"),LayerMask.NameToLayer("AI"));
-
-		base.Start ();
+	new void Start () {base.Start ();
 	}
 
 	// Update is called once per frame
