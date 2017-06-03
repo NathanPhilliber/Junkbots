@@ -8,6 +8,14 @@ public class PressureButton : MonoBehaviour {
 	public LayerMask mask;				//	Objects with this layermask can interact with this button
 	public bool toggle;
 
+	public Sprite unpressed, pressed;
+
+	private SpriteRenderer renderer;
+
+	void Start(){
+		renderer = GetComponent<SpriteRenderer> ();
+	}
+
 	/*
 	 * Called when this button is pressed
 	 */
@@ -17,6 +25,13 @@ public class PressureButton : MonoBehaviour {
 				objectsToTrigger [i].GetComponent<IInteractable>().TriggerAction (true);
 			}
 
+			if (renderer.sprite == unpressed) {
+				renderer.sprite = pressed;
+			} else {
+				renderer.sprite = unpressed;
+			}
+
+
 		}
 	}
 
@@ -25,6 +40,16 @@ public class PressureButton : MonoBehaviour {
 			for (int i = 0; i < objectsToTrigger.Length; i++) {
 				objectsToTrigger [i].GetComponent<IInteractable>().TriggerAction (false);
 			}
+
+			renderer.sprite = pressed;
+
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other){
+		if (toggle == false && mask == (mask | (1 << other.gameObject.layer))) {
+
+			renderer.sprite = unpressed;
 
 		}
 	}

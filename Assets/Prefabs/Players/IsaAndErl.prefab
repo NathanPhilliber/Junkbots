@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4662121985038572}
   - component: {fileID: 212736427753435984}
   - component: {fileID: 95188289350300898}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: RightEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,9 +75,9 @@ GameObject:
   - component: {fileID: 50295516383358650}
   - component: {fileID: 114629556821913128}
   - component: {fileID: 96685295561041630}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Isa
-  m_TagString: Untagged
+  m_TagString: Isa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4882187365289510}
   - component: {fileID: 114764363048240298}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: EmitterJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4654562740560636}
   - component: {fileID: 212462452909064828}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4415987467846788}
   - component: {fileID: 212408081341168734}
   - component: {fileID: 95239537155171550}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: LeftEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4775535172835500}
   - component: {fileID: 212872646815215758}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Emitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4036859164003538}
   - component: {fileID: 212660742121464202}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: RightThruster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4349124567366444}
   - component: {fileID: 212576101250443334}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 95720984004923290}
   - component: {fileID: 199418711277688882}
   - component: {fileID: 198318931834038498}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 114006911037507680}
   m_Layer: 8
   m_Name: Erl
-  m_TagString: Untagged
+  m_TagString: Erl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4454949921266710}
   - component: {fileID: 212646522695161594}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: LeftThruster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 95886658393618890}
   - component: {fileID: 198216365339793634}
   - component: {fileID: 199039686994463956}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
