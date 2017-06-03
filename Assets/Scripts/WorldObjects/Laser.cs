@@ -22,6 +22,7 @@ public class Laser : MonoBehaviour, IInteractable {
 	private GameObject northBall, southBall, eastBall, westBall;
 
 	private bool lastToggle;
+	private int cooldown = 0;
 
 	void Start(){
 		northSprite.enabled = false;
@@ -121,16 +122,23 @@ public class Laser : MonoBehaviour, IInteractable {
 			}
 		}
 
-		if(lastToggle == false){
+		if(lastToggle == false && cooldown <= 0){
 			north = northStart;
 			south = southStart;
 			west = westStart;
 			east = eastStart;
 		}
 
+		if (cooldown > 0) {
+			cooldown--;
+		}
+
 	}
 
 	public void TriggerAction(bool toggle){
+
+
+
 		lastToggle = toggle;
 		if(toggle == false){
 
@@ -146,6 +154,8 @@ public class Laser : MonoBehaviour, IInteractable {
 			if (toggleEastOnTrigger) {
 				east = !eastStart;
 			}
+
+			cooldown = 5;
 		}
 		else{
 			

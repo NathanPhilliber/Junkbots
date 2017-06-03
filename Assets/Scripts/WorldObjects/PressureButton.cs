@@ -36,6 +36,7 @@ public class PressureButton : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
+		
 		if (toggle == false && mask == (mask | (1 << other.gameObject.layer))) {
 			for (int i = 0; i < objectsToTrigger.Length; i++) {
 				objectsToTrigger [i].GetComponent<IInteractable>().TriggerAction (false);

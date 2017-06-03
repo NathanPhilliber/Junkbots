@@ -887,6 +887,16 @@ Prefab:
       propertyPath: m_TagString
       value: Erl
       objectReference: {fileID: 0}
+    - target: {fileID: 50702418380934394, guid: 36caa25088a7beb448131f55fe851fc5,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50702418380934394, guid: 36caa25088a7beb448131f55fe851fc5,
+        type: 2}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36caa25088a7beb448131f55fe851fc5, type: 2}
   m_IsPrefabParent: 0
@@ -2229,7 +2239,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4996923249149038, guid: ac06006af1eab4c49afaa90450db9341, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 319.7
+      value: 317.6
       objectReference: {fileID: 0}
     - target: {fileID: 4996923249149038, guid: ac06006af1eab4c49afaa90450db9341, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2295,7 +2305,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4996923249149038, guid: ac06006af1eab4c49afaa90450db9341, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 279.77
+      value: 277.7
       objectReference: {fileID: 0}
     - target: {fileID: 4996923249149038, guid: ac06006af1eab4c49afaa90450db9341, type: 2}
       propertyPath: m_LocalPosition.y
