@@ -18,7 +18,10 @@ public class Laser : MonoBehaviour, IInteractable {
 	public int damage;
 
 	private bool northCur, southCur, eastCur, westCur;
+	private bool northStart, southStart, eastStart, westStart;
 	private GameObject northBall, southBall, eastBall, westBall;
+
+	private bool lastToggle;
 
 	void Start(){
 		northSprite.enabled = false;
@@ -38,6 +41,11 @@ public class Laser : MonoBehaviour, IInteractable {
 		if (toggleEastOnTrigger) {
 			eastSprite.enabled = true;
 		}
+
+		northStart = north;
+		southStart = south;
+		eastStart = east;
+		westStart = west;
 	}
 
 	void Update(){
@@ -90,42 +98,69 @@ public class Laser : MonoBehaviour, IInteractable {
 
 		if (northCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (0, 1), Mathf.Abs (transform.position.y - northBall.transform.position.y), mask);
-			if (hit) {
+			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
 		}
 		if (southCur) {
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (0, -1), Mathf.Abs (transform.position.y - northBall.transform.position.y), mask);
-			if (hit) {
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (0, -1), Mathf.Abs (transform.position.y - southBall.transform.position.y), mask);
+			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
 		}
 		if (eastCur) {
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (1, 0), Mathf.Abs (transform.position.x - northBall.transform.position.x), mask);
-			if (hit) {
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (1, 0), Mathf.Abs (transform.position.x - eastBall.transform.position.x), mask);
+			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
 		}
 		if (westCur) {
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (-1, 0), Mathf.Abs (transform.position.x - northBall.transform.position.x), mask);
-			if (hit) {
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (-1, 0), Mathf.Abs (transform.position.x - westBall.transform.position.x), mask);
+			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
 		}
+
+		if(lastToggle == false){
+			north = northStart;
+			south = southStart;
+			west = westStart;
+			east = eastStart;
+		}
+
 	}
 
 	public void TriggerAction(bool toggle){
-		if (toggleNorthOnTrigger) {
-			north = !north;
+		lastToggle = toggle;
+		if(toggle == false){
+
+			if (toggleNorthOnTrigger) {
+				north = !northStart;
+			}
+			if (toggleSouthOnTrigger) {
+				south = !southStart;
+			}
+			if (toggleWestOnTrigger) {
+				west = !westStart;
+			}
+			if (toggleEastOnTrigger) {
+				east = !eastStart;
+			}
 		}
-		if (toggleSouthOnTrigger) {
-			south = !south;
-		}
-		if (toggleWestOnTrigger) {
-			west = !west;
-		}
-		if (toggleEastOnTrigger) {
-			east = !east;
+		else{
+			
+			if (toggleNorthOnTrigger) {
+				north = !north;
+			}
+			if (toggleSouthOnTrigger) {
+				south = !south;
+			}
+			if (toggleWestOnTrigger) {
+				west = !west;
+			}
+			if (toggleEastOnTrigger) {
+				east = !east;
+			}
 		}
 	}
 
@@ -133,6 +168,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		GameObject ball = (GameObject)Instantiate (laserBallPrefab, transform.position, Quaternion.identity);
 		ball.GetComponent<LaserBallBehavior> ().xVel = xDir * laserSpeed;
 		ball.GetComponent<LaserBallBehavior> ().yVel = yDir * laserSpeed;
+		ball.GetComponent<LaserBallBehavior> ().laserBox = gameObject;
 		return ball;
 	}
 

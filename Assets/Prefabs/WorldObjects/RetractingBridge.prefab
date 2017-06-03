@@ -137,6 +137,7 @@ MonoBehaviour:
   length: 10
   bridge: {fileID: 1396777159781488}
   speed: 3
+  goRight: 0
 --- !u!212 &212223138667435892
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -209,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a818f01d3ec941c5be1d4e6118e3828, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42fc625cde6d0402a9a03dac294d531a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

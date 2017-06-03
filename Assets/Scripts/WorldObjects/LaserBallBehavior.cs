@@ -6,6 +6,7 @@ public class LaserBallBehavior : MonoBehaviour {
 
 	public float xVel, yVel;
 	public float maxDistance;
+	public GameObject laserBox;
 
 	private float distance = 0;
 
@@ -29,7 +30,7 @@ public class LaserBallBehavior : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.layer == 10) {
+		if (other.gameObject.layer == 10 && other.gameObject != laserBox) {
 			Stop ();
 		}
 	}
