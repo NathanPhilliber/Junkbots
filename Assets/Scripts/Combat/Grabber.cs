@@ -12,28 +12,42 @@ public class Grabber : Device {
     Vector2 relativePos;
 
     public RotateTowards rotationAxis;
+    new Renderer renderer;
+
+    int grabAttemptCooldown = 10;
+    int currentCooldown;
 
     void Start()
     {
 
         rotationAxis = GetComponentInParent<RotateTowards>();
         rotationAxis.target = null;
+        renderer = GetComponent<Renderer>();
+        renderer.enabled = isEnabled;
+        
     }
 
     public override void OnDisabled(GameObject activator)
     {
         targetObject = null;
         rotationAxis.target = null;
+        renderer.enabled = isEnabled;
     }
 
     public override void OnEnabled(GameObject activator)
     {
+        renderer.enabled = isEnabled;
         var hit = Physics2D.Raycast(transform.position, -transform.up, castDistance, pickupLayer);
         if (hit)
         {
             targetObject = hit.rigidbody;
             rotationAxis.target = hit.rigidbody.transform;
             relativePos = targetObject.position - (Vector2)transform.position;
+        }
+        else
+        {
+            locked = true;
+            currentCooldown = grabAttemptCooldown;
         }
     }
 
@@ -52,10 +66,23 @@ public class Grabber : Device {
             }
             
         }
+        else if (locked)
+        {    
+            if (currentCooldown-- <= 0)
+            {
+                locked = false;
+                Disable(gameObject);
+            }
+        }
         else
         {
             Disable(gameObject);
         }
+    }
+
+    public override void UpdateWhileDisabled()
+    {
+        
     }
 
     void OnDrawGizmos()

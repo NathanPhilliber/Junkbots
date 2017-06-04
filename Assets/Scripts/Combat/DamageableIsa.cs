@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DamageableIsa : Damageable {
 
@@ -23,7 +24,8 @@ public class DamageableIsa : Damageable {
 
     public override void OnHealthZero()
     {
-        Destroy(gameObject);
+        int bi = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadSceneAsync(bi);
     }
 
     // Use this for initialization

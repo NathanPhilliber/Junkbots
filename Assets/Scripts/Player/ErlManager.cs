@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
-public class PlayerManager : MonoBehaviour {
+public class ErlManager : MonoBehaviour {
 
 	public float jumpHeight = 4;
 	public float timeToJumpApex = .4f;
 	public float accelerationTimeAirborne = .2f;
 	public float accelerationTimeGrounded = .1f;
  	public float moveSpeed = 6;
+    public float jumpAnimationLength = .1f;
 
     public LayerMask oobMask;
 
@@ -21,9 +22,18 @@ public class PlayerManager : MonoBehaviour {
 	Vector3 velocity;
 	float velocityXSmoothing;
 
+    int jumpAnimationCurrent = 0;
+    float jumpSmoothing;
+    float jumpExtendHeight = 0.2f;
+    public float currentExtension = 0f;
+    bool isExtending = false;
+    bool isContracting = false;
+
 
 	Controller2D controller;
 	Animator anim;
+
+    public GameObject body;
 
 	// Use this for initialization
 	void Start () {
@@ -49,7 +59,7 @@ public class PlayerManager : MonoBehaviour {
 
         if (input.y > 0 && controller.collisions.below && !controller.collisions.slidingDownMaxSlope)
         {
-            velocity.y = jumpVelocity;
+            Jump();
         }
 
 		float targetVelocityX = input.x * moveSpeed;
@@ -70,6 +80,38 @@ public class PlayerManager : MonoBehaviour {
             SceneManager.LoadSceneAsync("Menu");
         }
 
-		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
-	}
+        if (isExtending)
+        {
+            if (currentExtension >= jumpExtendHeight - .05f)
+            {
+                isExtending = false;
+                isContracting = true;
+            }
+            else
+            {
+                currentExtension = Mathf.SmoothDamp(currentExtension, jumpExtendHeight, ref jumpSmoothing, jumpAnimationLength);
+                body.transform.localPosition = Vector3.up * currentExtension;
+            }
+        }
+        else if (isContracting)
+        {
+            if (currentExtension <= 0)
+            {
+                isContracting = false;
+            }
+            else
+            {
+                currentExtension = Mathf.SmoothDamp(currentExtension, 0, ref jumpSmoothing, jumpAnimationLength * 3);
+                body.transform.localPosition = Vector3.up * currentExtension;
+            }
+        }
+
+        //anim.SetFloat ("Speed", Mathf.Abs(input.x));
+    }
+
+    void Jump()
+    {
+        velocity.y = jumpVelocity;
+        isExtending = true;
+    }
 }

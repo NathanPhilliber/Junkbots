@@ -8,6 +8,13 @@ using UnityEngine;
 [RequireComponent(typeof(Damageable))]
 public class Shield : Device {
 
+    public int maxCharge = 1000;
+    public int drainRate = 2;
+    public int rechargeRate = 1;
+
+    public int currentCharge = 60;
+
+
     Collider2D parentCollider;
     new Collider2D collider;
     new Renderer renderer;
@@ -64,6 +71,22 @@ public class Shield : Device {
 
     public override void UpdateWhileEnabled()
     {
-        // Nada
+        currentCharge -= drainRate;
+        if (currentCharge <= 0)
+        {
+            currentCharge = 0;
+            Disable(gameObject);
+        }
+    }
+
+    public override void UpdateWhileDisabled()
+    {
+        if (currentCharge < maxCharge)
+        {
+            currentCharge += rechargeRate;
+            if (currentCharge > maxCharge)
+                currentCharge = maxCharge;
+        }
+        
     }
 }

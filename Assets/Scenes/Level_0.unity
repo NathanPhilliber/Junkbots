@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 50
-  target: {fileID: 0}
+  target: {fileID: 819960307}
   gun: {fileID: 1493225248}
 --- !u!114 &555967524
 MonoBehaviour:
@@ -307,6 +307,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &819960307 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4486399449637312, guid: 36caa25088a7beb448131f55fe851fc5,
+    type: 2}
+  m_PrefabInternal: {fileID: 470347172}
 --- !u!1 &937190921
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddd56a2d913f0240b9152a626abf91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 819960307}
   controller: {fileID: 0}
 --- !u!1 &1296611978
 GameObject:
@@ -486,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 0
   isToggle: 0
+  locked: 0
   barrelEnd: {fileID: 1493225249}
   fireDelay: 20
   projectile: {fileID: 114501084491681244, guid: 6a67d9c782dc2fb4a97ee8101a6ee1a3,

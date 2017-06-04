@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Device : MonoBehaviour {
     public bool isEnabled = false;
     public bool isToggle = false;
+    public bool locked = false;
 
     void Update()
     {
@@ -20,7 +21,7 @@ public abstract class Device : MonoBehaviour {
 
     public void Enable(GameObject activator)
     {
-        if (!isEnabled)
+        if (!isEnabled && !locked)
         {
             isEnabled = true;
             OnEnabled(activator);
@@ -29,7 +30,7 @@ public abstract class Device : MonoBehaviour {
 
     public void Disable(GameObject activator)
     {
-        if (isEnabled)
+        if (isEnabled && !locked)
         {
             isEnabled = false;
             OnDisabled(activator);
@@ -77,5 +78,5 @@ public abstract class Device : MonoBehaviour {
 
     public abstract void UpdateWhileEnabled();
 
-    public void UpdateWhileDisabled() {} // Override if needed
+    public virtual void UpdateWhileDisabled() {} // Override if needed
 }
