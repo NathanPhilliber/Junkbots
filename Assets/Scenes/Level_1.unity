@@ -1988,11 +1988,6 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1746332652}
-    - target: {fileID: 212781397915511680, guid: 36caa25088a7beb448131f55fe851fc5,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36caa25088a7beb448131f55fe851fc5, type: 2}
   m_IsPrefabParent: 0
