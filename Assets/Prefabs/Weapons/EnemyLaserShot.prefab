@@ -116,7 +116,7 @@ MonoBehaviour:
   speed: 15.98
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 9984
 --- !u!114 &114809507972971668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
   damage: 1
   victimMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 8448
 --- !u!212 &212932304751534056
 SpriteRenderer:
   m_ObjectHideFlags: 1

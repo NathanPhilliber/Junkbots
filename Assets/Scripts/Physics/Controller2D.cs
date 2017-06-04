@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller2D : RaycastController {
-
-
     public float maxSlopeAngle = 75;
 
 	public CollisionInfo collisions;

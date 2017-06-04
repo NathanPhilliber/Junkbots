@@ -7,9 +7,11 @@ public class RotateTowards : MonoBehaviour {
     public Transform target;
     public Controller2D controller;
 
+    Vector3 origPos;
+
     // Use this for initialization
     void Start () {
-		
+        origPos = transform.right;
 	}
 	
 	// Update is called once per frame
@@ -18,12 +20,16 @@ public class RotateTowards : MonoBehaviour {
         {
             if (controller != null && !controller.facingRight)
             {
-                transform.right = transform.position - target.position;
+                transform.right = (Vector2)transform.position - (Vector2)target.position;
             }
             else
             {
-                transform.right = target.position - transform.position;
+                transform.right = (Vector2)target.position - (Vector2)transform.position;
             }
+        }
+        else
+        {
+            transform.right = origPos;
         }
         
     }

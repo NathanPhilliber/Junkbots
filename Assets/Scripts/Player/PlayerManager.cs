@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour {
 
     public LayerMask oobMask;
 
-    public GunController weapon;
+    public Device weapon;
 
 	float gravity;
 	float jumpVelocity;
@@ -43,9 +43,14 @@ public class PlayerManager : MonoBehaviour {
 
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
-		if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below && !controller.collisions.slidingDownMaxSlope) {
-			velocity.y = jumpVelocity;
+		if (weapon != null) {
+            weapon.ToggleOrEnable(gameObject, Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.Space));
 		}
+
+        if (input.y > 0 && controller.collisions.below && !controller.collisions.slidingDownMaxSlope)
+        {
+            velocity.y = jumpVelocity;
+        }
 
 		float targetVelocityX = input.x * moveSpeed;
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, 
@@ -59,11 +64,6 @@ public class PlayerManager : MonoBehaviour {
 		else if (input.x < 0 && controller.facingRight) {
 			controller.Flip ();
 		}
-
-        if (Input.GetMouseButtonDown(0) && weapon != null)
-        {
-            weapon.Fire();
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

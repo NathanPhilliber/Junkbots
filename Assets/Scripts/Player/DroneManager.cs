@@ -6,7 +6,11 @@ using UnityEngine;
 public class DroneManager : MonoBehaviour {
 
 	public float accelerationTime = .1f;
- 	public float moveSpeed = 10;
+ 	public float acceleration = .5f;
+    public float maxSpeed = 15;
+
+    public Device primary;
+    public Device secondary;
 
     Vector3 velocity;
 	float velocitySmoothing;
@@ -34,8 +38,11 @@ public class DroneManager : MonoBehaviour {
 
         mouse = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         Vector2 input = Camera.main.ScreenToWorldPoint(mouse);
-        Vector2 targetV = (input - (Vector2)transform.position) * moveSpeed;
-
+        Vector2 targetV = (input - (Vector2)transform.position) * acceleration;
+        if (targetV.magnitude > maxSpeed)
+        {
+            targetV = targetV.normalized * maxSpeed;
+        }
         
 
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetV.x, ref velocitySmoothing, 
@@ -46,6 +53,16 @@ public class DroneManager : MonoBehaviour {
 
         controller.Move (velocity * Time.deltaTime, input);
 
-		//anim.SetFloat ("Speed", Mathf.Abs(input.x));
-	}
+        if (primary != null)
+        {
+            primary.ToggleOrEnable(gameObject, Input.GetMouseButtonDown(0), Input.GetMouseButton(0));
+        }
+
+        if (secondary != null)
+        {
+            secondary.ToggleOrEnable(gameObject, Input.GetMouseButtonDown(1), Input.GetMouseButton(1));
+        }
+
+        //anim.SetFloat ("Speed", Mathf.Abs(input.x));
+    }
 }
