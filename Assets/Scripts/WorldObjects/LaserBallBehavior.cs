@@ -10,9 +10,12 @@ public class LaserBallBehavior : MonoBehaviour {
 
 	private float distance = 0;
 
+	private float xVelStart, yVelStart;
+
 	// Use this for initialization
 	void Start () {
-		
+		xVelStart = xVel;
+		yVelStart = yVel;
 	}
 
 	void FixedUpdate(){
@@ -32,6 +35,13 @@ public class LaserBallBehavior : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.layer == 10 && other.gameObject != laserBox) {
 			Stop ();
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other){
+		if (other.gameObject.layer == 10 && other.gameObject != laserBox) {
+			xVel = xVelStart;
+			yVel = yVelStart;
 		}
 	}
 

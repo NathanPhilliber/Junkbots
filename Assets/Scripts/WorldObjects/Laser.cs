@@ -14,7 +14,7 @@ public class Laser : MonoBehaviour, IInteractable {
 
 	public SpriteRenderer northSprite, southSprite, eastSprite, westSprite;
 
-	public LayerMask mask;
+	public LayerMask mask, landMask;
 	public int damage;
 
 	private bool northCur, southCur, eastCur, westCur;
@@ -102,24 +102,55 @@ public class Laser : MonoBehaviour, IInteractable {
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
+			else{
+				hit = Physics2D.Raycast (transform.position + new Vector3(0, 2f, 0), new Vector2 (0, 1), Mathf.Abs (transform.position.y - northBall.transform.position.y) -2.5f, landMask);
+				if (hit && hit.collider.gameObject != gameObject) {
+					Destroy (northBall);
+					northBall = LaunchLaser (0, 1);
+				}
+			}
 		}
 		if (southCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (0, -1), Mathf.Abs (transform.position.y - southBall.transform.position.y), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
+			else{
+				hit = Physics2D.Raycast (transform.position + new Vector3(0, -2f, 0), new Vector2 (0, -1), Mathf.Abs (transform.position.y - southBall.transform.position.y) -2.5f, landMask);
+				if (hit && hit.collider.gameObject != gameObject) {
+					Destroy (southBall, .5f);
+					southBall = LaunchLaser (0, -1);
+				}
+			}
+
 		}
 		if (eastCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (1, 0), Mathf.Abs (transform.position.x - eastBall.transform.position.x), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
+			else{
+				hit = Physics2D.Raycast (transform.position + new Vector3(2f,0, 0), new Vector2 (1, 0), Mathf.Abs (transform.position.x - eastBall.transform.position.x) -2.5f, landMask);
+				if (hit && hit.collider.gameObject != gameObject) {
+					Destroy (eastBall);
+					eastBall = LaunchLaser (1, 0);
+				}
+			}
+
 		}
 		if (westCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (-1, 0), Mathf.Abs (transform.position.x - westBall.transform.position.x), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
 				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
 			}
+			else{
+				hit = Physics2D.Raycast (transform.position + new Vector3(-2f,0, 0), new Vector2 (-1, 0), Mathf.Abs (transform.position.x - westBall.transform.position.x) -2.5f, landMask);
+				if (hit && hit.collider.gameObject != gameObject) {
+					Destroy (westBall);
+					westBall = LaunchLaser (-1, 0);
+				}
+			}
+
 		}
 
 		if(lastToggle == false && cooldown <= 0){

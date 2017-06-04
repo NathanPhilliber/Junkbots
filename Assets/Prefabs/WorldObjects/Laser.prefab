@@ -216,6 +216,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8448
+  landMask:
+    serializedVersion: 2
+    m_Bits: 1024
   damage: 2
 --- !u!212 &212046759272594610
 SpriteRenderer:
