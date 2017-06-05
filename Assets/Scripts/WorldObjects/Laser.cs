@@ -210,6 +210,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		ball.GetComponent<LaserBallBehavior> ().xVel = xDir * laserSpeed;
 		ball.GetComponent<LaserBallBehavior> ().yVel = yDir * laserSpeed;
 		ball.GetComponent<LaserBallBehavior> ().laserBox = gameObject;
+		ball.transform.parent = transform;
 		return ball;
 	}
 
