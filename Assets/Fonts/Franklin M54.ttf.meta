@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1bc8c7d9bc0334325a6c1a023309baf4
+timeCreated: 1496687005
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Franklin M54
+  fontNames:
+  - Franklin M54
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
