@@ -6673,12 +6673,23 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 181865477}
-        m_MethodName: Load
+        m_MethodName: LoadDelay50
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1236052684}
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6915,18 +6926,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 597517613}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 181865477}
-        m_MethodName: Load
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &597517613
@@ -13333,7 +13333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5147059, g: 0.5147059, b: 0.5147059, a: 1}
+  m_Color: {r: 0.6544118, g: 0.6544118, b: 0.6544118, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13479,7 +13479,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1244963449
+  randomSeed: 1083619003
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16564,6 +16564,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 6
   speed: 0.1
+--- !u!1001 &1118256615
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 340
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 208.84486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630585804853950, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114915756331700526, guid: 3a54792a8015045e7adf599e235e0b75,
+        type: 2}
+      propertyPath: open
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3a54792a8015045e7adf599e235e0b75, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &1236052684 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114915756331700526, guid: 3a54792a8015045e7adf599e235e0b75,
+    type: 2}
+  m_PrefabInternal: {fileID: 1118256615}
+  m_Script: {fileID: 11500000, guid: 3ecb19a4dcbcb4c279903ea806f663a4, type: 3}
 --- !u!1 &1245209690
 GameObject:
   m_ObjectHideFlags: 0
