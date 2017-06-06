@@ -24,7 +24,12 @@ public class Laser : MonoBehaviour, IInteractable {
 	private bool lastToggle;
 	private int cooldown = 0;
 
+	private SoundManager sounds;
+
 	void Start(){
+
+		sounds = Camera.main.GetComponent<SoundManager> ();
+
 		northSprite.enabled = false;
 		southSprite.enabled = false;
 		westSprite.enabled = false;
@@ -158,6 +163,8 @@ public class Laser : MonoBehaviour, IInteractable {
 			south = southStart;
 			west = westStart;
 			east = eastStart;
+			playNext = true;
+
 		}
 
 		if (cooldown > 0) {
@@ -166,12 +173,17 @@ public class Laser : MonoBehaviour, IInteractable {
 
 	}
 
+	private bool playNext = false;
+
 	public void TriggerAction(bool toggle){
-
-
 
 		lastToggle = toggle;
 		if(toggle == false){
+
+			if (playNext) {
+				//sounds.PlaySound (7);
+				playNext = false;
+			}
 
 			if (toggleNorthOnTrigger) {
 				north = !northStart;
@@ -189,7 +201,11 @@ public class Laser : MonoBehaviour, IInteractable {
 			cooldown = 5;
 		}
 		else{
-			
+
+			if ((north == false && toggleNorthOnTrigger) || (south == false && toggleSouthOnTrigger) || (east == false && toggleEastOnTrigger) || (west == false && toggleWestOnTrigger)) {
+				//sounds.PlaySound (7);
+			}
+
 			if (toggleNorthOnTrigger) {
 				north = !north;
 			}

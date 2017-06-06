@@ -11,9 +11,10 @@ public class PressureButton : MonoBehaviour {
 	public Sprite unpressed, pressed;
 
 	private SpriteRenderer renderer;
-
+	private SoundManager sounds;
 	void Start(){
 		renderer = GetComponent<SpriteRenderer> ();
+		sounds = Camera.main.GetComponent<SoundManager> ();
 	}
 
 	/*
@@ -33,6 +34,7 @@ public class PressureButton : MonoBehaviour {
 
 
 		}
+		sounds.PlaySound (5);
 	}
 
 	void OnTriggerStay2D(Collider2D other){
@@ -53,6 +55,7 @@ public class PressureButton : MonoBehaviour {
 			renderer.sprite = unpressed;
 
 		}
+		sounds.PlaySound (6);
 	}
 }
 

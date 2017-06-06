@@ -114,9 +114,10 @@ MonoBehaviour:
   open: 0
   close: 0
   speed: 10
-  openWidth: 445
+  openWidth: 499
   leftDoor: {fileID: 1008734199325858}
   rightDoor: {fileID: 1063729038873226}
+  openSoundNum: 2
 --- !u!212 &212054554602323920
 SpriteRenderer:
   m_ObjectHideFlags: 1

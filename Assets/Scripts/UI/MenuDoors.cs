@@ -14,6 +14,8 @@ public class MenuDoors : MonoBehaviour {
 	private float leftStartX, rightStartX;
 	private float curWidth = 0;
 
+	public int openSoundNum;
+
 	private bool isOpening = false;
 	private bool isClosing = false;
 
@@ -36,6 +38,7 @@ public class MenuDoors : MonoBehaviour {
 			open = false;
 			isOpening = true;
 			isClosing = false;
+			Camera.main.GetComponent<SoundManager> ().PlaySound (openSoundNum);
 		}
 
 		if (close) {

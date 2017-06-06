@@ -35,6 +35,8 @@ public class ErlManager : MonoBehaviour {
 
     public GameObject body;
 
+	private SoundManager sounds;
+
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<Controller2D> ();
@@ -42,6 +44,8 @@ public class ErlManager : MonoBehaviour {
 
 		gravity = -(2 * jumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+
+		sounds = Camera.main.GetComponent<SoundManager> ();
 	}
 	
 	// Update is called once per frame
@@ -113,5 +117,6 @@ public class ErlManager : MonoBehaviour {
     {
         velocity.y = jumpVelocity;
         isExtending = true;
+		sounds.PlaySound (3);
     }
 }

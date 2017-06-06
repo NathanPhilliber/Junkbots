@@ -14,11 +14,11 @@ public class GunController : Device {
 
 
     private float angleMod;
-
+	private SoundManager sounds;
     // Use this for initialization
     void Start ()
     {
-
+		sounds = Camera.main.GetComponent<SoundManager> ();
 	}
 
     void OnDrawGizmos()
@@ -49,6 +49,7 @@ public class GunController : Device {
             
             Projectile newProjectile = Instantiate(projectile, barrelEnd.position, barrelEnd.rotation);
             currentDelay = fireDelay;
+			sounds.PlaySound (4);
         }
     }
 }
