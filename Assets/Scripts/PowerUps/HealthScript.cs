@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthScript : MonoBehaviour {
 
-	public float healthBoost;
+	public int healthBoost;
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +15,31 @@ public class HealthScript : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter2D(BoxCollider2D other) {
-		if (other.name == "Isa" || other.name == "Erl") {
-			Destroy (gameObject, 0.5F);
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.name == "Isa" || other.name == "Erl")
+		{
+			Damageable damageable = other.GetComponent<Damageable> ();
+
+			if (damageable != null)
+			{
+				GiveHealth (damageable);
+			}
+
+			Destroy (gameObject, 0.0F);
 		}
 	}
+
+	void GiveHealth(Damageable player)
+	{
+		int newHealth = player.health + healthBoost;
+
+		if (newHealth > player.maxHealth) {
+			newHealth = player.maxHealth;
+		}
+
+		player.health = newHealth;
+	}
+			
+			
 }

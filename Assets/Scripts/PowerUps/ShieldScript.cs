@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedPowerUp : MonoBehaviour {
+public class ShieldScript : MonoBehaviour {
 	public bool isActive;
 	public float activeTimer;
-	private Damageable shieldedPlayer;
 
 	// Use this for initialization
 	void Start () {
@@ -17,19 +16,13 @@ public class TimedPowerUp : MonoBehaviour {
 	void Update () {
 		if (isActive && activeTimer > 0) {
 			activeTimer -= Time.deltaTime;
-//			GiveShield(
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "Isa" || other.name == "Erl") {
-			// shieldedPlayer = ..
 			isActive = true;
-			Destroy (gameObject, 0.5F);
+			// Destroy (gameObject, 0.5F); // just don't render
 		}
-	}
-
-	void GiveShield(Damageable player)
-	{
 	}
 }
