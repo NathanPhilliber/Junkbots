@@ -150,7 +150,9 @@ MonoBehaviour:
   verticalRaySpacing: 0
   collider: {fileID: 0}
   Bomb: {fileID: 1802362912613658, guid: c401db81ab216de4a8b5a1922f03a593, type: 2}
-  speed: 2
+  speed: 3
+  target: {fileID: 0}
+  tooFar: 5
 --- !u!114 &114876430534884026
 MonoBehaviour:
   m_ObjectHideFlags: 1
