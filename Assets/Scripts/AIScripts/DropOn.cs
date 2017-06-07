@@ -28,7 +28,10 @@ public class DropOn : RaycastController {
 
 	// Update is called once per frame
 	void Update () {
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		//GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		GameObject[] players = new GameObject[2];
+		players[0] = GameObject.FindWithTag("Erl");
+		players[1] = GameObject.FindWithTag("Isa");
 
 		if (Time.time > aggLost) {
 			aggro = false;
@@ -39,7 +42,7 @@ public class DropOn : RaycastController {
 		int i = 0;
 		float closest = tooFar;
 		while (i < players.Length) {
-			if (Math.Abs(players[i].transform.position.x - transform.position.x) < closest) {
+			if (players[i] != null && Math.Abs(players[i].transform.position.x - transform.position.x) < closest) {
 				target = players [i];
 				aggLost = Time.time + loseAggro;
 				aggro = true;

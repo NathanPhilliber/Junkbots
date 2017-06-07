@@ -22,11 +22,13 @@ public class Aimbot : RaycastController {
 	void Update () {
 		//transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		GameObject[] players = new GameObject[2];
+		players[0] = GameObject.FindWithTag("Erl");
+		players[1] = GameObject.FindWithTag("Isa");
 		int i = 0;
 		float closest = tooFar;
 		while (i < players.Length) {
-			if (Vector3.Distance(players[i].transform.position, transform.position) < closest) {
+			if (players[i] != null && Vector3.Distance(players[i].transform.position, transform.position) < closest) {
 				target = players [i];
 				// Aggro scripts
 				/*aggLost = Time.time + loseAggro;

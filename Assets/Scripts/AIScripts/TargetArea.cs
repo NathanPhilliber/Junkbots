@@ -12,7 +12,22 @@ public class TargetArea : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		target = GameObject.FindWithTag(targetTag).transform.position; //target the player
+		//target = GameObject.FindWithTag(targetTag).transform.position; //target the player
+		GameObject[] players = new GameObject[2];
+		players[0] = GameObject.FindWithTag("Erl");
+		players[1] = GameObject.FindWithTag("Isa");
+		int i = 0;
+		float closest = 9999999;
+		while (i < players.Length) {
+			if (players[i] != null && Vector3.Distance(players[i].transform.position, transform.position) < closest) {
+				target = players[i].transform.position;
+				// Aggro scripts
+				/*aggLost = Time.time + loseAggro;
+				aggro = true;*/
+				closest = Vector3.Distance(players[i].transform.position, transform.position);
+			}
+			i++;
+		}
 
 		Vector3 relPos = target - transform.position;
 		Quaternion rotation = Quaternion.LookRotation (relPos);
