@@ -20,6 +20,8 @@ public class ErlIsaCamera : MonoBehaviour {
     public float horizontalSmoothTime;
     public float verticalSmoothTime;
 
+	public float zoomMin, zoomMax, zoomFactor;
+
     FocusArea erlFocusArea;
 
     Vector3 distanceBetween;
@@ -96,6 +98,13 @@ public class ErlIsaCamera : MonoBehaviour {
             Vector3 delta = Midpoint - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, camDistance + camOffset)); //(new Vector3(0.5, 0.5, point.z));
             Vector3 destination = transform.position + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+
+
+
+			//Zoom
+			if (Vector3.Magnitude(distanceBetween)*zoomFactor < zoomMax && Vector3.Magnitude(distanceBetween)*zoomFactor > zoomMin) {
+				camera.orthographicSize = Vector3.Magnitude(distanceBetween)*zoomFactor;
+			}
         }
     }
 
