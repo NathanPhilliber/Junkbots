@@ -13,8 +13,7 @@ public class Aimbot : MonoBehaviour {
 
 	// Use this for initialization
 	new void Start () {
-		// Assumes Layer names are "Bomb" and "AI"
-		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Bomb"),LayerMask.NameToLayer("AI"));
+		
 	}
 
 	// Update is called once per frame

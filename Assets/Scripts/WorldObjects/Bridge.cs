@@ -10,6 +10,8 @@ public class Bridge : MonoBehaviour, IInteractable {
 
 	public bool goRight;		//	Which direction the bridge moves in
 
+	private int pressedTime = 0;
+
 	void Start () {
 		Reload ();
 	}
@@ -24,18 +26,39 @@ public class Bridge : MonoBehaviour, IInteractable {
 	
 
 	void FixedUpdate () {
-		if (goRight && bridge.transform.localPosition.x < length/2) {				//	If we need to go right, then move the bridge right
-			bridge.transform.Translate(new Vector3(speed*Time.deltaTime, 0, 0));
-		}
-		else if (!goRight && bridge.transform.localPosition.x > -length/2) {		//	If we need to go left, then move the bridge left
-			bridge.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
+		if (pressedTime > 0) {
+			pressedTime--;
+		} else {
+			if (!goRight && bridge.transform.localPosition.x < length/2) {				//	If we need to go right, then move the bridge right
+				bridge.transform.Translate(new Vector3(speed*Time.deltaTime, 0, 0));
+			}
+			else if (goRight && bridge.transform.localPosition.x > -length/2) {		//	If we need to go left, then move the bridge left
+				bridge.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
+			}
 		}
 	}
 
 	/*
 	 * This bridge's action is to flip the move state
 	 */
-	public void TriggerAction(){
-		goRight = !goRight;
+	public void TriggerAction(bool toggle){
+		//goRight = !goRight;
+		pressedTime++;
+		Move();
+
+		if (toggle) {
+			goRight = !goRight;
+		}
+	}
+
+	void Move(){
+		if (goRight && bridge.transform.localPosition.x < length/2) {				//	If we need to go right, then move the bridge right
+			bridge.transform.Translate(new Vector3(speed*Time.deltaTime, 0, 0));
+		}
+		else if (!goRight && bridge.transform.localPosition.x > -length/2) {		//	If we need to go left, then move the bridge left
+			bridge.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
+		}
+
+
 	}
 }

@@ -116,7 +116,7 @@ MonoBehaviour:
   speed: 15.98
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 9984
 --- !u!114 &114809507972971668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
   damage: 1
   victimMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 8448
 --- !u!212 &212932304751534056
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300030, guid: 81989db75913892469e411185ef5709d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

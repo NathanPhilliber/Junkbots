@@ -19,8 +19,9 @@ public class TimedPowerUp : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEvent2D(Collider2D other) {
+	void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "Isa" || other.name == "Erl") {
+			print ("collided with timed power up!");
 			isActive = true;
 			Destroy (gameObject, 0.5F);
 		}
