@@ -510,17 +510,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114654695942183286, guid: f8a1315971f55d54ebfb25722a97913e,
-        type: 2}
-      propertyPath: Missile
-      value: 
-      objectReference: {fileID: 1746961566402964, guid: 8afc3dd511096b4469f741167f9819ff,
-        type: 2}
-    - target: {fileID: 114654695942183286, guid: f8a1315971f55d54ebfb25722a97913e,
-        type: 2}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1619198034}
     - target: {fileID: 1581727857857548, guid: f8a1315971f55d54ebfb25722a97913e, type: 2}
       propertyPath: m_Name
       value: Cube (2)
@@ -607,17 +596,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114796149687991410, guid: ad6c7c6ca863edc44ad77ccf224cbce6,
-        type: 2}
-      propertyPath: Missile
-      value: 
-      objectReference: {fileID: 1944079571931650, guid: aa8ededad1dd4e642b5e365e238d1c6b,
-        type: 2}
-    - target: {fileID: 114796149687991410, guid: ad6c7c6ca863edc44ad77ccf224cbce6,
-        type: 2}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1619198034}
     - target: {fileID: 1856431316155506, guid: ad6c7c6ca863edc44ad77ccf224cbce6, type: 2}
       propertyPath: m_Name
       value: Cube (3)
@@ -830,6 +808,10 @@ Prefab:
     - target: {fileID: 1636623954558332, guid: 928467b5704665e409ff248b9afee8cf, type: 2}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334029360828838, guid: 928467b5704665e409ff248b9afee8cf, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 928467b5704665e409ff248b9afee8cf, type: 2}

@@ -5,7 +5,6 @@ using UnityEngine;
 public class TargetArea : MonoBehaviour {
 
 	public Vector3 target;
-	public float tooFar = 5;
 	public float moveSpeed = 3;
 	public string targetTag = "Player";
 
@@ -22,7 +21,7 @@ public class TargetArea : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (Vector3.forward * Time.deltaTime);
+		transform.Translate (Vector3.forward * Time.deltaTime * moveSpeed);
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

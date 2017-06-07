@@ -133,7 +133,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b44539b808b0454ea6c9e7ff4d03d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Missile: {fileID: 0}
-  speed: 2
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  skinWidth: 0.03
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
+  Missile: {fileID: 1944079571931650, guid: aa8ededad1dd4e642b5e365e238d1c6b, type: 2}
+  speed: 1.25
   target: {fileID: 0}
-  tooFar: 5
+  tooFar: 6
+  clockwise: 1

@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Target : MonoBehaviour {
 
 	public GameObject target;
-	public float tooFar = 5;
-	public float moveSpeed = 3;
+	public float tooFar = 8;
+	public float defaultSpeed = 3;
+	public float moveSpeed;
 	public string targetTag = "Player";
 
 	public LayerMask collisionMask;
@@ -14,6 +16,7 @@ public class Target : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindWithTag(targetTag); //target the player
+		moveSpeed = defaultSpeed;
 	}
 	
 	// Update is called once per frame
@@ -23,8 +26,29 @@ public class Target : MonoBehaviour {
 		} else {
 			moveSpeed = 3;
 		}*/
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		int i = 0;
+		float closest = tooFar;
+		while (i < players.Length) {
+			if (Vector3.Distance(players[i].transform.position, transform.position) < closest) {
+				target = players [i];
+				// Aggro scripts
+				/*aggLost = Time.time + loseAggro;
+				aggro = true;*/
+				closest = Vector3.Distance(players[i].transform.position, transform.position);
+			}
+			i++;
+		}
 
-		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+		if (closest < tooFar / 2) {
+			moveSpeed = defaultSpeed * 2;
+		}
+
+		if (target != null) {
+			transform.position = Vector3.MoveTowards (transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+		} else {
+			Destroy(gameObject);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
