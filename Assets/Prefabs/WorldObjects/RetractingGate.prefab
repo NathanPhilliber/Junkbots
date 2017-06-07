@@ -194,6 +194,7 @@ MonoBehaviour:
   bridge: {fileID: 1768912085889406}
   speed: 5
   goRight: 0
+  soundXDiff: 5
 --- !u!212 &212037342880042390
 SpriteRenderer:
   m_ObjectHideFlags: 1

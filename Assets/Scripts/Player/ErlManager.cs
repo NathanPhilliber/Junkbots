@@ -46,7 +46,11 @@ public class ErlManager : MonoBehaviour {
 		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
 		sounds = Camera.main.GetComponent<SoundManager> ();
+		lastX = transform.position.x;
 	}
+
+	public float soundXDiff;
+	private float lastX;
 	
 	// Update is called once per frame
 	void Update () {
@@ -74,9 +78,11 @@ public class ErlManager : MonoBehaviour {
 
 		if (input.x > 0 && !controller.facingRight) {
 			controller.Flip ();
+
 		}
 		else if (input.x < 0 && controller.facingRight) {
 			controller.Flip ();
+
 		}
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -111,6 +117,11 @@ public class ErlManager : MonoBehaviour {
         }
 
         //anim.SetFloat ("Speed", Mathf.Abs(input.x));
+
+		if (Mathf.Abs(transform.position.x - lastX) > soundXDiff){
+			//sounds.PlaySound (9);
+			lastX += Mathf.Sign(transform.position.x - lastX)*soundXDiff;
+		}
     }
 
     void Jump()

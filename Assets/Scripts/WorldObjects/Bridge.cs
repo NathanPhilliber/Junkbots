@@ -10,10 +10,18 @@ public class Bridge : MonoBehaviour, IInteractable {
 
 	public bool goRight;		//	Which direction the bridge moves in
 
+	public float soundXDiff;
+
 	private int pressedTime = 0;
+	private SoundManager sounds;
+	private float lastX;
+	private Transform cameraPos;
 
 	void Start () {
 		Reload ();
+		sounds = Camera.main.GetComponent<SoundManager> ();
+		lastX = transform.position.x;
+		cameraPos = Camera.main.transform;
 	}
 
 	/*
@@ -35,6 +43,8 @@ public class Bridge : MonoBehaviour, IInteractable {
 			else if (goRight && bridge.transform.localPosition.x > -length/2) {		//	If we need to go left, then move the bridge left
 				bridge.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
 			}
+
+			UpdateSound ();
 		}
 	}
 
@@ -59,6 +69,17 @@ public class Bridge : MonoBehaviour, IInteractable {
 			bridge.transform.Translate(new Vector3(-speed*Time.deltaTime, 0, 0));
 		}
 
+		UpdateSound ();
 
+	}
+
+	void UpdateSound(){
+		
+		if (Mathf.Abs(bridge.transform.position.x - lastX) > soundXDiff){
+			if (Vector3.Distance (bridge.transform.position, cameraPos.position) < 100) {
+				sounds.PlaySound (11);
+			}
+			lastX = bridge.transform.position.x;
+		}
 	}
 }

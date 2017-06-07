@@ -1359,6 +1359,7 @@ MonoBehaviour:
   weapon: {fileID: 114884834594453910}
   currentExtension: 0
   body: {fileID: 1813174944332330}
+  soundXDiff: 4
 --- !u!114 &114312866346524110
 MonoBehaviour:
   m_ObjectHideFlags: 1

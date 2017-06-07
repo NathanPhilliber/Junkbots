@@ -17,9 +17,11 @@ public class Grabber : Device {
     int grabAttemptCooldown = 10;
     int currentCooldown;
 
+	private SoundManager sounds;
+
     void Start()
     {
-
+		sounds = Camera.main.GetComponent<SoundManager> ();
         rotationAxis = GetComponentInParent<RotateTowards>();
         rotationAxis.target = null;
         renderer = GetComponent<Renderer>();
@@ -29,9 +31,13 @@ public class Grabber : Device {
 
     public override void OnDisabled(GameObject activator)
     {
+
+
+		sounds.PlaySound (10);
         targetObject = null;
         rotationAxis.target = null;
         renderer.enabled = isEnabled;
+
     }
 
     public override void OnEnabled(GameObject activator)
@@ -49,7 +55,11 @@ public class Grabber : Device {
             locked = true;
             currentCooldown = grabAttemptCooldown;
         }
+
+		isHolding = false;
     }
+
+	private bool isHolding = false;
 
     public override void UpdateWhileEnabled()
     {
@@ -62,8 +72,14 @@ public class Grabber : Device {
             }
             else
             {
+				
                 Disable(gameObject);
             }
+
+			if (isHolding == false) {
+				sounds.PlaySound (8);
+				isHolding = true;
+			}
             
         }
         else if (locked)
@@ -71,11 +87,13 @@ public class Grabber : Device {
             if (currentCooldown-- <= 0)
             {
                 locked = false;
+
                 Disable(gameObject);
             }
         }
         else
         {
+			
             Disable(gameObject);
         }
     }
