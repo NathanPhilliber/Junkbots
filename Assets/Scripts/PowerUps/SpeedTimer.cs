@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedSpeedPowerUp : MonoBehaviour {
+public class SpeedTimer : MonoBehaviour {
 
 	public float timer;
+	public float oldSpeed;
+	public string whose;
 
-	// Use this for initialization
+	private GameObject player;
+
 	void Start () {
-		
+		player = GameObject.Find (whose);
 	}
 	
 	// Update is called once per frame
@@ -20,6 +23,7 @@ public class TimedSpeedPowerUp : MonoBehaviour {
 		}
 		else
 		{
+			
 			Destroy (gameObject, 0.0F);
 		}
 	}
