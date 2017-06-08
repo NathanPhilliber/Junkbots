@@ -118,8 +118,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930535181064742}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94.6, y: -7.9, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 32.02704, y: -2.0624733, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4674306763921400}
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 26368
   skinWidth: 0.03
   horizontalRayCount: 4
   verticalRayCount: 10
@@ -292,8 +292,8 @@ MonoBehaviour:
   maxHealth: 50
   health: 50
   defense: 3
-  deathEffect: {fileID: 1211110271209168, guid: 1b7a666f2a2204068b6e5f5531f53958,
-    type: 2}
+  damageEffect: {fileID: 0}
+  damageRotation: 0
 --- !u!198 &198539380110197162
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -6510,7 +6510,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1053418425
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300034, guid: 81989db75913892469e411185ef5709d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6550,7 +6550,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1053418425
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300006, guid: 81989db75913892469e411185ef5709d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6590,7 +6590,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1053418425
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300006, guid: 81989db75913892469e411185ef5709d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

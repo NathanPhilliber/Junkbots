@@ -185,7 +185,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647043113931440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.937653, y: 0.8, z: 0}
+  m_LocalPosition: {x: 24.465508, y: -14.160929, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 4024609737654050}
@@ -244,7 +244,8 @@ MonoBehaviour:
   maxHealth: 30
   health: 30
   defense: 3
-  deathEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
+  damageRotation: 0
 --- !u!114 &114815896094614002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 18176
+    m_Bits: 26368
   skinWidth: 0.03
   horizontalRayCount: 4
   verticalRayCount: 4

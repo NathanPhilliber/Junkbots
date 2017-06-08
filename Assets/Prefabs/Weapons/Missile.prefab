@@ -122,7 +122,7 @@ MonoBehaviour:
     type: 2}
   rb: {fileID: 0}
   target: {fileID: 0}
-  rotationSpeed: 0.04
+  rotationSpeed: 0.02
 --- !u!114 &114754844044649828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1053418425
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300046, guid: 81989db75913892469e411185ef5709d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
