@@ -151,8 +151,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483900394278760}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 164.96, y: -0.022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4686342804611762}
@@ -202,8 +202,8 @@ MonoBehaviour:
   south: 0
   east: 0
   west: 0
-  toggleNorthOnTrigger: 1
-  toggleSouthOnTrigger: 1
+  toggleNorthOnTrigger: 0
+  toggleSouthOnTrigger: 0
   toggleEastOnTrigger: 0
   toggleWestOnTrigger: 0
   laserBallPrefab: {fileID: 1743653867225114, guid: 9ef22d51cb9b0491c99cd2c2bcc3c68e,
@@ -219,7 +219,7 @@ MonoBehaviour:
   landMask:
     serializedVersion: 2
     m_Bits: 1024
-  damage: 2
+  damage: 20
 --- !u!212 &212046759272594610
 SpriteRenderer:
   m_ObjectHideFlags: 1

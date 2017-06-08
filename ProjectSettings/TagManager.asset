@@ -59,6 +59,9 @@ TagManager:
   - name: Erl
     uniqueID: 3383635405
     locked: 0
+  - name: Enemies
+    uniqueID: 1053418425
+    locked: 0
   - name: FadeOut
     uniqueID: 4197351219
     locked: 0

@@ -9,11 +9,7 @@ public abstract class Damageable : MonoBehaviour
     public int health;
     public int defense;
 
-    // Use this for initialization
-    void Start()
-    {
-        health = maxHealth;
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -21,9 +17,13 @@ public abstract class Damageable : MonoBehaviour
 
     }
 
-    public void DoDamage(int damage)
+    public void DoDamage(int damage, bool ignoreDefense = false)
     {
-        damage -= defense;
+        if (!ignoreDefense)
+            damage -= defense;
+        else
+            print("HAHAAH");
+
         if (damage <= 0)
         {
             OnDefended();

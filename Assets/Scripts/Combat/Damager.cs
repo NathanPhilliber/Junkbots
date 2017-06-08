@@ -7,9 +7,10 @@ public class Damager : MonoBehaviour {
     public int damage;
     public LayerMask victimMask;
 
+    public bool unstoppable = false;
+
     /* 
-     * Reduces the object by the appropriate amount of health
-     * and returns the amount of damage done or -1 if not on 
+     * Reduces the object by the appropriate amount of health on
      * appropriate layer to be damaged
      * */
     public void Damage(Damageable damageable)

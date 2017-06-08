@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 1792
 --- !u!212 &212002913503196480
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -43,6 +43,7 @@ public class Shield : Device {
     void OnTriggerEnter2D(Collider2D other)
     {
         Projectile projectile = other.GetComponent<Projectile>();
+        
         if (projectile != null)
         {
             Damager damager = other.GetComponent<Damager>();
@@ -53,6 +54,7 @@ public class Shield : Device {
             }
            
         }
+
     }
 
     public override void OnEnabled(GameObject activator)
