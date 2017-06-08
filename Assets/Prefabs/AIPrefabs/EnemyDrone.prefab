@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 61593899116526502}
   - component: {fileID: 114192875935100840}
   - component: {fileID: 114673217545482034}
+  - component: {fileID: 114411643935903178}
   m_Layer: 11
   m_Name: EnemyDrone
   m_TagString: Untagged
@@ -233,7 +234,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1691647821322016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.337654, y: -0.42848969, z: 0}
+  m_LocalPosition: {x: 82.1, y: -12.4, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4762568321910800}
@@ -375,6 +376,19 @@ MonoBehaviour:
   health: 30
   defense: 2
   deathEffect: {fileID: 1211110271209168, guid: 1b7a666f2a2204068b6e5f5531f53958,
+    type: 2}
+--- !u!114 &114411643935903178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691647821322016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7a917e6cdc521438608c92d5442c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyEffect: {fileID: 1211110271209168, guid: 1b7a666f2a2204068b6e5f5531f53958,
     type: 2}
 --- !u!114 &114673217545482034
 MonoBehaviour:

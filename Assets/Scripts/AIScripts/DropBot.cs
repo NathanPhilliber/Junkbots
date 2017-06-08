@@ -4,13 +4,17 @@ using System;
 using UnityEngine;
 
 [RequireComponent (typeof (BoxCollider2D))]
-public class DropOn : FlyingController2D {
+public class DropBot : FlyingController2D {
 
 	public GameObject Bomb;
     public float bombingHeight = 10;
 	public float maxSpeed = 10f;
+    public float bombDropSpeed = 1f;
+    public Transform bombSpawner;
+    public float extraDropTriggerWidth = 5f;
 	private float NextFire;
-	float FireRate = 1.0f;
+    public LayerMask targetMask;
+    public float FireRate = 1.0f;
 	GameObject target;
 	float rayLength;
 
@@ -18,6 +22,7 @@ public class DropOn : FlyingController2D {
 
     public Vector3 velocity;
     Vector3 targetPos;
+    
 
     // Use this for initialization
     new void Start () {
@@ -48,22 +53,27 @@ public class DropOn : FlyingController2D {
 
             Move(velocity * Time.deltaTime);
 
-        }
+            if (Under() && Time.time > NextFire)
+            {
+                //If fired, reset the NextFire time to a new point in the future.
+                NextFire = Time.time + FireRate;
+                GameObject bomb = Instantiate(Bomb, bombSpawner.position, Quaternion.identity);
+                Vector3 bombDropV = Vector3.down * bombDropSpeed;
+                bombDropV.x = velocity.x;
+                bomb.GetComponent<Rigidbody2D>().velocity = bombDropV;
+            }
 
-        if (/*Under() && Time.time > NextFire*/ true)
-		{        
-			//If fired, reset the NextFire time to a new point in the future.
-			NextFire = Time.time + FireRate;
-			GameObject bomb = Instantiate (Bomb, transform.position, Quaternion.identity);
-		}
+        }
 	}
 
 	bool Under() {
+        float newRaySpacing = verticalRaySpacing + extraDropTriggerWidth * 2 / verticalRayCount;
 		for (int i = 0; i < verticalRayCount; i++) {
 			Vector2 rayOrigin = raycastOrigins.bottomLeft;
+            rayOrigin.x -= extraDropTriggerWidth;
 
-			rayOrigin += Vector2.right * verticalRaySpacing * i;
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, -Vector2.up, rayLength, collisionMask);
+			rayOrigin += Vector2.right * newRaySpacing * i;
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.down, rayLength, targetMask);
 
 			Debug.DrawRay (rayOrigin, -Vector2.up * rayLength, Color.red);
 

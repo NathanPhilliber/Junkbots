@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1063641938493284
 GameObject:
   m_ObjectHideFlags: 1
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 19456
+    m_Bits: 19968
   skinWidth: 0.1
   horizontalRayCount: 8
   verticalRayCount: 8

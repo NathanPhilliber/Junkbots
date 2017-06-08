@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageableDestroy : Damageable {
-    public GameObject deathEffect;
 
     public override void OnHealthDecreased(int amount)
     {
@@ -13,8 +12,6 @@ public class DamageableDestroy : Damageable {
 
     public override void OnHealthZero()
     {
-        if (deathEffect != null)
-            GameObject.Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
