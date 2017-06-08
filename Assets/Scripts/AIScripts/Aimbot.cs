@@ -2,82 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aimbot : RaycastController {
+public class Aimbot : FlyingController2D {
 
-	public GameObject Missile;
-	public float speed = 1.25f;
-	private float NextFire;
-	float FireRate = 1.0f;
-	public GameObject target;
-	public float tooFar = 6;
-	public int clockwise = 1;
+    public float accelerationTime = .1f;
+    public float acceleration = .5f;
+    public float maxSpeed = 15f;
+	public float tooFar = 30;
+    public float tooClose = 10;
+    public Device weapon;
+
+    Vector3 targetPos;
+
+    Vector3 velocity;
+    float velocitySmoothing;
+
+    public GameObject target;
 	float rayLength = 2;
+    GameObject[] players = new GameObject[2];
 
-	// Use this for initialization
-	new void Start () {
+    RotateTowards weaponJoint;
+
+    // Use this for initialization
+    new void Start () {
 		base.Start ();
-	}
+
+        players[0] = GameObject.FindWithTag("Erl");
+        players[1] = GameObject.FindWithTag("Isa");
+
+        weaponJoint = GetComponentInChildren<RotateTowards>();
+    }
 
 	// Update is called once per frame
 	void Update () {
-		//transform.Translate(Vector3.left * speed * Time.deltaTime);
-
-		GameObject[] players = new GameObject[2];
-		players[0] = GameObject.FindWithTag("Erl");
-		players[1] = GameObject.FindWithTag("Isa");
-		int i = 0;
+        target = null;
 		float closest = tooFar;
-		while (i < players.Length) {
-			if (players[i] != null && Vector3.Distance(players[i].transform.position, transform.position) < closest) {
-				target = players [i];
-				// Aggro scripts
-				/*aggLost = Time.time + loseAggro;
-				aggro = true;*/
-				closest = Vector3.Distance(players[i].transform.position, transform.position);
-			}
-			i++;
-		}
+        float distance;
 
-		if (target != null && Vector3.Distance (target.transform.position, transform.position) < tooFar) {
-			transform.RotateAround (target.transform.position, new Vector3 (0, 0, 1), speed * clockwise);
-			if (Vector3.Distance (target.transform.position, transform.position) > tooFar * 3 / 5) {
-				transform.position = Vector3.MoveTowards (transform.position, target.transform.position, 0.4f * Time.deltaTime);
-			} else {
-				transform.position = Vector3.MoveTowards (transform.position, target.transform.position, -0.4f * Time.deltaTime);
-			}
-			transform.rotation = Quaternion.identity;
+        foreach (GameObject player in players) {
+			if (player != null &&  (distance = Vector3.Distance(player.transform.position, transform.position)) < closest) {
+				target = player;
 
-			if (Time.time > NextFire) {
-				NextFire = Time.time + FireRate;
-				shoot();
+                closest = distance;
 			}
 		}
 
-		UpdateRaycastOrigins ();
+        
 
-		if (Under ()) {
-			clockwise *= -1;
-		}
+		if (target != null) {
+            weaponJoint.target = target.transform;
+            weapon.Enable(gameObject);
+            targetPos = Vector3.LerpUnclamped(target.transform.position, transform.position, tooClose / closest);
+
+            Vector3 targetV = (targetPos - transform.position);
+            if (targetV.magnitude > maxSpeed)
+            {
+                targetV = targetV.normalized * maxSpeed;
+            }
+
+            velocity = targetV;
+
+
+            Move(velocity * Time.deltaTime);
+
+
+		} else
+        {
+            weaponJoint.target = null;
+            weapon.Disable(gameObject);
+        }
 	}
 
-	void shoot() {
-		GameObject missile = Instantiate (Missile, transform.position, Quaternion.identity);
-	}
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        float size = .3f;
 
-	bool Under() {
-		for (int i = 0; i < verticalRayCount; i++) {
-			Vector2 rayOrigin = raycastOrigins.bottomLeft;
-
-			rayOrigin += Vector2.right * verticalRaySpacing * i;
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, -Vector2.up, rayLength, collisionMask);
-
-			Debug.DrawRay (rayOrigin, -Vector2.up * rayLength, Color.red);
-
-			if (hit) {
-				return true;
-			}
-		}
-
-		return false;
-	}
+        Gizmos.DrawLine(targetPos - Vector3.up * size, targetPos + Vector3.up * size);
+        Gizmos.DrawLine(targetPos - Vector3.left * size, targetPos + Vector3.left * size);
+    }
 }

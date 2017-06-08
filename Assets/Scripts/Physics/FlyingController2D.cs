@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FlyingController2D : RaycastController {
 	public CollisionInfo collisions;
+    public LayerMask weighDownMask;
+
+    public float weighDownAcceleration = .2f;
+    public float maxWeighDownVelocity = 10;
 
     [HideInInspector]
     public Vector2 playerInput;
@@ -19,10 +23,11 @@ public class FlyingController2D : RaycastController {
     public void Move(Vector3 velocity, Vector2 input) {
 		UpdateRaycastOrigins ();
 		collisions.Reset ();
-        collisions.velocityOld = velocity;
         playerInput = input;
 
-		if (velocity.x != 0) {
+        //CheckWeighDownOnTop(ref velocity);
+
+        if (velocity.x != 0) {
 			HorizontalCollisions (ref velocity);
 		}
 		if (velocity.y != 0) {
@@ -30,6 +35,7 @@ public class FlyingController2D : RaycastController {
 		}
 
 		transform.Translate (velocity);
+        collisions.velocityOld = velocity;
 	}
 
 	void HorizontalCollisions(ref Vector3 velocity) {
@@ -82,27 +88,46 @@ public class FlyingController2D : RaycastController {
 		}
 	}
 
-    void ClimbSlope(ref Vector3 velocity, float slopeAngle) {
-        float moveDistance = Mathf.Abs(velocity.x);
-        float climbVelY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
-        
-        if (velocity.y <= climbVelY) {
-            velocity.y = climbVelY;
-            velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
+    void CheckWeighDownOnTop(ref Vector3 velocity)
+    {
+        float rayLength = 2 * skinWidth;
 
-            collisions.below = true;
+        for (int i = 0; i < verticalRayCount; i++)
+        {
+            Vector2 rayOrigin = raycastOrigins.topLeft;
+
+            rayOrigin += Vector2.right * (verticalRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, weighDownMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.up * rayLength, Color.red);
+
+            if (hit)
+            {
+                if (collisions.velocityOld.y > 0)
+                {
+                    velocity.y = 0;
+                }
+                else
+                {
+                    velocity.y = collisions.velocityOld.y - weighDownAcceleration;
+                    if (velocity.y < -maxWeighDownVelocity)
+                    {
+                        velocity.y = -maxWeighDownVelocity;
+                    }
+                }
+            }
         }
-        
     }
 
 	public struct CollisionInfo {
 		public bool above, below;
 		public bool left, right;
+        public bool weighedDown;
 
         public Vector3 velocityOld;
 
 		public void Reset () {
-			above = below = left = right = false;
+			weighedDown = above = below = left = right = false;
 		}
 	}
 }

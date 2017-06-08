@@ -44,8 +44,13 @@ TagManager:
   - name: BackgroundElements
     uniqueID: 3119624047
     locked: 0
+<<<<<<< HEAD
   - name: Land
     uniqueID: 3319068137
+=======
+  - name: BackgroundElements_1
+    uniqueID: 1531173719
+>>>>>>> 4db50dd6a4733a0281642ea821149c004ec671a7
     locked: 0
   - name: Default
     uniqueID: 0
@@ -55,6 +60,12 @@ TagManager:
     locked: 0
   - name: Isa
     uniqueID: 1653917765
+    locked: 0
+  - name: Erl
+    uniqueID: 3383635405
+    locked: 0
+  - name: Enemies
+    uniqueID: 1053418425
     locked: 0
   - name: FadeOut
     uniqueID: 4197351219
