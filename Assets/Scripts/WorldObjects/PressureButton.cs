@@ -35,7 +35,9 @@ public class PressureButton : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 
 		if (mask == (mask | (1 << other.gameObject.layer))) {
-			sounds.PlaySound (5);
+			if (Vector3.Distance (Camera.main.transform.position, transform.position) < 80) {
+				sounds.PlaySound (5);
+			}
 		}
 
 		if (toggle == true && mask == (mask | (1 << other.gameObject.layer))) {
@@ -72,7 +74,9 @@ public class PressureButton : MonoBehaviour {
 		if (toggle == false && mask == (mask | (1 << other.gameObject.layer))) {
 
 			renderer.sprite = unpressed;
-			sounds.PlaySound (6);
+			if (Vector3.Distance (Camera.main.transform.position, transform.position) < 80) {
+				sounds.PlaySound (6);
+			}
 
 		}
 
