@@ -44,6 +44,9 @@ TagManager:
   - name: BackgroundElements
     uniqueID: 3119624047
     locked: 0
+  - name: BackgroundElements_1
+    uniqueID: 1531173719
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -52,6 +55,9 @@ TagManager:
     locked: 0
   - name: Isa
     uniqueID: 1653917765
+    locked: 0
+  - name: Erl
+    uniqueID: 3383635405
     locked: 0
   - name: FadeOut
     uniqueID: 4197351219

@@ -12,22 +12,25 @@ public class Damager : MonoBehaviour {
      * and returns the amount of damage done or -1 if not on 
      * appropriate layer to be damaged
      * */
-    public int Damage(Damageable damageable)
+    public void Damage(Damageable damageable)
     {
         if (IsVictim(damageable.gameObject))
         {
-            int damageDone = damage - damageable.defense;
-            damageable.DoDamage(damage - damageable.defense);
-            return damageDone;
-        }
-        else
-        {
-            return -1;
+            damageable.DoDamage(damage);
         }
     }
 
     public bool IsVictim(GameObject gameObject)
     {
         return (victimMask & (1 << gameObject.layer)) != 0;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Damageable damageable = other.GetComponent<Damageable>();
+        if (damageable != null)
+        {
+            Damage(damageable);
+        }
     }
 }

@@ -23,6 +23,7 @@ public abstract class Damageable : MonoBehaviour
 
     public void DoDamage(int damage)
     {
+        damage -= defense;
         if (damage <= 0)
         {
             OnDefended();
@@ -39,15 +40,6 @@ public abstract class Damageable : MonoBehaviour
             }
         }
         
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Damager damager = other.GetComponent<Damager>();
-        if (damager != null)
-        {
-            damager.Damage(this);
-        }
     }
 
     public void OnDefended()

@@ -4,68 +4,53 @@ using System;
 using UnityEngine;
 
 [RequireComponent (typeof (BoxCollider2D))]
-public class DropOn : RaycastController {
+public class DropOn : FlyingController2D {
 
 	public GameObject Bomb;
-	public float speed = 3.0f;
+    public float bombingHeight = 10;
+	public float maxSpeed = 10f;
 	private float NextFire;
 	float FireRate = 1.0f;
-	public GameObject target;
-	// How long until aggro lost
-	private float loseAggro = 2.5f;
-	// Time when aggro will be lost
-	private float aggLost;
-	private bool aggro = false;
-	private float above = 4;
-	float rayLength = 15;
+	GameObject target;
+	float rayLength;
 
-	public float tooFar = 5;
+	public float tooFar = 50;
 
-	// Use this for initialization
-	new void Start () {
+    public Vector3 velocity;
+    Vector3 targetPos;
+
+    // Use this for initialization
+    new void Start () {
 		base.Start ();
-	}
+
+        target = GameObject.FindWithTag("Erl");
+
+        rayLength = bombingHeight * 1.5f;
+    }
 
 	// Update is called once per frame
 	void Update () {
-		//GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-		GameObject[] players = new GameObject[2];
-		players[0] = GameObject.FindWithTag("Erl");
-		players[1] = GameObject.FindWithTag("Isa");
+        float distance = Vector3.Distance(transform.position, target.transform.position);
 
-		if (Time.time > aggLost) {
-			aggro = false;
-		} 
+        if (distance < tooFar)
+        {
 
-		Vector3 dir = Vector2.left;
-		//transform.Translate(Vector3.left * speed * Time.deltaTime);
-		int i = 0;
-		float closest = tooFar;
-		while (i < players.Length) {
-			if (players[i] != null && Math.Abs(players[i].transform.position.x - transform.position.x) < closest) {
-				target = players [i];
-				aggLost = Time.time + loseAggro;
-				aggro = true;
-				closest = Math.Abs (players [i].transform.position.x - transform.position.x);
-			}
-			i++;
-		}
+            targetPos = target.transform.position + Vector3.up * bombingHeight;
 
-		/*if (!aggro) {
-			speed = 0;
-		} else */if (aggro && target != null) {
-			//speed = 2;
-			/*
-			dir = new Vector3 (target.transform.position.x - transform.position.x, 
-			 target.transform.position.y - transform.position.y + above, 0);
-			dir.Normalize ();*/
-			transform.position = Vector3.MoveTowards(transform.position, target.transform.position + new Vector3(0,above,0), speed * Time.deltaTime);
-		}
-		//transform.Translate(dir * speed * Time.deltaTime);
+            Vector3 targetV = (targetPos - transform.position);
+            if (targetV.magnitude > maxSpeed)
+            {
+                targetV = targetV.normalized * maxSpeed;
+            }
 
-		UpdateRaycastOrigins ();
+            velocity = targetV;
 
-		if (Under() && Time.time > NextFire)
+
+            Move(velocity * Time.deltaTime);
+
+        }
+
+        if (/*Under() && Time.time > NextFire*/ true)
 		{        
 			//If fired, reset the NextFire time to a new point in the future.
 			NextFire = Time.time + FireRate;
@@ -89,4 +74,13 @@ public class DropOn : RaycastController {
 
 		return false;
 	}
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        float size = .3f;
+
+        Gizmos.DrawLine(targetPos - Vector3.up * size, targetPos + Vector3.up * size);
+        Gizmos.DrawLine(targetPos - Vector3.left * size, targetPos + Vector3.left * size);
+    }
 }
