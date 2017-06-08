@@ -41,5 +41,4 @@ public class HealthScript : MonoBehaviour {
 		player.health = newHealth;
 	}
 			
-			
 }
