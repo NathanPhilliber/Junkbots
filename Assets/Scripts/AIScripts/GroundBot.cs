@@ -52,6 +52,10 @@ public class GroundBot : Controller2D {
             velocity.y = 0;
         }
 
+        if ((collisions.left || collisions.right) && !collisions.slidingDownMaxSlope && collisions.below){
+            Jump();
+        }
+
         if (distance < tooFar)
         {
             weaponJoint.target = target.transform;
@@ -59,14 +63,14 @@ public class GroundBot : Controller2D {
             targetPos = target.transform.position;
 
             Vector3 targetV = (targetPos - transform.position);
-            targetV.y = 0;
+
             if (targetV.magnitude > maxSpeed)
             {
                 targetV = targetV.normalized * maxSpeed;
             }
 
-            velocity = targetV;
-            velocity.y += gravity;
+            velocity.x = targetV.x;
+            velocity.y += gravity * Time.deltaTime;
 
             Move(velocity * Time.deltaTime);
 
@@ -78,7 +82,6 @@ public class GroundBot : Controller2D {
             else if (targetPos.x < transform.position.x && facingRight)
             {
                 Flip();
-
             }
         }
         else
@@ -86,5 +89,11 @@ public class GroundBot : Controller2D {
             weaponJoint.target = null;
             weapon.Disable(gameObject);
         }
+    }
+
+    void Jump()
+    {
+        print("JUMMMMPP");
+        velocity.y = jumpVelocity;
     }
 }

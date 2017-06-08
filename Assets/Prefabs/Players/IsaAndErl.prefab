@@ -1455,7 +1455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 17920
+    m_Bits: 26112
   skinWidth: 0.03
   horizontalRayCount: 4
   verticalRayCount: 4
@@ -14256,7 +14256,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -911331891
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 81989db75913892469e411185ef5709d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

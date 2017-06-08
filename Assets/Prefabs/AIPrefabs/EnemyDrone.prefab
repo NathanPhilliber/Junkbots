@@ -438,7 +438,7 @@ MonoBehaviour:
   isToggle: 0
   locked: 0
   barrelEnd: {fileID: 4480869138678690}
-  fireDelay: 20
+  fireDelay: 50
   projectile: {fileID: 114501084491681244, guid: 6a67d9c782dc2fb4a97ee8101a6ee1a3,
     type: 2}
 --- !u!212 &212232504406523970
