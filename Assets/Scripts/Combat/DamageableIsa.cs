@@ -8,6 +8,8 @@ public class DamageableIsa : Damageable {
     public SpriteRenderer LEyeSprite;
     public SpriteRenderer REyeSprite;
 
+	public GameObject fadeOutEffect;
+
     public override void OnHealthDecreased(int amount)
     {
         if (health < maxHealth / 2)
@@ -22,21 +24,19 @@ public class DamageableIsa : Damageable {
         }
     }
 
+
+	private bool died = false;
     public override void OnHealthZero()
     {
-        int bi = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadSceneAsync(bi);
+		if (died == false) {
+			died = true;
+			int bi = SceneManager.GetActiveScene ().buildIndex;
+			gameObject.SetActive (false);
+			////SceneManager.LoadSceneAsync(bi);
+			Camera.main.GetComponent<LoadScene>().LoadDelayed(bi, 150);
+			GameObject fadeout = (GameObject)Instantiate (fadeOutEffect, Camera.main.transform.position - new Vector3 (0, 25, -10), Quaternion.identity);
+			fadeout.transform.parent = Camera.main.transform;
+		}
     }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+		
 }

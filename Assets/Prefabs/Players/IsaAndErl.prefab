@@ -1212,6 +1212,8 @@ MonoBehaviour:
   maxHealth: 20
   health: 20
   defense: 0
+  fadeOutEffect: {fileID: 1002223785790046, guid: 5b1c542f8f0044f60a30208bfd6b711e,
+    type: 2}
 --- !u!114 &114061054568695190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1414,6 +1416,8 @@ MonoBehaviour:
   defense: 0
   LEyeSprite: {fileID: 212408081341168734}
   REyeSprite: {fileID: 212736427753435984}
+  fadeOutEffect: {fileID: 1002223785790046, guid: 5b1c542f8f0044f60a30208bfd6b711e,
+    type: 2}
 --- !u!114 &114420816821892778
 MonoBehaviour:
   m_ObjectHideFlags: 1
