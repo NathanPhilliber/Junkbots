@@ -197,6 +197,7 @@ public class Bridge : MonoBehaviour, IInteractable {
 	}
 
 	void Move(){
+        bridgeRaycaster.UpdateRaycastOrigins();
         Vector3 velocity = Vector3.zero;
 
         if (goRight && bridge.transform.localPosition.x < length/2) {				//	If we need to go right, then move the bridge right
