@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4943240931008618}
   - component: {fileID: 212474821775525372}
   - component: {fileID: 61917386605742544}
+  - component: {fileID: 114647197640735074}
   m_Layer: 10
   m_Name: BridgeSection
   m_TagString: Untagged
@@ -179,6 +180,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114647197640735074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301115227220752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242847e641cb2840b9deb1381630615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  skinWidth: 0.03
+  horizontalRayCount: 20
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
 --- !u!114 &114991834179791248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +216,9 @@ MonoBehaviour:
   speed: 5
   goRight: 0
   soundXDiff: 0
+  passengerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!212 &212208270943806570
 SpriteRenderer:
   m_ObjectHideFlags: 1

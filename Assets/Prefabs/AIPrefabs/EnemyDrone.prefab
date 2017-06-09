@@ -420,7 +420,7 @@ MonoBehaviour:
   acceleration: 0.5
   maxSpeed: 15
   tooFar: 30
-  tooClose: 15
+  tooClose: 8
   weapon: {fileID: 114989748849956204}
   target: {fileID: 0}
 --- !u!114 &114989748849956204
