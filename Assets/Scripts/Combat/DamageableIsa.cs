@@ -43,7 +43,7 @@ public class DamageableIsa : Damageable {
 			died = true;
 			int bi = SceneManager.GetActiveScene ().buildIndex;
 			gameObject.SetActive (false);
-
+			EffectOnDestroy.isSceneChange = true;
 			Camera.main.GetComponent<LoadScene>().LoadDelayed(bi, 150);
 			GameObject fadeout = (GameObject)Instantiate (fadeOutEffect, Camera.main.transform.position - new Vector3 (0, 25, -10), Quaternion.identity);
 			fadeout.transform.parent = Camera.main.transform;
