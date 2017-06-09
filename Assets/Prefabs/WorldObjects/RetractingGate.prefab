@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 10496
+    m_Bits: 0
   skinWidth: 0.03
   horizontalRayCount: 4
   verticalRayCount: 12
@@ -218,7 +218,7 @@ MonoBehaviour:
   soundXDiff: 5
   passengerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!212 &212037342880042390
 SpriteRenderer:
   m_ObjectHideFlags: 1

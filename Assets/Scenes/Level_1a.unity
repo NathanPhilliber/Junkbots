@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 11079149}
   - component: {fileID: 11079148}
   - component: {fileID: 11079147}
+  - component: {fileID: 11079150}
   m_Layer: 0
   m_Name: BridgeSection
   m_TagString: Untagged
@@ -385,6 +386,26 @@ Transform:
   m_Father: {fileID: 1146964914}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11079150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 11079146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242847e641cb2840b9deb1381630615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  skinWidth: 0.03
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
 --- !u!4 &16484877 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4419034752717042, guid: 944592762797a43b88d3c7b62ca16230,
@@ -5131,6 +5152,9 @@ MonoBehaviour:
   speed: 5
   goRight: 0
   soundXDiff: 0
+  passengerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!212 &1146964913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5662,11 +5686,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4203366589603438, guid: 36caa25088a7beb448131f55fe851fc5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.2
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4203366589603438, guid: 36caa25088a7beb448131f55fe851fc5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -28.1
+      value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 4203366589603438, guid: 36caa25088a7beb448131f55fe851fc5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5739,7 +5763,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 81
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114647197640735074, guid: cb4addf252b0e4f7da2807247b1397a1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cb4addf252b0e4f7da2807247b1397a1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1343679749
@@ -7958,6 +7983,31 @@ Transform:
   m_PrefabParentObject: {fileID: 4469575643043048, guid: 685fee601c0d04f3e80d152d3bd8d631,
     type: 2}
   m_PrefabInternal: {fileID: 1514388229}
+--- !u!1 &1764358049 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1771749471119404, guid: cb4addf252b0e4f7da2807247b1397a1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1343506400}
+--- !u!114 &1764358053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764358049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242847e641cb2840b9deb1381630615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  skinWidth: 0.03
+  horizontalRayCount: 20
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
 --- !u!1001 &1765251559
 Prefab:
   m_ObjectHideFlags: 0
@@ -8943,6 +8993,11 @@ Prefab:
       propertyPath: m_Color.g
       value: 0.30980393
       objectReference: {fileID: 0}
+    - target: {fileID: 114910601709314068, guid: 5409f96dfafbf467594ca8d092bab8fc,
+        type: 2}
+      propertyPath: passengerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5409f96dfafbf467594ca8d092bab8fc, type: 2}
   m_IsPrefabParent: 0
@@ -9022,6 +9077,11 @@ Prefab:
         type: 2}
       propertyPath: speed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114910601709314068, guid: 5409f96dfafbf467594ca8d092bab8fc,
+        type: 2}
+      propertyPath: passengerMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5409f96dfafbf467594ca8d092bab8fc, type: 2}
