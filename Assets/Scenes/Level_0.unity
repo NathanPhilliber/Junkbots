@@ -447,7 +447,7 @@ Prefab:
     - target: {fileID: 212416458147767634, guid: 46a78c02964608f4b936d2941924fa65,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46a78c02964608f4b936d2941924fa65, type: 2}
@@ -1535,6 +1535,16 @@ Prefab:
     - target: {fileID: 4928059695826544, guid: 68f1c604522434facb27a1c1e68088e2, type: 2}
       propertyPath: m_RootOrder
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 212854783164947872, guid: 68f1c604522434facb27a1c1e68088e2,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1132002029
+      objectReference: {fileID: 0}
+    - target: {fileID: 212854783164947872, guid: 68f1c604522434facb27a1c1e68088e2,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f1c604522434facb27a1c1e68088e2, type: 2}
@@ -5394,6 +5404,16 @@ Prefab:
     - target: {fileID: 1008440297148936, guid: 68f1c604522434facb27a1c1e68088e2, type: 2}
       propertyPath: m_Name
       value: Fence (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 212854783164947872, guid: 68f1c604522434facb27a1c1e68088e2,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1132002029
+      objectReference: {fileID: 0}
+    - target: {fileID: 212854783164947872, guid: 68f1c604522434facb27a1c1e68088e2,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68f1c604522434facb27a1c1e68088e2, type: 2}

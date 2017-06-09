@@ -21,8 +21,8 @@ public abstract class Damageable : MonoBehaviour
     {
         if (!ignoreDefense)
             damage -= defense;
-        else
-            print("HAHAAH");
+        //else
+            //print("HAHAAH");
 
         if (damage <= 0)
         {
