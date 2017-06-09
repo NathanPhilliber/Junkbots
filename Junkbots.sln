@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Junkbots", "Junkbots.csproj", "{830B31F8-4C6B-D31A-5594-B311984DE0F9}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Junkbots", "Assembly-CSharp.csproj", "{6A6EBEEA-1184-D8F7-E8EC-8B652A45EFFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{830B31F8-4C6B-D31A-5594-B311984DE0F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{830B31F8-4C6B-D31A-5594-B311984DE0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{830B31F8-4C6B-D31A-5594-B311984DE0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{830B31F8-4C6B-D31A-5594-B311984DE0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6EBEEA-1184-D8F7-E8EC-8B652A45EFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6EBEEA-1184-D8F7-E8EC-8B652A45EFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6EBEEA-1184-D8F7-E8EC-8B652A45EFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6EBEEA-1184-D8F7-E8EC-8B652A45EFFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
