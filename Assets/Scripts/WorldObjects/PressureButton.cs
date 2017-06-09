@@ -50,10 +50,6 @@ public class PressureButton : MonoBehaviour {
 			} else {
 				renderer.sprite = unpressed;
 			}
-
-
-
-
 		}
 
 	}

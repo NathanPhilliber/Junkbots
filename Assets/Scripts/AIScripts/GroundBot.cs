@@ -93,7 +93,7 @@ public class GroundBot : Controller2D {
 
     void Jump()
     {
-        print("JUMMMMPP");
+        //print("JUMMMMPP");
         velocity.y = jumpVelocity;
     }
 }

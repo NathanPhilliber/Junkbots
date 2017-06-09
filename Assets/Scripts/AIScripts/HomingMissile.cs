@@ -13,7 +13,7 @@ public class HomingMissile : Projectile {
 	void Start () {
         base.Start();
 		target = GameObject.FindWithTag("Isa");
-        
+		Destroy (gameObject, 10);
     }
 
 	// Update is called once per frame
