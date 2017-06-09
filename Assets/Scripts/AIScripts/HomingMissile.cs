@@ -19,11 +19,13 @@ public class HomingMissile : Projectile {
 	// Update is called once per frame
 	void Update () {
 
-        targetV = target.transform.position - transform.position;
+		if (target != null) {
+			targetV = target.transform.position - transform.position;
 
-        rb.velocity = Vector3.RotateTowards(rb.velocity, targetV, rotationSpeed, rb.velocity.magnitude);
-        rb.velocity = rb.velocity.normalized * speed;
-        transform.right = rb.velocity;
-        transform.right = Quaternion.AngleAxis(-90, Vector3.forward) * transform.right;
+			rb.velocity = Vector3.RotateTowards (rb.velocity, targetV, rotationSpeed, rb.velocity.magnitude);
+			rb.velocity = rb.velocity.normalized * speed;
+			transform.right = rb.velocity;
+			transform.right = Quaternion.AngleAxis (-90, Vector3.forward) * transform.right;
+		}
     }
 }

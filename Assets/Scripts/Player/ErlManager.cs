@@ -87,6 +87,7 @@ public class ErlManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+			EffectOnDestroy.isSceneChange = true;
             SceneManager.LoadSceneAsync("Menu");
         }
 

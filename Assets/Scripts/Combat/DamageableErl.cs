@@ -27,14 +27,5 @@ public class DamageableErl : Damageable {
 			fadeout.transform.parent = Camera.main.transform;
 		}
 	}
-
-    // Use this for initialization
-    void Start () {
 		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

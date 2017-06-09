@@ -8,10 +8,12 @@ public class LoadScene : MonoBehaviour {
 	public int sceneToLoad;
 
 	public void Load(){
+		EffectOnDestroy.isSceneChange = true;
 		SceneManager.LoadScene (sceneToLoad, LoadSceneMode.Single);
 	}
 
 	public void Load(int scene){
+		EffectOnDestroy.isSceneChange = true;
 		SceneManager.LoadScene (scene, LoadSceneMode.Single);
 	}
 
@@ -35,6 +37,7 @@ public class LoadScene : MonoBehaviour {
 			delay--;
 
 			if (delay <= 0) {
+				EffectOnDestroy.isSceneChange = true;
 				SceneManager.LoadScene (delayedScene, LoadSceneMode.Single);
 			}
 		}

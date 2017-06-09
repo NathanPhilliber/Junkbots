@@ -13,6 +13,7 @@ public class LoadSceneOnTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 
 		if (mask == (mask | (1 << other.gameObject.layer))) {
+			EffectOnDestroy.isSceneChange = true;
 			SceneManager.LoadSceneAsync(level);
 		}
 
