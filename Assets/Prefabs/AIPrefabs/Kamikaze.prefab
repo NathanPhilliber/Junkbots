@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114282422429002578}
   - component: {fileID: 114677983423108196}
   - component: {fileID: 114614430386960882}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Kamikaze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   tooFar: 50
   tooClose: 10
   crashSpeed: 30
-  crashDelay: 3
+  crashDelay: 5
   target: {fileID: 0}
 --- !u!114 &114282422429002578
 MonoBehaviour:

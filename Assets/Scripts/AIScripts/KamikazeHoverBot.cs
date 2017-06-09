@@ -8,7 +8,7 @@ public class KamikazeHoverBot : FlyingController2D {
 	public float tooFar = 50;
 	public float tooClose = 10;
 	public float crashSpeed = 30f;
-	public float crashDelay = 3f;
+	public float crashDelay = 5f;
 
 	private float crashTime = 0;
 
@@ -33,7 +33,8 @@ public class KamikazeHoverBot : FlyingController2D {
 		if (distance < tooFar) {
 			if (crashTime == 0) {
 				crashTime = Time.time + crashDelay;
-			} else if (Time.time > crashTime) {
+			} 
+			if (Time.time > crashTime) {
 				Vector3 targetV = target.transform.position - transform.position;
 				targetV = targetV.normalized * crashSpeed;
 
