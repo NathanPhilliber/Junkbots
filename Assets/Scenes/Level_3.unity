@@ -3597,7 +3597,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
-  level: Menu
+  level: Credits
 --- !u!61 &2124638497
 BoxCollider2D:
   m_ObjectHideFlags: 0
