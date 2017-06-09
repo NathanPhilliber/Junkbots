@@ -1763,11 +1763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4469575643043048, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
       propertyPath: m_RootOrder
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-      value: 14
-=======
       value: 26
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
       objectReference: {fileID: 0}
     - target: {fileID: 1943535156655898, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
       propertyPath: m_Name
@@ -1860,75 +1856,6 @@ SpriteRenderer:
   m_Size: {x: 19.199999, y: 21.599998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
---- !u!1001 &393786912
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 386.286
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -141.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114572095268490308, guid: 6a2ae470d42b2447a907ff3f0a15fa21,
-        type: 2}
-      propertyPath: toggleSouthOnTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114572095268490308, guid: 6a2ae470d42b2447a907ff3f0a15fa21,
-        type: 2}
-      propertyPath: toggleNorthOnTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114572095268490308, guid: 6a2ae470d42b2447a907ff3f0a15fa21,
-        type: 2}
-      propertyPath: west
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1483900394278760, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-      propertyPath: m_Name
-      value: Laser (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114572095268490308, guid: 6a2ae470d42b2447a907ff3f0a15fa21,
-        type: 2}
-      propertyPath: toggleWestOnTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
-  m_IsPrefabParent: 0
-=======
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
 --- !u!1 &416690375
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,11 +2928,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4369903004195216, guid: 0172cfd578c7e2249b2464c9b6bece67, type: 2}
       propertyPath: m_RootOrder
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-      value: 10
-=======
       value: 5
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0172cfd578c7e2249b2464c9b6bece67, type: 2}
@@ -4415,11 +4338,7 @@ Transform:
   - {fileID: 509084496}
   - {fileID: 2136039074}
   m_Father: {fileID: 0}
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-  m_RootOrder: 13
-=======
   m_RootOrder: 6
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1009581501
 Prefab:
@@ -4835,11 +4754,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4873189479329578, guid: 6a2ae470d42b2447a907ff3f0a15fa21, type: 2}
       propertyPath: m_RootOrder
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-      value: 9
-=======
       value: 76
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
       objectReference: {fileID: 0}
     - target: {fileID: 114572095268490308, guid: 6a2ae470d42b2447a907ff3f0a15fa21,
         type: 2}
@@ -4986,13 +4901,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 11079149}
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-=======
   m_Father: {fileID: 1004734988}
   m_RootOrder: 77
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &1161284295 stripped
 Transform:
@@ -5504,24 +5414,6 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1746332652}
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-    - target: {fileID: 212781397915511680, guid: 36caa25088a7beb448131f55fe851fc5,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114364049846174932, guid: 36caa25088a7beb448131f55fe851fc5,
-        type: 2}
-      propertyPath: health
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114006911037507680, guid: 36caa25088a7beb448131f55fe851fc5,
-        type: 2}
-      propertyPath: health
-      value: 20
-      objectReference: {fileID: 0}
-=======
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36caa25088a7beb448131f55fe851fc5, type: 2}
   m_IsPrefabParent: 0
@@ -5773,20 +5665,7 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 4150980828675372, guid: cb4addf252b0e4f7da2807247b1397a1,
     type: 2}
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1373232619}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 464.4735, y: -118.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1474513090}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-=======
   m_PrefabInternal: {fileID: 1343506400}
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
 --- !u!1 &1392629646
 GameObject:
   m_ObjectHideFlags: 0
@@ -6168,36 +6047,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eeea304d85b824977ad5ae1b2dbac3b4, type: 2}
   m_IsPrefabParent: 0
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
---- !u!1 &1456356424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1456356425}
-  m_Layer: 0
-  m_Name: PowerUps
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1456356425
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1456356424}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.085874, y: -4.7957, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
 --- !u!1001 &1467539456
 Prefab:
   m_ObjectHideFlags: 0
@@ -6245,7 +6094,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eeea304d85b824977ad5ae1b2dbac3b4, type: 2}
   m_IsPrefabParent: 0
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
 --- !u!1 &1468797539 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1483900394278760, guid: 6a2ae470d42b2447a907ff3f0a15fa21,
@@ -7123,11 +6971,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4469575643043048, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
       propertyPath: m_RootOrder
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-      value: 12
-=======
       value: 78
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
       objectReference: {fileID: 0}
     - target: {fileID: 1943535156655898, guid: 685fee601c0d04f3e80d152d3bd8d631, type: 2}
       propertyPath: m_Name
@@ -7770,104 +7614,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 186561370}
   m_Script: {fileID: 11500000, guid: d9a6dc32edcc5ca498377f8309232e62, type: 3}
-<<<<<<< HEAD:Assets/Scenes/Level_1.unity
-  m_Name: 
-  m_EditorClassIdentifier: 
-  erlFocusAreaSize: {x: 10, y: 10}
-  camMaxDistance: 20
-  camMinDistance: 10
-  dampTime: 0.15
-  followErl: 0
-  verticalOffset: 1
-  lookAheadDstX: 2
-  horizontalSmoothTime: 0.5
-  verticalSmoothTime: 0.5
-  zoomMin: 12
-  zoomMax: 20
-  zoomFactor: 0.5
-  bounds: 12
---- !u!82 &1746332653
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1746332645}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-=======
->>>>>>> 4492a2f9c401457788eb031c69979b71728ffb03:Assets/Scenes/Level_1a.unity
 --- !u!1001 &1750681390
 Prefab:
   m_ObjectHideFlags: 0
