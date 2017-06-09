@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour {
 	void Start(){
 		src = GetComponent<AudioSource> ();
 		src2 = gameObject.AddComponent<AudioSource> ();
+		src.volume = .2f;
+		src2.volume = .2f;
 	}
 
 	public void PlaySound(int clipNum){
@@ -27,6 +29,7 @@ public class SoundManager : MonoBehaviour {
 		if (playSoundEffects) {
 			src2.clip = soundEffects [clipNum];
 			src2.PlayDelayed (delay);
+
 		}
 	}
 

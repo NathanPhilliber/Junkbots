@@ -7,12 +7,15 @@ public class Projectile : MonoBehaviour {
 
     public float speed;
     public LayerMask collisionMask;
+    public GameObject destroyEffect;
 
-    Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
     
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
+        
         rb = GetComponent<Rigidbody2D>();
         float angle = transform.rotation.eulerAngles.z + 90;
 
@@ -28,6 +31,10 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if ((collisionMask & (1 << other.gameObject.layer)) > 0)
+        {
             Destroy(gameObject);
+        }
+            
+        
     }
 }

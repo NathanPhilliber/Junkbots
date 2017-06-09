@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour {
 
 	public LayerMask collisionMask;
+    public GameObject explodeEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,11 @@ public class Bomb : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if ((collisionMask & (1 << other.gameObject.layer)) > 0)
-			Destroy(gameObject);
+        if ((collisionMask & (1 << other.gameObject.layer)) > 0)
+        {
+            if (explodeEffect != null)
+                GameObject.Instantiate(explodeEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
 	}
 }

@@ -20,6 +20,13 @@ public class LoadScene : MonoBehaviour {
 		delayedScene = scene;
 	}
 
+	public void LoadDelayed(int scene, int delay){
+		if (this.delay == 0) {
+			this.delay = delay;
+			delayedScene = scene;
+		}
+	}
+
 	private int delay;
 	private int delayedScene;
 

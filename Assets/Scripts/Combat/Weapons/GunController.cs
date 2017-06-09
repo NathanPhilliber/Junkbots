@@ -49,7 +49,7 @@ public class GunController : Device {
             
             Projectile newProjectile = Instantiate(projectile, barrelEnd.position, barrelEnd.rotation);
             currentDelay = fireDelay;
-			sounds.PlaySound (4);
+
         }
     }
 }

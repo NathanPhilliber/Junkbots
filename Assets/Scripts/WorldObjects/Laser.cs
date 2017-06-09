@@ -105,7 +105,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		if (northCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (0, 1), Mathf.Abs (transform.position.y - northBall.transform.position.y), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
-				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
+				hit.collider.GetComponent<Damageable> ().DoDamage (damage, true);
 			}
 			else{
 				hit = Physics2D.Raycast (transform.position + new Vector3(0, 2f, 0), new Vector2 (0, 1), Mathf.Abs (transform.position.y - northBall.transform.position.y) -2.5f, landMask);
@@ -118,7 +118,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		if (southCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (0, -1), Mathf.Abs (transform.position.y - southBall.transform.position.y), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
-				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
+				hit.collider.GetComponent<Damageable> ().DoDamage (damage, true);
 			}
 			else{
 				hit = Physics2D.Raycast (transform.position + new Vector3(0, -2f, 0), new Vector2 (0, -1), Mathf.Abs (transform.position.y - southBall.transform.position.y) -2.5f, landMask);
@@ -132,7 +132,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		if (eastCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (1, 0), Mathf.Abs (transform.position.x - eastBall.transform.position.x), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
-				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
+				hit.collider.GetComponent<Damageable> ().DoDamage (damage, true);
 			}
 			else{
 				hit = Physics2D.Raycast (transform.position + new Vector3(2f,0, 0), new Vector2 (1, 0), Mathf.Abs (transform.position.x - eastBall.transform.position.x) -2.5f, landMask);
@@ -146,7 +146,7 @@ public class Laser : MonoBehaviour, IInteractable {
 		if (westCur) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, new Vector2 (-1, 0), Mathf.Abs (transform.position.x - westBall.transform.position.x), mask);
 			if (hit && hit.collider.gameObject != gameObject && hit.collider.GetComponent<Damageable>()) {
-				hit.collider.GetComponent<Damageable> ().DoDamage (damage);
+				hit.collider.GetComponent<Damageable> ().DoDamage (damage, true);
 			}
 			else{
 				hit = Physics2D.Raycast (transform.position + new Vector3(-2f,0, 0), new Vector2 (-1, 0), Mathf.Abs (transform.position.x - westBall.transform.position.x) -2.5f, landMask);

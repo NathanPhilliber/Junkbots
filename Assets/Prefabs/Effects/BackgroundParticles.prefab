@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4419034752717042}
   - component: {fileID: 198700312789522892}
   - component: {fileID: 199322742223239334}
+  - component: {fileID: 114137585447879874}
   m_Layer: 0
   m_Name: BackgroundParticles
   m_TagString: Untagged
@@ -41,6 +42,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+--- !u!114 &114137585447879874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1421923047744228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff8451375abe4a1bae07cbe0533d9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  disableRadius: 80
+  disabled: 0
 --- !u!198 &198700312789522892
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -98,7 +113,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1345944262
+  randomSeed: -1352258023
   InitialModule:
     serializedVersion: 3
     enabled: 1

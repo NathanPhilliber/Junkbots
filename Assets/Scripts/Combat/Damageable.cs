@@ -9,11 +9,7 @@ public abstract class Damageable : MonoBehaviour
     public int health;
     public int defense;
 
-    // Use this for initialization
-    void Start()
-    {
-        health = maxHealth;
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -21,8 +17,13 @@ public abstract class Damageable : MonoBehaviour
 
     }
 
-    public void DoDamage(int damage)
+    public void DoDamage(int damage, bool ignoreDefense = false)
     {
+        if (!ignoreDefense)
+            damage -= defense;
+        //else
+            //print("HAHAAH");
+
         if (damage <= 0)
         {
             OnDefended();
@@ -39,15 +40,6 @@ public abstract class Damageable : MonoBehaviour
             }
         }
         
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Damager damager = other.GetComponent<Damager>();
-        if (damager != null)
-        {
-            damager.Damage(this);
-        }
     }
 
     public void OnDefended()

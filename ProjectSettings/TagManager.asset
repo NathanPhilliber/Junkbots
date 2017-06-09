@@ -23,7 +23,7 @@ TagManager:
   - Projectiles
   - Isa
   - PhysicsObjects
-  - 
+  - IgnorePlayers
   - 
   - 
   - 
@@ -44,6 +44,12 @@ TagManager:
   - name: BackgroundElements
     uniqueID: 3119624047
     locked: 0
+  - name: BackgroundElements_1
+    uniqueID: 1132002029
+    locked: 0
+  - name: Land
+    uniqueID: 3319068137
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -52,4 +58,13 @@ TagManager:
     locked: 0
   - name: Isa
     uniqueID: 1653917765
+    locked: 0
+  - name: Erl
+    uniqueID: 2393559453
+    locked: 0
+  - name: Enemies
+    uniqueID: 3386745683
+    locked: 0
+  - name: FadeOut
+    uniqueID: 4197351219
     locked: 0

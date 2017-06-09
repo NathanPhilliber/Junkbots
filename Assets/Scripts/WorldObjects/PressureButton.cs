@@ -10,17 +10,36 @@ public class PressureButton : MonoBehaviour {
 
 	public Sprite unpressed, pressed;
 
+	public SpriteRenderer erlIcon, isaIcon, physicsIcon;
+
 	private SpriteRenderer renderer;
 	private SoundManager sounds;
 	void Start(){
 		renderer = GetComponent<SpriteRenderer> ();
 		sounds = Camera.main.GetComponent<SoundManager> ();
+
+		if (mask != (mask | (1 << LayerMask.NameToLayer("Erl")))) {
+			erlIcon.enabled = false;
+		}
+		if (mask != (mask | (1 << LayerMask.NameToLayer("Isa")))) {
+			isaIcon.enabled = false;
+		}
+		if (mask != (mask | (1 << LayerMask.NameToLayer("PhysicsObjects")))) {
+			physicsIcon.enabled = false;
+		}
 	}
 
 	/*
 	 * Called when this button is pressed
 	 */
 	void OnTriggerEnter2D(Collider2D other){
+
+		if (mask == (mask | (1 << other.gameObject.layer))) {
+			if (Vector3.Distance (Camera.main.transform.position, transform.position) < 80) {
+				sounds.PlaySound (5);
+			}
+		}
+
 		if (toggle == true && mask == (mask | (1 << other.gameObject.layer))) {
 			for (int i = 0; i < objectsToTrigger.Length; i++) {
 				objectsToTrigger [i].GetComponent<IInteractable>().TriggerAction (true);
@@ -31,10 +50,8 @@ public class PressureButton : MonoBehaviour {
 			} else {
 				renderer.sprite = unpressed;
 			}
-
-
 		}
-		sounds.PlaySound (5);
+
 	}
 
 	void OnTriggerStay2D(Collider2D other){
@@ -53,9 +70,12 @@ public class PressureButton : MonoBehaviour {
 		if (toggle == false && mask == (mask | (1 << other.gameObject.layer))) {
 
 			renderer.sprite = unpressed;
+			if (Vector3.Distance (Camera.main.transform.position, transform.position) < 80) {
+				sounds.PlaySound (6);
+			}
 
 		}
-		sounds.PlaySound (6);
+
 	}
 }
 

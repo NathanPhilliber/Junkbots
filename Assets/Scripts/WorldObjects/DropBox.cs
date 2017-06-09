@@ -15,7 +15,7 @@ public class DropBox : MonoBehaviour, IInteractable {
 	private Quaternion leftRot, rightRot;
 
 	private float openAmount = 0;
-
+	private SoundManager sounds;
 	private int closeDelayCur = 0;
 
 	void Start(){
@@ -23,6 +23,8 @@ public class DropBox : MonoBehaviour, IInteractable {
 		rightPos =  rightDoor.transform.position;
 		leftRot = leftDoor.transform.rotation;
 		rightRot = rightDoor.transform.rotation;
+
+		sounds = Camera.main.GetComponent<SoundManager> ();
 	}
 
 	public void Update(){
@@ -67,7 +69,11 @@ public class DropBox : MonoBehaviour, IInteractable {
 
 
 	public void TriggerAction(bool toggle){
-		
+
+		if (!isOpening && !isClosing) {
+			sounds.PlaySound (12);
+		}
+
 		isOpening = true;
 	}
 }

@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581727857857548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.66, y: 1.8, z: 0}
+  m_LocalPosition: {x: 10.69, y: 1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -119,10 +119,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b44539b808b0454ea6c9e7ff4d03d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Missile: {fileID: 0}
-  speed: 2
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  skinWidth: 0.03
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
+  Missile: {fileID: 1746961566402964, guid: 8afc3dd511096b4469f741167f9819ff, type: 2}
+  speed: 1.25
   target: {fileID: 0}
-  tooFar: 5
+  tooFar: 6
+  clockwise: 1
 --- !u!114 &114823759591548800
 MonoBehaviour:
   m_ObjectHideFlags: 1
