@@ -376,6 +376,7 @@ MonoBehaviour:
   pump2: {fileID: 380086255}
   pump3: {fileID: 1509188692}
   wall: {fileID: 1372551029}
+  fireball: {fileID: 1942012774813632, guid: ffd06c41e819444569b43233c197b4fb, type: 2}
   mask:
     serializedVersion: 2
     m_Bits: 256

@@ -42,4 +42,8 @@ public class LoadScene : MonoBehaviour {
 			}
 		}
 	}
+
+	public void QuitApp(){
+		Application.Quit ();
+	}
 }

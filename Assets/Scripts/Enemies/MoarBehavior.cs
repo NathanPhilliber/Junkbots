@@ -6,7 +6,7 @@ public class MoarBehavior : MonoBehaviour {
 
 	public Bridge protectionBridge;
 	public Laser roomCloseLaser, floorLaser; 
-	public GameObject pump1, pump2, pump3, wall;
+	public GameObject pump1, pump2, pump3, wall, fireball;
 	public LayerMask mask;
 
 	public GameObject enemyBomber, enemyDrone;
@@ -91,9 +91,17 @@ public class MoarBehavior : MonoBehaviour {
 			if (counter == 100) {
 				floorLaser.TriggerAction (true);
 			}
-			if (counter == 300) {
+
+			if (counter == 300 || counter == 330 || counter == 360 || counter == 390) {
+				((GameObject)Instantiate (fireball, transform.position, Quaternion.Euler (new Vector3 (0, 0, 90)))).GetComponent<Fireball>().wall = wall;
+			}
+
+			if (counter == 450) {
 				floorLaser.TriggerAction (true);
 				protectionBridge.goRight = false;
+
+
+
 				counter = 0;
 				state = 0;
 			}
