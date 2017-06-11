@@ -9,10 +9,12 @@ using UnityEngine;
 public class Shield : Device {
 
     public int maxCharge = 1000;
-    public int drainRate = 2;
-    public int rechargeRate = 1;
+    public int drainRate = 4;
+    public int rechargeRate = 6;
+    public int coolDown = 500;
 
     public int currentCharge = 60;
+    public int currentCooldown;
 
 
     Collider2D parentCollider;
@@ -38,24 +40,6 @@ public class Shield : Device {
         collider.enabled = isEnabled;
         renderer.enabled = isEnabled;
     }
-	
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Projectile projectile = other.GetComponent<Projectile>();
-        
-        if (projectile != null)
-        {
-            Damager damager = other.GetComponent<Damager>();
-            if (damager!= null)
-            {
-                if ((damager.victimMask & (1 << gameObject.layer)) != 0)
-                    Destroy(other);
-            }
-           
-        }
-
-    }
 
     public override void OnEnabled(GameObject activator)
     {
@@ -67,6 +51,7 @@ public class Shield : Device {
     public override void OnDisabled(GameObject activator)
     {
         damageable.defense -= 1000;
+        currentCooldown = coolDown;
         collider.enabled = isEnabled;
         renderer.enabled = isEnabled;
     }
@@ -83,7 +68,11 @@ public class Shield : Device {
 
     public override void UpdateWhileDisabled()
     {
-        if (currentCharge < maxCharge)
+        if (currentCooldown > 0)
+        {
+            currentCooldown--;
+        }
+        else if (currentCharge < maxCharge)
         {
             currentCharge += rechargeRate;
             if (currentCharge > maxCharge)

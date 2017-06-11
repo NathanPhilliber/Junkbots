@@ -672,7 +672,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452611120007920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 455.5, y: -81.7, z: 0}
+  m_LocalPosition: {x: -7, y: -26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4245640298241358}
@@ -1609,9 +1609,11 @@ MonoBehaviour:
   isToggle: 0
   locked: 0
   maxCharge: 1000
-  drainRate: 2
-  rechargeRate: 1
-  currentCharge: 60
+  drainRate: 6
+  rechargeRate: 8
+  coolDown: 300
+  currentCharge: 100
+  currentCooldown: 0
 --- !u!114 &114640572841480454
 MonoBehaviour:
   m_ObjectHideFlags: 1
