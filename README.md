@@ -6,4 +6,11 @@ Nathan Philliber,
 Bridget Winn,
 Jerrick Fong
 
-To play, run the executable with the Junkbots_data folder in the same directory.
+
+Installation Instructions
+
+   MAC
+      Run the application. You may have to enable unknown developers in system preferences.
+      
+   Windows
+      To play, run the executable with the Junkbots_data folder in the same directory.
