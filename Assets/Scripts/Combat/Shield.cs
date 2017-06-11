@@ -80,4 +80,17 @@ public class Shield : Device {
         }
         
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Damager damager = other.GetComponent<Damager>();
+        if (damager != null)
+        {
+            currentCharge -= damager.damage * 3;
+            if (currentCharge < 0)
+            {
+                currentCharge = 0;
+            }
+        }
+    }
 }
