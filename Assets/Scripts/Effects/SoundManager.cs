@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour {
 	private AudioSource src2;
 
 	void Start(){
-		src = GetComponent<AudioSource> ();
+		src = gameObject.AddComponent<AudioSource> ();
 		src2 = gameObject.AddComponent<AudioSource> ();
 		src.volume = .2f;
 		src2.volume = .2f;
