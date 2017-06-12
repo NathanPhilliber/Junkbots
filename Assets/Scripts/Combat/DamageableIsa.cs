@@ -11,14 +11,18 @@ public class DamageableIsa : Damageable {
 	public GameObject fadeOutEffect;
     Shield shield;
 
+	private SoundManager sounds;
+
     void Start()
     {
         shield = GetComponentInChildren<Shield>();
-
+		sounds = Camera.main.GetComponent<SoundManager> ();
     }
 
     public override void OnHealthDecreased(int amount)
     {
+		sounds.PlaySound (14);
+
         if (health < maxHealth / 2)
         {
             LEyeSprite.color = Color.yellow;

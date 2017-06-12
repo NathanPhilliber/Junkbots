@@ -8,9 +8,15 @@ public class DamageableErl : Damageable {
 
 	public GameObject fadeOutEffect;
 
+	private SoundManager sounds;
+
+	void Start() {
+		sounds = Camera.main.GetComponent<SoundManager> ();
+	}
+
     public override void OnHealthDecreased(int amount)
     {
-        // Nothing yet
+		sounds.PlaySound (13);
     }
 
 	private bool died = false;

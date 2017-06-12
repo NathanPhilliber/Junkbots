@@ -7,13 +7,11 @@ public class DamageableDestroy : Damageable {
 
     public GameObject damageEffect;
 	public float damageRotation;
-	private SoundManager sounds;
 
     public override void OnHealthDecreased(int amount)
     {
 		if (damageEffect != null) {
 			GameObject effect = (GameObject)Instantiate (damageEffect, new Vector2 (transform.position.x, transform.position.y), Quaternion.Euler(0,0, damageRotation));
-			sounds.PlaySound (13);
 			Destroy (effect, 1);
 		}
     }
@@ -25,7 +23,6 @@ public class DamageableDestroy : Damageable {
 
     // Use this for initialization
     void Start () {
-		sounds = Camera.main.GetComponent<SoundManager> ();
 	}
 	
 	// Update is called once per frame
