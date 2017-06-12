@@ -37,4 +37,7 @@ EditorBuildSettings:
     guid: 346e7abd430c5402c8ccd37cbe46cbd3
   - enabled: 1
     path: Assets/Scenes/BossBattle.unity
-    guid: 00000000000000000000000000000000
+    guid: 3b8659160658448f08a03a2dc3b80ada
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 683c0ba1a524ed8439ba4bf59e4377b3

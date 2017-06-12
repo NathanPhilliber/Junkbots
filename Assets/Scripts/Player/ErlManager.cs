@@ -62,10 +62,10 @@ public class ErlManager : MonoBehaviour {
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
 		if (weapon != null) {
-            weapon.ToggleOrEnable(gameObject, Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.Space));
+            weapon.ToggleOrEnable(gameObject, Input.GetButtonDown("Fire1_Erl"), Input.GetButton("Fire1_Erl"));
 		}
 
-        if (input.y > 0 && controller.collisions.below && !controller.collisions.slidingDownMaxSlope)
+        if (Input.GetButton("Jump_Erl") && controller.collisions.below && !controller.collisions.slidingDownMaxSlope)
         {
             Jump();
         }
@@ -116,8 +116,6 @@ public class ErlManager : MonoBehaviour {
                 body.transform.localPosition = Vector3.up * currentExtension;
             }
         }
-
-        //anim.SetFloat ("Speed", Mathf.Abs(input.x));
 
 		if (Mathf.Abs(transform.position.x - lastX) > soundXDiff){
 			//sounds.PlaySound (9);

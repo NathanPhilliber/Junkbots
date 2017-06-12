@@ -74,12 +74,12 @@ public class IsaManager : MonoBehaviour {
 
         if (primary != null)
         {
-            primary.ToggleOrEnable(gameObject, Input.GetMouseButtonDown(0), Input.GetMouseButton(0));
+            primary.ToggleOrEnable(gameObject, Input.GetButtonDown("Grabber_Isa"), Input.GetButton("Grabber_Isa"));
         }
 
         if (secondary != null)
         {
-            secondary.ToggleOrEnable(gameObject, Input.GetMouseButtonDown(1), Input.GetMouseButton(1));
+            secondary.ToggleOrEnable(gameObject, Input.GetButtonDown("Shield_Isa"), Input.GetButton("Shield_Isa"));
         }
         
 
